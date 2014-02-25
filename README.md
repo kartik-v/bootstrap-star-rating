@@ -10,7 +10,7 @@ A JQuery star rating plugin for Twitter Bootstrap. Developed with a focus on utl
 4. Control reset value and options for the stars
 5. Control caption of the selected stars
 6. Control sizes of the selected stars
-7. Supports JQuery events 'rating.change' and 'rating.reset'
+7. Supports JQuery events `rating.change` and `rating.reset`
 8. Support for RIGHT TO LEFT (RTL) input.
 
 ## Pre-requisites

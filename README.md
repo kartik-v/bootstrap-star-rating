@@ -62,10 +62,84 @@ Alternatively, you can directly call the plugin options by setting data attribut
 
     <input id="input-id" type="number" data-size="lg" >
 
-## Documentation & Demo
+## Documentation
 
-In Process
+### Plugin Options
+The plugin supports these following options:
 
+#### min
+*float* the minimum value for the rating input. Defaults to `1`.
+
+#### max
+*float* the maximum value for the rating input. Defaults to `5`.
+
+#### step
+*float* the step to increment the rating when each star is clicked. Defaults to `1`.
+
+#### disabled
+*boolean* whether the input is disabled. Defaults to `false`.
+
+#### readonly
+*boolean* whether the input is read only. Defaults to `false`.
+
+#### rtl
+*boolean* whether the rating input is to be oriented RIGHT TO LEFT. Defaults to `false`.
+
+#### showReset
+*boolean* whether the reset button is to be displayed. Defaults to `true`.
+
+#### showCaption
+*boolean* whether the rating caption is to be displayed. Defaults to `true`.
+
+#### size
+*string* size of the rating control. One of `xl`, `lg`, `md`, `sm`, or `xs`. Defaults to `md`.
+
+#### starCaptions
+*array* the caption titles corresponding to each of the star rating selected. Defaults to
+
+    {
+        1: 'One Star',
+        2: 'Two Stars',
+        3: 'Three Stars',
+        4: 'Four Stars',
+        5: 'Five Stars'
+    }
+
+#### starCaptionClasses
+*array* the caption css classes corresponding to each of the star rating selected. Defaults to
+
+    {
+        1: 'label label-danger',
+        2: 'label label-warning',
+        3: 'label label-info',
+        4: 'label label-primary',
+        5: 'label label-success',
+    }
+
+#### resetButton
+*string* the markup for displaying the reset button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
+
+#### resetButtonTitle
+*string* the title displayed on reset button hover. Defaults to `Reset`. 
+
+#### resetValue
+*string* the value to reset the input to, when the reset button is clicked. Defaults to `0`. 
+
+#### resetCaption
+*string* the caption displayed when reset button is clicked. Defaults to `Not Rated`. 
+
+#### resetCaptionClass
+*string* the CSS Class to apply to the caption displayed, when reset button is clicked. Defaults to `label label-default`. 
+
+#### captionElement
+*string* the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
+
+#### $resetElement
+*string* the container element selector for displaying the reset button. Defaults to a `div` container with `.reset` class inside the rating control. 
+
+## Demo
+
+In process.
 
 ## License
 

@@ -36,16 +36,19 @@ or add:
 
 to your composer.json file
 
-You can also manually install the plugin easily to your project. Just use the ZIP/TAR ball links to download the assets (css and js folders) into your project.
+> You can also manually install the plugin easily to your project. Just use the ZIP/TAR ball links to download the assets (css and js folders) into your project.
 
 ## Usage
-Load the following assets in your header. In addition to the 
+
+- Load the following assets in your header. 
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
     <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
 
-Initialize the plugin on your page.
+- If you noticed, you need to load the `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.
+
+- Initialize the plugin on your page.
 
     // initialize with defaults
     $("#input-id").rating();
@@ -53,7 +56,7 @@ Initialize the plugin on your page.
     // with plugin options
     $("#input-id").rating(['min'=>1, 'max'=>10, 'step'=>2, 'size'=>'lg']);
 
-Or you can directly initialize the plugin options via data attributes.
+- Or you can directly initialize the plugin options via data attributes.
 
     <input id="input-id" type="number" data-size="lg" >
 

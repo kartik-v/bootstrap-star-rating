@@ -21,42 +21,39 @@ A JQuery star rating plugin for Twitter Bootstrap. Developed with a focus on utl
 ## Installation
 ###  Composer Install
 You can use the composer package manager to install. Either run
-```
-$ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"
-```
+
+    $ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"
+
 or add
-```
-"kartik-v/bootstrap-star-rating": "dev-master"
-```
+
+    "kartik-v/bootstrap-star-rating": "dev-master"
+
 to your composer.json file
 
 ###  Bower Install
 You can also install this using the bower package manager.
-```
-bower install bootstrap-star-rating --save
-```
+
+    bower install bootstrap-star-rating --save
+
 
 ###  Manual
 Download the assets (css and js folders) into your project and call the assets in your page.
-```
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-<script 
-src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
-```
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
 
 ## Usage
 Load bootstrap and assets in your header
-```html
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-<script 
-src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
-```
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
+
 Initialize the plugin for your page.
-```html
-$("#input-id").rating({plugin-options});
-```
+
+    $("#input-id").rating({plugin-options});
+
 
 ## Documentation & Demo
 In Process

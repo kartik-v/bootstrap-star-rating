@@ -68,34 +68,34 @@ Alternatively, you can directly call the plugin options by setting data attribut
 The plugin supports these following options:
 
 #### min
-*float* the minimum value for the rating input. Defaults to `1`.
+_float_ the minimum value for the rating input. Defaults to `1`.
 
 #### max
-*float* the maximum value for the rating input. Defaults to `5`.
+_float_ the maximum value for the rating input. Defaults to `5`.
 
 #### step
-*float* the step to increment the rating when each star is clicked. Defaults to `1`.
+_float_ the step to increment the rating when each star is clicked. Defaults to `1`.
 
 #### disabled
-*boolean* whether the input is disabled. Defaults to `false`.
+_boolean_ whether the input is disabled. Defaults to `false`.
 
 #### readonly
-*boolean* whether the input is read only. Defaults to `false`.
+_boolean_ whether the input is read only. Defaults to `false`.
 
 #### rtl
-*boolean* whether the rating input is to be oriented RIGHT TO LEFT. Defaults to `false`.
+_boolean_ whether the rating input is to be oriented RIGHT TO LEFT. Defaults to `false`.
 
 #### showReset
-*boolean* whether the reset button is to be displayed. Defaults to `true`.
+_boolean_ whether the reset button is to be displayed. Defaults to `true`.
 
 #### showCaption
-*boolean* whether the rating caption is to be displayed. Defaults to `true`.
+_boolean_ whether the rating caption is to be displayed. Defaults to `true`.
 
 #### size
-*string* size of the rating control. One of `xl`, `lg`, `md`, `sm`, or `xs`. Defaults to `md`.
+_string_ size of the rating control. One of `xl`, `lg`, `md`, `sm`, or `xs`. Defaults to `md`.
 
 #### starCaptions
-*array* the caption titles corresponding to each of the star rating selected. Defaults to
+_array_ the caption titles corresponding to each of the star rating selected. Defaults to
 
     {
         1: 'One Star',
@@ -106,7 +106,7 @@ The plugin supports these following options:
     }
 
 #### starCaptionClasses
-*array* the caption css classes corresponding to each of the star rating selected. Defaults to
+_array_ the caption css classes corresponding to each of the star rating selected. Defaults to
 
     {
         1: 'label label-danger',
@@ -117,25 +117,25 @@ The plugin supports these following options:
     }
 
 #### resetButton
-*string* the markup for displaying the reset button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
+_string_ the markup for displaying the reset button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
 
 #### resetButtonTitle
-*string* the title displayed on reset button hover. Defaults to `Reset`. 
+_string_ the title displayed on reset button hover. Defaults to `Reset`. 
 
 #### resetValue
-*string* the value to reset the input to, when the reset button is clicked. Defaults to `0`. 
+_string_ the value to reset the input to, when the reset button is clicked. Defaults to `0`. 
 
 #### resetCaption
-*string* the caption displayed when reset button is clicked. Defaults to `Not Rated`. 
+_string_ the caption displayed when reset button is clicked. Defaults to `Not Rated`. 
 
 #### resetCaptionClass
-*string* the CSS Class to apply to the caption displayed, when reset button is clicked. Defaults to `label label-default`. 
+_string_ the CSS Class to apply to the caption displayed, when reset button is clicked. Defaults to `label label-default`. 
 
 #### captionElement
-*string* the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
+_string_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
 
 #### $resetElement
-*string* the container element selector for displaying the reset button. Defaults to a `div` container with `.reset` class inside the rating control. 
+_string_ the container element selector for displaying the reset button. Defaults to a `div` container with `.reset` class inside the rating control. 
 
 ## Demo
 

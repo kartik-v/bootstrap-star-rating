@@ -30,13 +30,7 @@ or add
 
 to your composer.json file
 
-###  Bower Install
-You can also install this using the bower package manager.
-
-    bower install bootstrap-star-rating --save
-
-
-###  Manual
+###  Manual Install
 Download the assets (css and js folders) into your project and call the assets in your page.
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -52,8 +46,15 @@ Load bootstrap and assets in your header
 
 Initialize the plugin for your page.
 
-    $("#input-id").rating({plugin-options});
+    // initialize with defaults
+    $("#input-id").rating();
+    
+    // with plugin options
+    $("#input-id").rating(['min'=>1, 'max'=>10, 'step'=>2, 'size'=>'lg']);
 
+Or you can directly initialize the plugin options via data attributes.
+
+    <input id="input-id" type="number" data-size="lg" >
 
 ## Documentation & Demo
 In Process

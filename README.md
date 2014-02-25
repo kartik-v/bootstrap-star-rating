@@ -41,7 +41,8 @@ Download the assets (css and js folders) into your project and call the assets i
 ```
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-&lt;script src="path/to/js/star-rating.min.js" type="text/javascript"&gt;&lt;/script&gt;
+<script 
+src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
 ```
 
 ## Usage
@@ -49,7 +50,8 @@ Load bootstrap and assets in your header
 ```html
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-&lt;script src="path/to/js/star-rating.min.js" type="text/javascript"&gt;&lt;/script&gt;
+<script 
+src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
 ```
 Initialize the plugin for your page.
 ```html

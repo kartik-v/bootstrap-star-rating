@@ -18,15 +18,21 @@
 .star-rating s,
 .star-rating-rtl s {
     color: #ccc;
-    cursor: default;
     text-decoration: none;
+    cursor: not-allowed;
     font-family: 'Glyphicons Halflings';
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.star-rating s:hover:before, .star-rating s.rated:before {
+.star-rating-disabled {
+    opacity: 0.65;
+}
+.star-rating-active s, .star-rating-rtl-active s {
+    cursor: default;
+}
+.star-rating-active s:hover:before, .star-rating s.rated:before {
     text-shadow: 0 0 2px rgba(0,0,0,0.7);
     content: "\e006";
     color: #fde16d;
@@ -35,7 +41,7 @@
     text-shadow: 0 0 1px rgba(0,0,0,0.1);
     content: "\e007";
 }
-.star-rating-rtl s:hover:after, .star-rating-rtl s.rated:after{
+.star-rating-rtl-active s:hover:after, .star-rating-rtl s.rated:after{
     text-shadow: 0 0 2px rgba(0,0,0,0.7);
     content: "\e006";
     color: #fde16d;
@@ -44,12 +50,9 @@
     text-shadow: 0 0 1px rgba(0,0,0,0.1);
     content: "\e007";
 }
-.star-rating s:hover:before, .star-rating-rtl s:hover:before {
+.star-rating-active s:hover:before, .star-rating-rtl-active s:hover:after {
     text-shadow: 0 0 2px rgba(0,0,0,0.7);
     color: #8a6d3b;
-}
-.star-rating-disabled s:hover {
-    text-decoration: none!important;
 }
 /**
  * Rating sizes
@@ -79,12 +82,15 @@
  */
 .star-rating .reset, .star-rating-rtl .reset {
     color: #aaa;
-    cursor: pointer;
+    cursor: not-allowed;
     display: inline-block;
     vertical-align: middle;
     font-size: 70%;
 }
-.star-rating .reset:hover, .star-rating-rtl .reset:hover {
+.reset-active {
+    cursor: pointer!important;
+}
+.reset-active:hover {
     color: #843534;
 }
 .star-rating .reset {

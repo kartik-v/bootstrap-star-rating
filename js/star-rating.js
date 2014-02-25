@@ -5,7 +5,6 @@
  * A simple yet powerful JQuery star rating plugin for Twitter Bootstrap.
  * 
  * Built originally for Yii Framework 2.0. But is usable across frameworks & scenarios.
- * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
 (function($) {
@@ -23,19 +22,24 @@
         this.readonly = options.readonly;
         this.rtl = options.rtl;
         this.size = options.size;
-        this.starTitles = options.starTitles;
-        this.starTitleClasses = options.starTitleClasses;
+        this.showReset = options.showReset;
+        this.showCaption = options.showCaption;
+        this.starCaptions = options.starCaptions;
+        this.starCaptionClasses = options.starCaptionClasses;
         this.resetButton = options.resetButton;
         this.resetButtonTitle = options.resetButtonTitle;
-        this.resetTitle = options.resetTitle;
-        this.resetTitleClass = options.resetTitleClass;
+        this.resetCaption = options.resetCaption;
+        this.resetCaptionClass = options.resetCaptionClass;
         this.resetValue = options.resetValue;
+        this.inactive = (this.disabled || this.readonly);
         this.inputValue = this.$element.val();
+        this.$resetElement = options.resetElement;
+        this.$captionElement = options.captionElement;
         this.$container = this.createContainer();
         this.$star = this.$container.children("s");
         this.$stars = this.$container.find("s");
-        this.$reset = this.$container.find(".reset");
-        this.$caption = this.$container.find(".caption");
+        this.$reset = !isEmpty(this.$resetElement) ? this.$resetElement : this.$container.find(".reset");
+        this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
         this._init();
     };
     Rating.prototype = {
@@ -45,31 +49,35 @@
             self.$element.before(self.$container);
             self.$element.hide();
             self.$star.on("click", function(e) {
-                var numStars = $(e.target).parentsUntil("div").length + 1;
-                var titleClass = self.starTitleClasses[numStars];
-                var caption = '<span class="' + titleClass + '">' + self.starTitles[numStars] + '</span>';
-                self.$element.val(numStars);
-                self.$caption.html(caption);
-                self.$stars.removeClass('rated');
-                $(e.target).removeClass('rated').addClass('rated');
-                $(e.target).parentsUntil("div", "s").removeClass('rated').addClass('rated');
-                self.$element.trigger('rating.change', {
-                    'value': numStars,
-                    'caption': caption
-                });
+                if (!self.inactive) {
+                    var numStars = $(e.target).parentsUntil("div").length + 1;
+                    var titleClass = self.starCaptionClasses[numStars];
+                    var caption = '<span class="' + titleClass + '">' + self.starCaptions[numStars] + '</span>';
+                    self.$element.val(numStars);
+                    self.$caption.html(caption);
+                    self.$stars.removeClass('rated');
+                    $(e.target).removeClass('rated').addClass('rated');
+                    $(e.target).parentsUntil("div", "s").removeClass('rated').addClass('rated');
+                    self.$element.trigger('rating.change', {
+                        'value': numStars,
+                        'caption': caption
+                    });
+                }
             });
             self.$reset.on("click", function(e) {
-                var title = '<span class="' + self.resetTitleClass + '">' + self.resetTitle + '</span>';
-                self.$stars.removeClass('rated');
-                self.$caption.html(title);
-                self.$element.val(self.resetValue);
-                self.$element.trigger('rating.reset');
+                if (!self.inactive) {
+                    var title = '<span class="' + self.resetCaptionClass + '">' + self.resetCaption + '</span>';
+                    self.$stars.removeClass('rated');
+                    self.$caption.html(title);
+                    self.$element.val(self.resetValue);
+                    self.$element.trigger('rating.reset');
+                }
             });
         },
         createContainer: function() {
             var self = this;
-            var css = (self.rtl) ? 'star-rating-rtl ' : 'star-rating ';
-            css += (self.disabled || self.readonly) ? 'star-rating-disabled' : '';
+            var css = (self.rtl) ? 'star-rating-rtl' : 'star-rating';
+            css += self.inactive ? ((self.disabled) ? ' ' + css + '-disabled ' : ' ') : ' ' + css + '-active ';
             css += 'rating-' + self.size;
             var stars = self.renderStars();
             var reset = self.renderReset();
@@ -89,13 +97,32 @@
         },
         renderReset: function() {
             var self = this;
-            return '<div class="reset" title="' + self.resetButtonTitle + '">' + self.resetButton + '</div>';
+            if (!self.showReset) {
+                return '';
+            }
+            var css = (self.inactive) ? 'reset' : 'reset reset-active';
+            if (!isEmpty(self.$resetElement)) {
+                self.$resetElement.removeClass(css).addClass(css).attr({"title": self.resetButtonTitle});
+                self.$resetElement.html(self.resetButton);
+                return '';
+            }
+            return '<div class="' + css + '" title="' + self.resetButtonTitle + '">' + self.resetButton + '</div>';
         },
         renderCaption: function() {
             var self = this, val = self.inputValue;
-            var css = isEmpty(self.starTitleClasses[val]) ? self.resetTitleClass : self.starTitleClasses[val];
-            var caption = isEmpty(self.starTitles[val]) ? self.resetTitle : self.starTitles[val];
-            return '<div class="caption"><span class="' + css + '">' + caption + '</span></div>';
+            if (!self.showCaption) {
+                return '';
+            }
+            var css = isEmpty(self.starCaptionClasses[val]) ? self.resetCaptionClass : self.starCaptionClasses[val];
+            var caption = isEmpty(self.starCaptions[val]) ? self.resetCaption : self.starCaptions[val];
+            var html = '<span class="' + css + '">' + caption + '</span>';
+            if (!isEmpty(self.$captionElement)) {
+                self.$captionElement.removeClass('caption').addClass('caption').attr({"title": self.resetButtonTitle});
+                self.$captionElement.html(html);
+                return '';
+            }
+
+            return '<div class="caption">' + html + '</div>';
         }
     };
 
@@ -126,14 +153,16 @@
         readonly: false,
         rtl: false,
         size: 'md',
-        starTitles: {
+        showReset: true,
+        showCaption: true,
+        starCaptions: {
             1: 'One Star',
             2: 'Two Stars',
             3: 'Three Stars',
             4: 'Four Stars',
             5: 'Five Stars',
         },
-        starTitleClasses: {
+        starCaptionClasses: {
             1: 'label label-danger',
             2: 'label label-warning',
             3: 'label label-info',
@@ -142,9 +171,11 @@
         },
         resetButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
         resetButtonTitle: 'Reset',
-        resetTitle: 'Not Rated',
-        resetTitleClass: 'label label-default',
-        resetValue: 0
+        resetCaption: 'Not Rated',
+        resetCaptionClass: 'label label-default',
+        resetValue: 0,
+        captionElement: null,
+        resetElement: null
     };
 
 }(jQuery));

@@ -26,15 +26,10 @@ A simple yet powerful JQuery star rating plugin for Twitter Bootstrap. Developed
 The plugin supports only whole filled (or empty) stars and not partially filled stars. This is probably an enhancement to be planned for future.
 
 ## Installation
-The preferred way to install this plugin is using `composer` package manager. Either run
+The preferred way to install this plugin is using `composer` package manager. 
 
-    $ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"
-
-or add:
-
-    "kartik-v/bootstrap-star-rating": "dev-master"
-
-to your composer.json file
+- Either run `$ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"`,
+- or add `"kartik-v/bootstrap-star-rating": "dev-master"` to your `composer.json` file
 
 > You can also manually install the plugin easily to your project. Just use the ZIP/TAR ball links to download the assets (css and js folders) into your project.
 

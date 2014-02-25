@@ -5,7 +5,7 @@ A simple yet powerful JQuery star rating plugin for Twitter Bootstrap. Developed
 
 ## Features  
 
-1. Convert any HTML input to a star rating.You preferrably should use an input of `type = number` - for browsers not supporting JQuery or Javascript.
+1. Convert any HTML input to a star rating. You preferrably should use an input of `type = number`. This will help fallback to a number input for browsers not supporting JQuery or Javascript.
 2. Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector icons for consistent display across devices.
 3. Specifically uses Twitter Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
 4. Ability to reset values and options for the stars. Control where the reset button element can be shown.

@@ -11,9 +11,6 @@
             "homepage": "http://www.krajee.com/"
         }
     ],
-    "require": {
-        "twbs/bootstrap": "dev-master"
-    },
     "autoload": {
         "psr-4": {"kartik\\": ""}
     }

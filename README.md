@@ -161,10 +161,10 @@ This event is triggered when the star rating is modified or changed. This event 
 
 **Example:**
 ```js
-    $('#input-id').on('rating.change', function(event, value, caption) {
-        console.log(value);
-        console.log(caption);
-    });
+$('#input-id').on('rating.change', function(event, value, caption) {
+    console.log(value);
+    console.log(caption);
+});
 ```
 
 #### rating.clear
@@ -172,9 +172,9 @@ This event is triggered when the rating is cleared with the clear button.
 
 **Example:**
 ```js
-    $('#input-id').on('rating.clear', function(event) {
-        console.log("rating.clear");
-    });
+$('#input-id').on('rating.clear', function(event) {
+    console.log("rating.clear");
+});
 ```
 
 #### rating.reset
@@ -182,9 +182,9 @@ This event is triggered when the rating is reset to initial value.
 
 **Example:**
 ```js
-    $('#input-id').on('rating.reset', function(event) {
-        console.log("rating.reset");
-    });
+$('#input-id').on('rating.reset', function(event) {
+    console.log("rating.reset");
+});
 ```
 
 ### Plugin Methods

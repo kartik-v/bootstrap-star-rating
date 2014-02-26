@@ -155,8 +155,9 @@ The plugin supports these events:
 
 #### rating.change
 This event is triggered when the star rating is modified or changed. This event also allows you to access these parameters:
-    - `value`: the selected rating value
-    - `caption`: the caption for the selected rating
+
+- `value`: the selected rating value  
+- `caption`: the caption for the selected rating
 
 **Example:**
 ```js

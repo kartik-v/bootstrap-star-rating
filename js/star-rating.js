@@ -101,8 +101,8 @@
             var begin = '', end = '';
             var self = this;
             var step = (self.step > 0) ? self.step : DEFAULT_STEP;
-            var max = parseInt(self.max / step);
-            for (var i = self.min; i <= max; i++) {
+            var threshold = parseInt(self.max / step);
+            for (var i = self.min; i <= self.max; i += step) {
                 begin += (!isEmpty(self.inputValue) && i <= self.inputValue) ? '<s class="rated">' : '<s>';
                 end += '</s>';
             }
@@ -142,7 +142,8 @@
         },
         change: function(e) {
             var self = this;
-            var numStars = ($(e.target).parentsUntil("div").length + 1) * self.step;
+            var numStars = $(e.target).parentsUntil("div").length + 1;
+            numStars = (numStars - 1) * self.step + self.min;
             var hasStars = !isEmpty(self.starCaptions[numStars]);
             var titleClass = (hasStars) ? self.starCaptionClasses[numStars] : self.clearCaptionClass;
             var cap = (hasStars) ? self.starCaptions[numStars] : self.defaultCaption.replace(/\<rating\>/g, numStars);

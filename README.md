@@ -55,7 +55,7 @@ Step 1: Load the following assets in your header.
 <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
 ```
 
-If you noticed, you need to load the `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.
+If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.
 
 Step 2: Initialize the plugin on your page. For example,
 

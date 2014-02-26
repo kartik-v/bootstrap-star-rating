@@ -5,16 +5,22 @@ A simple yet powerful JQuery star rating plugin for Twitter Bootstrap. Developed
 
 ## Features  
 
-1. Convert any HTML input to a star rating. You preferrably should use an input of `type = number`. This will help fallback to a number input for browsers not supporting JQuery or Javascript.
-2. Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector icons for consistent display across devices.
-3. Specifically uses Twitter Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
-4. Ability to reset values and options for the stars. Control where the reset button element can be shown.
-5. Ability to control and display caption of the selected stars. Each rated star can have its own caption. Control where the caption element can be shown.
-6. Ability to size the rating control including the stars, caption, and reset button. Five prebuilt size templates are available `xl`, `lg`, `md`, `sm`, and `xs`.
-7. Triggers JQuery events for advanced development. Events currently available are `rating.change` and `rating.reset`
-8. Support for RIGHT TO LEFT (RTL) input. Automatically changes star styling for RTL.
-9. Disabled and readonly input star rating support.
-10. Size of the entire plugin is less than 8KB (5KB for the minified JS and 3KB for the minified CSS).
+1. Convert any HTML input to a star rating control. Recommended input is of `type = number`, which will help fallback to a number input for browsers not supporting JQuery or Javascript.
+2. The plugin automatically converts an input with `type = number` to a star rating control if you set its `class = rating`. All options to the input can be passed as HTML5 `data` attributes.
+3. Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector icons for consistent display across devices.
+4. Specifically uses Twitter Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
+5. Ability to clear values and options for the stars. Control where the clear button element can be shown.
+6. Reset star rating to the initial value when the form is reset.
+7. Ability to control and display caption of the selected stars. Each rated star can have its own caption. Control where the caption element can be shown.
+8. Ability to size the rating control including the stars, caption, and clear button. Five prebuilt size templates are available `xl`, `lg`, `md`, `sm`, and `xs`.
+9. Support for RIGHT TO LEFT (RTL) input. Automatically changes star styling for RTL.
+10. Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
+11. Disabled and readonly input star rating support.
+12. Size of the entire plugin is less than 9KB (about 6KB for the minified JS and 3KB for the minified CSS).
+
+## Demo
+
+View the [plugin documentation & demos](http://plugins.krajee.com/star-rating) at Krajee JQuery plugins. 
 
 ## Pre-requisites  
 
@@ -44,7 +50,8 @@ Step 1: Load the following assets in your header.
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>;
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
 
 If you noticed, you need to load the `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.
 
@@ -85,8 +92,8 @@ _boolean_ whether the input is read only. Defaults to `false`.
 #### rtl
 _boolean_ whether the rating input is to be oriented RIGHT TO LEFT. Defaults to `false`.
 
-#### showReset
-_boolean_ whether the reset button is to be displayed. Defaults to `true`.
+#### showClear
+_boolean_ whether the clear button is to be displayed. Defaults to `true`.
 
 #### showCaption
 _boolean_ whether the rating caption is to be displayed. Defaults to `true`.
@@ -116,30 +123,77 @@ _array_ the caption css classes corresponding to each of the star rating selecte
         5: 'label label-success',
     }
 
-#### resetButton
-_string_ the markup for displaying the reset button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
+#### clearButton
+_string_ the markup for displaying the clear button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
 
-#### resetButtonTitle
-_string_ the title displayed on reset button hover. Defaults to `Reset`. 
+#### clearButtonTitle
+_string_ the title displayed on clear button hover. Defaults to `Clear`. 
 
-#### resetValue
-_string_ the value to reset the input to, when the reset button is clicked. Defaults to `0`. 
+#### clearValue
+_string_ the value to clear the input to, when the clear button is clicked. Defaults to `0`. 
 
-#### resetCaption
-_string_ the caption displayed when reset button is clicked. Defaults to `Not Rated`. 
+#### clearCaption
+_string_ the caption displayed when clear button is clicked. Defaults to `Not Rated`. 
 
-#### resetCaptionClass
-_string_ the CSS Class to apply to the caption displayed, when reset button is clicked. Defaults to `label label-default`. 
+#### clearCaptionClass
+_string_ the CSS Class to apply to the caption displayed, when clear button is clicked. Defaults to `label label-default`. 
 
 #### captionElement
 _string_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
 
-#### $resetElement
-_string_ the container element selector for displaying the reset button. Defaults to a `div` container with `.reset` class inside the rating control. 
+#### $clearElement
+_string_ the container element selector for displaying the clear button. Defaults to a `div` container with `.clear-rating` class inside the rating control. 
 
-## Demo
+### Plugin Events
+The plugin supports these events:
 
-In process.
+#### rating.change
+This event is triggered when the star rating is modified or changed. This event also allows you to access these parameters:
+    - `value`: the selected rating value
+    - `caption`: the caption for the selected rating
+
+**Example:**
+```
+    $('#input-id').on('rating.change', function(event, value, caption) {
+        console.log(value);
+        console.log(caption);
+    });
+```
+
+#### rating.clear
+This event is triggered when the rating is cleared with the clear button.
+
+**Example:**
+```
+    $('#input-id').on('rating.clear', function(event) {
+        console.log("rating.clear");
+    });
+```
+
+#### rating.reset
+This event is triggered when the rating is reset to initial value.
+
+**Example:**
+```
+    $('#input-id').on('rating.reset', function(event) {
+        console.log("rating.reset");
+    });
+```
+
+### Plugin Methods
+The plugin supports these methods:
+
+#### reset
+Reset the rating.
+```
+$('#input-id').rating('reset');
+```
+
+#### clear
+Clear the rating.
+```
+$('#input-id').rating('clear');
+```
 
 ## License
 

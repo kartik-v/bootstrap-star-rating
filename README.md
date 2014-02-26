@@ -49,10 +49,10 @@ You can also manually install the plugin easily to your project. Just use the ZI
 Step 1: Load the following assets in your header. 
 
 ```html
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
 ```
 
 If you noticed, you need to load the `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.

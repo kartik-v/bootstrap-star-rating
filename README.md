@@ -57,17 +57,21 @@ If you noticed, you need to load the `bootstrap.min.css` in addition to the `sta
 
 Step 2: Initialize the plugin on your page. For example,
 
-    // initialize with defaults
-    $("#input-id").rating();
-    
-    // with plugin options
-    $("#input-id").rating(['min'=>1, 'max'=>10, 'step'=>2, 'size'=>'lg']);
+```js
+// initialize with defaults
+$("#input-id").rating();
+
+// with plugin options
+$("#input-id").rating(['min'=>1, 'max'=>10, 'step'=>2, 'size'=>'lg']);
+```
 
 The `#input-id` is the identifier for the input (e.g. `type=number`) on your page, which is hidden automatically by the plugin. 
 
 Alternatively, you can directly call the plugin options by setting data attributes to your input field.
 
-    <input id="input-id" type="number" data-size="lg" >
+```html
+<input id="input-id" type="number" data-size="lg" >
+```
 
 ## Documentation
 
@@ -153,7 +157,7 @@ This event is triggered when the star rating is modified or changed. This event 
     - `caption`: the caption for the selected rating
 
 **Example:**
-```
+```js
     $('#input-id').on('rating.change', function(event, value, caption) {
         console.log(value);
         console.log(caption);
@@ -164,7 +168,7 @@ This event is triggered when the star rating is modified or changed. This event 
 This event is triggered when the rating is cleared with the clear button.
 
 **Example:**
-```
+```js
     $('#input-id').on('rating.clear', function(event) {
         console.log("rating.clear");
     });
@@ -174,7 +178,7 @@ This event is triggered when the rating is cleared with the clear button.
 This event is triggered when the rating is reset to initial value.
 
 **Example:**
-```
+```js
     $('#input-id').on('rating.reset', function(event) {
         console.log("rating.reset");
     });
@@ -185,13 +189,13 @@ The plugin supports these methods:
 
 #### reset
 Reset the rating.
-```
+```js
 $('#input-id').rating('reset');
 ```
 
 #### clear
 Clear the rating.
-```
+```js
 $('#input-id').rating('clear');
 ```
 

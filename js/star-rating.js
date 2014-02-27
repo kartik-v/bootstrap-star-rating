@@ -143,8 +143,9 @@
             }
             return '<div class="caption">' + html + '</div>';
         },
-        fetchCaption: function(val) {
+        fetchCaption: function(rating) {
             var self = this;
+            var val = parseFloat(rating);
             var css = isEmpty(self.starCaptionClasses[val]) ? self.clearCaptionClass : self.starCaptionClasses[val];
             var caption = isEmpty(self.starCaptions[val]) ? self.clearCaption : self.starCaptions[val];
             return '<span class="' + css + '">' + caption + '</span>';

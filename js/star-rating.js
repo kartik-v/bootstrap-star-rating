@@ -146,7 +146,7 @@
             numStars = (numStars - 1) * self.step + self.min;
             var hasStars = !isEmpty(self.starCaptions[numStars]);
             var titleClass = (hasStars) ? self.starCaptionClasses[numStars] : self.clearCaptionClass;
-            var cap = (hasStars) ? self.starCaptions[numStars] : self.defaultCaption.replace(/\<rating\>/g, numStars);
+            var cap = (hasStars) ? self.starCaptions[numStars] : self.defaultCaption.replace(/\{rating\}/g, numStars);
             var caption = '<span class="' + titleClass + '">' + cap + '</span>';
             self.$element.val(numStars);
             self.$caption.html(caption);
@@ -215,7 +215,7 @@
         size: 'md',
         showClear: true,
         showCaption: true,
-        defaultCaption: '<rating> Stars',
+        defaultCaption: '{rating} Stars',
         starCaptions: {
             1: 'One Star',
             2: 'Two Stars',

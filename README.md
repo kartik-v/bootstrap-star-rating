@@ -20,7 +20,7 @@ A simple yet powerful JQuery star rating plugin for Twitter Bootstrap. Developed
 
 ## Demo
 
-View the [plugin documentation & demos](http://plugins.krajee.com/star-rating) at Krajee JQuery plugins. 
+View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plugin demos](http://plugins.krajee.com/star-rating/demo) at Krajee JQuery plugins. 
 
 ## Pre-requisites  
 

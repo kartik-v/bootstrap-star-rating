@@ -153,7 +153,7 @@
         change: function(e) {
             var self = this;
             var numStars = $(e.target).parentsUntil("div").length + 1;
-            numStars = (numStars - 1) * self.step + self.min;
+            numStars = numStars * self.step + self.min - 1;
             var hasStars = !isEmpty(self.starCaptions[numStars]);
             var titleClass = (hasStars) ? self.starCaptionClasses[numStars] : self.clearCaptionClass;
             var cap = (hasStars) ? self.starCaptions[numStars] : self.defaultCaption.replace(/\<rating\>/g, numStars);
@@ -163,6 +163,7 @@
             self.$stars.removeClass('rated');
             $(e.target).removeClass('rated').addClass('rated');
             $(e.target).parentsUntil("div", "s").removeClass('rated').addClass('rated');
+            alert(numStars);
             self.$element.trigger('rating.change', {
                 'value': numStars,
                 'caption': caption

@@ -163,7 +163,6 @@
             self.$stars.removeClass('rated');
             $(e.target).removeClass('rated').addClass('rated');
             $(e.target).parentsUntil("div", "s").removeClass('rated').addClass('rated');
-            alert(numStars);
             self.$element.trigger('rating.change', {
                 'value': numStars,
                 'caption': caption

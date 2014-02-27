@@ -42,7 +42,7 @@ or add:
 
 to your composer.json file
 
-You can also manually install the plugin easily to your project. Just use the ZIP/TAR ball links to download the assets (css and js folders) into your project.
+You can also manually install the plugin easily to your project. Just download the source [ZIP](https://github.com/kartik-v/bootstrap-star-rating/zipball/master) or [TAR ball](https://github.com/kartik-v/bootstrap-star-rating/tarball/master) and extract the plugin assets (css and js folders) into your project.
 
 ## Usage
 

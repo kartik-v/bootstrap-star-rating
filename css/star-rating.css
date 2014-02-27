@@ -32,6 +32,7 @@
 .star-rating-active s, .star-rating-rtl-active s {
     cursor: default;
 }
+
 .star-rating-active s:hover:before, .star-rating s.rated:before {
     text-shadow: 0 0 2px rgba(0,0,0,0.7);
     content: "\e006";

@@ -16,14 +16,23 @@
         return value === null || value === undefined || value == []
             || value === '' || trim && $.trim(value) === '';
     };
+
+    var validateAttr = function($input, vattr, options) {
+        var chk = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
+        if (chk) {
+            return chk;
+        }
+        return options[vattr];
+    };
+
     // Rating public class definition
     var Rating = function(element, options) {
         this.$element = $(element);
         this.min = this._parseAttr('min', options);
         this.max = this._parseAttr('max', options);
         this.step = this._parseAttr('step', options);
-        this.disabled = options.disabled;
-        this.readonly = options.readonly;
+        this.disabled = validateAttr(this.$element, 'disabled', options);
+        this.readonly = validateAttr(this.$element, 'readonly', options);
         this.rtl = options.rtl;
         this.showClear = options.showClear;
         this.showCaption = options.showCaption;
@@ -53,7 +62,7 @@
         _parseAttr: function(vattr, options) {
             var self = this, $input = self.$element;
             if ($input.attr('type') === 'number') {
-                var val = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
+                var val = validateAttr($input, vattr, options);
                 var chk = DEFAULT_STEP;
                 if (vattr === 'min') {
                     chk = DEFAULT_MIN;
@@ -64,7 +73,7 @@
                 else if (vattr === 'step') {
                     chk = DEFAULT_STEP;
                 }
-                var final = (isEmpty(val) ? (isEmpty(options[vattr]) ? chk : options[vattr]) : val);
+                var final = isEmpty(val) ? chk : val;
                 return parseFloat(final);
             }
             return parseFloat(options[vattr]);

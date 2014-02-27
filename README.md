@@ -107,6 +107,9 @@ _boolean_ whether the rating caption is to be displayed. Defaults to `true`.
 #### size
 _string_ size of the rating control. One of `xl`, `lg`, `md`, `sm`, or `xs`. Defaults to `md`.
 
+#### defaultCaption
+_string_ the default caption text, which will be displayed when no caption is setup for the rating in the `starCaptions` array. This variable defaults to `{rating} Stars`, where the variable `{rating}` will be replaced with the selected star rating.</p>
+
 #### starCaptions
 _array_ the caption titles corresponding to each of the star rating selected. Defaults to
 
@@ -145,10 +148,10 @@ _string_ the caption displayed when clear button is clicked. Defaults to `Not Ra
 _string_ the CSS Class to apply to the caption displayed, when clear button is clicked. Defaults to `label label-default`. 
 
 #### captionElement
-_string_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
+_DOM element_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
 
 #### $clearElement
-_string_ the container element selector for displaying the clear button. Defaults to a `div` container with `.clear-rating` class inside the rating control. 
+_DOM element_ the container element selector for displaying the clear button. Defaults to a `div` container with `.clear-rating` class inside the rating control. 
 
 ### Plugin Events
 The plugin supports these events:

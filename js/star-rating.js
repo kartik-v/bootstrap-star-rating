@@ -5,6 +5,7 @@
  * A simple yet powerful JQuery star rating plugin for Twitter Bootstrap.
  * 
  * Built originally for Yii Framework 2.0. But is usable across frameworks & scenarios.
+ * For more JQuery plugins visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
 (function($) {

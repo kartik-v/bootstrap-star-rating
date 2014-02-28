@@ -32,7 +32,14 @@ View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plug
 The plugin supports only whole filled (or empty) stars and not partially filled stars. This is probably an enhancement to be planned for future.
 
 ## Installation
-The preferred way to install this plugin is using `composer` package manager. Either run
+
+### Using Bower
+You can use the `bower` package manager to install. Run:
+
+    bower install bootstrap-star-rating
+
+### Using Composer
+You can use the `composer` package manager to install. Either run:
 
     $ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"
 
@@ -41,6 +48,8 @@ or add:
     "kartik-v/bootstrap-star-rating": "dev-master"
 
 to your composer.json file
+
+### Manual Install
 
 You can also manually install the plugin easily to your project. Just download the source [ZIP](https://github.com/kartik-v/bootstrap-star-rating/zipball/master) or [TAR ball](https://github.com/kartik-v/bootstrap-star-rating/tarball/master) and extract the plugin assets (css and js folders) into your project.
 

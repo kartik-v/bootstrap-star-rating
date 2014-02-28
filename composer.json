@@ -1,6 +1,6 @@
 {
     "name": "kartik-v/bootstrap-star-rating",
-    "description": "A simple yet powerful JQuery star rating plugin for Twitter Bootstrap.",
+    "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
     "keywords": ["bootstrap", "jquery", "star", "rating"],
     "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
     "license": "BSD 3-Clause",

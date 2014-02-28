@@ -5,7 +5,7 @@
   "authors": [
     "Kartik Visweswaran <kartikv2@gmail.com>"
   ],
-  "description": "A simple yet powerful JQuery star rating plugin for Twitter Bootstrap.",
+  "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
   "main": [
     "./css/star-rating.min.css",
     "./js/star-rating.min.js"

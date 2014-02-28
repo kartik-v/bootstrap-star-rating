@@ -1,14 +1,14 @@
 bootstrap-star-rating
 =====================
 
-A simple yet powerful JQuery star rating plugin for Twitter Bootstrap. Developed with a focus on utlizing pure CSS-3 styling to render the control.
+A simple yet powerful JQuery star rating plugin for Bootstrap. Developed with a focus on utlizing pure CSS-3 styling to render the control.
 
 ## Features  
 
 1. Convert any HTML input to a star rating control. Recommended input is of `type = number`, which will help fallback to a number input for browsers not supporting JQuery or Javascript.
 2. The plugin automatically converts an input with `type = number` to a star rating control if you set its `class = rating`. All options to the input can be passed as HTML5 `data` attributes.
 3. Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector icons for consistent display across devices.
-4. Specifically uses Twitter Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
+4. Specifically uses Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
 5. Ability to clear values and options for the stars. Control where the clear button element can be shown.
 6. Reset star rating to the initial value when the form is reset.
 7. Ability to control and display caption of the selected stars. Each rated star can have its own caption. Control where the caption element can be shown.
@@ -24,7 +24,7 @@ View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plug
 
 ## Pre-requisites  
 
-1. [Twitter Bootstrap 3.x](http://getbootstrap.com/)
+1. [Bootstrap 3.x](http://getbootstrap.com/)
 2. Latest [JQuery](http://jquery.com/)
 3. Most modern browsers supporting CSS3 & JQuery. For Internet Explorer, one must use IE versions 9 and above.
 

@@ -174,6 +174,11 @@
             self.$element.val(self.clearValue);
             self.$element.trigger('rating.clear');
         },
+        refresh: function() {
+            var self = this;
+            self.initialValue = self.$element.val();
+            self.reset();
+        },
         reset: function() {
             var self = this, $container = self.$container, val = self.initialValue, $el = self.$caption;
             var stars = '';

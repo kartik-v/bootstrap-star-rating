@@ -73,7 +73,7 @@ Step 2: Initialize the plugin on your page. For example,
 $("#input-id").rating();
 
 // with plugin options
-$("#input-id").rating(['min'=>1, 'max'=>10, 'step'=>2, 'size'=>'lg']);
+$("#input-id").rating({'min':1, 'max':10, 'step':2, 'size':'lg'});
 ```
 
 The `#input-id` is the identifier for the input (e.g. `type=number`) on your page, which is hidden automatically by the plugin. 
@@ -81,7 +81,7 @@ The `#input-id` is the identifier for the input (e.g. `type=number`) on your pag
 Alternatively, you can directly call the plugin options by setting data attributes to your input field.
 
 ```html
-<input id="input-id" type="number" data-size="lg" >
+<input id="input-id" type="number" class="rating" data-size="lg" >
 ```
 
 ## Documentation
@@ -159,7 +159,7 @@ _string_ the CSS Class to apply to the caption displayed, when clear button is c
 #### captionElement
 _DOM element_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
 
-#### $clearElement
+#### clearElement
 _DOM element_ the container element selector for displaying the clear button. Defaults to a `div` container with `.clear-rating` class inside the rating control. 
 
 ### Plugin Events
@@ -201,6 +201,13 @@ $('#input-id').on('rating.reset', function(event) {
 
 ### Plugin Methods
 The plugin supports these methods:
+
+#### refresh
+Refreshes the rating after changing its value via javascript.
+```js
+$('#input-id').val(3);
+$('#input-id').rating('refresh');
+```
 
 #### reset
 Reset the rating.

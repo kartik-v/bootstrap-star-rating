@@ -177,7 +177,6 @@
         },
         clear: function() {
             var self = this;
-            alert(self.min);
             var title = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
             self.$stars.removeClass('rated');
             self.$caption.html(title);

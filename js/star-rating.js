@@ -19,31 +19,28 @@
     };
 
     var validateAttr = function($input, vattr, options) {
-        if (options[vattr] != null) {
-            return options[vattr];
-        }
         var chk = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
         if (chk) {
             return chk;
         }
-        if (vattr == 'min') {
-            return DEFAULT_MIN;
-        }
-        if (vattr == 'max') {
-            return DEFAULT_MAX;
-        }
-        if (vattr == 'step') {
-            return DEFAULT_STEP;
-        }
-        return null;
+        return options[vattr];
     };
 
     // Rating public class definition
     var Rating = function(element, options) {
         this.$element = $(element);
-        this.min = validateAttr(this.$element, 'min', options);
-        this.max = validateAttr(this.$element, 'max', options); 
-        this.step = validateAttr(this.$element, 'step', options);
+        this.min = (options.min >= 0) ? options.min : this._parseAttr('min', options);
+        this.max = (options.max >= 0) ? options.max : this._parseAttr('max', options);
+        this.step = (options.step > 0) ? options.step : this._parseAttr('step', options);
+        if (isNaN(this.min)) {
+            this.min = DEFAULT_MIN;
+        }
+        if (isNaN(this.max)) {
+            this.max = DEFAULT_MAX;
+        }
+        if (isNaN(this.step)) {
+            this.step = DEFAULT_STEP;
+        }
         this.disabled = validateAttr(this.$element, 'disabled', options);
         this.readonly = validateAttr(this.$element, 'readonly', options);
         this.rtl = options.rtl;
@@ -72,6 +69,25 @@
     };
     Rating.prototype = {
         constructor: Rating,
+        _parseAttr: function(vattr, options) {
+            var self = this, $input = self.$element;
+            if ($input.attr('type') === 'number') {
+                var val = validateAttr($input, vattr, options);
+                var chk = DEFAULT_STEP;
+                if (vattr === 'min') {
+                    chk = DEFAULT_MIN;
+                }
+                else if (vattr === 'max') {
+                    chk = DEFAULT_MAX;
+                }
+                else if (vattr === 'step') {
+                    chk = DEFAULT_STEP;
+                }
+                var final = isEmpty(val) ? chk : val;
+                return parseFloat(final);
+            }
+            return parseFloat(options[vattr]);
+        },
         _init: function() {
             var self = this;
             self.$element.before(self.$container);
@@ -161,6 +177,7 @@
         },
         clear: function() {
             var self = this;
+            alert(self.min);
             var title = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
             self.$stars.removeClass('rated');
             self.$caption.html(title);

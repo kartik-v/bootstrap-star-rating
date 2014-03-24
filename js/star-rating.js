@@ -29,6 +29,7 @@
 	// Rating public class definition
 	var Rating = function (element, options) {
 		this.$element = $(element);
+		this.options = options;
 		this.min = (options.min >= 0) ? options.min : this._parseAttr('min', options);
 		this.max = (options.max >= 0) ? options.max : this._parseAttr('max', options);
 		this.step = (options.step > 0) ? options.step : this._parseAttr('step', options);
@@ -41,8 +42,7 @@
 		if (isNaN(this.step)) {
 			this.step = DEFAULT_STEP;
 		}
-		this.disabled = validateAttr(this.$element, 'disabled', options);
-		this.readonly = validateAttr(this.$element, 'readonly', options);
+		this.checkDisabled();
 		this.rtl = options.rtl;
 		this.showClear = options.showClear;
 		this.showCaption = options.showCaption;
@@ -55,8 +55,6 @@
 		this.clearCaption = options.clearCaption;
 		this.clearCaptionClass = options.clearCaptionClass;
 		this.clearValue = options.clearValue;
-		this.inactive = (this.disabled || this.readonly);
-		this.inputValue = this.$element.val();
 		this.$clearElement = options.clearElement;
 		this.$captionElement = options.captionElement;
 		this.$container = this.createContainer();
@@ -97,32 +95,40 @@
 					self.change(e);
 				}
 			});
-			self.$clear.on("click", $.proxy(self.clear, self));
+			self.$clear.on("click", function (e) {
+				if (!self.inactive) {
+					self.clear();
+				}
+			});
 			$(self.$element[0].form).on("reset", $.proxy(self.reset, self));
 		},
-		createContainer: function () {
-			var self = this;
-			var css = (self.rtl) ? 'star-rating-rtl' : 'star-rating';
+		checkDisabled: function () {
+			this.disabled = validateAttr(this.$element, 'disabled', this.options);
+			this.readonly = validateAttr(this.$element, 'readonly', this.options);
+			this.inactive = (this.disabled || this.readonly);
+		},
+		getContainerClass: function () {
+			var self = this, css = (self.rtl) ? 'star-rating-rtl' : 'star-rating';
 			css += self.inactive ? ((self.disabled) ? ' ' + css + '-disabled ' : ' ') : ' ' + css + '-active ';
 			css += 'rating-' + self.size;
-			var content = self.renderRating();
-			var container = $(document.createElement("div")).attr({"class": css}).html(content);
-			return container;
+			return css;
+		},
+		getClearClass: function () {
+			return ((this.inactive) ? 'clear-rating' : 'clear-rating clear-rating-active');
+		},
+		createContainer: function () {
+			var self = this, content = self.renderRating();
+			return $(document.createElement("div")).attr({"class": self.getContainerClass()}).html(content);
 		},
 		renderRating: function () {
-			var self = this;
-			var stars = self.renderStars();
-			var clear = self.renderClear();
-			var caption = self.renderCaption();
+			var self = this, stars = self.renderStars(), clear = self.renderClear(), caption = self.renderCaption();
 			return (self.rtl) ? caption + stars + clear : clear + stars + caption;
 		},
 		renderStars: function () {
-			var begin = '', end = '';
-			var self = this;
-			var step = (self.step > 0) ? self.step : DEFAULT_STEP;
+			var self = this, begin = '', end = '', step = ((self.step > 0) ? self.step : DEFAULT_STEP);
 			var threshold = parseInt(self.max / step);
 			for (var i = self.min; i <= self.max; i += step) {
-				begin += (!isEmpty(self.inputValue) && i <= self.inputValue) ? '<s class="rated">' : '<s>';
+				begin += (!isEmpty(self.$element.val()) && i <= self.$element.val()) ? '<s class="rated">' : '<s>';
 				end += '</s>';
 			}
 			return begin + end;
@@ -132,7 +138,7 @@
 			if (!self.showClear) {
 				return '';
 			}
-			var css = (self.inactive) ? 'clear-rating' : 'clear-rating clear-rating-active';
+			var css = self.getClearClass();
 			if (!isEmpty(self.$clearElement)) {
 				self.$clearElement.removeClass(css).addClass(css).attr({"title": self.clearButtonTitle});
 				self.$clearElement.html(self.clearButton);
@@ -141,7 +147,7 @@
 			return '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>';
 		},
 		renderCaption: function () {
-			var self = this, val = self.inputValue;
+			var self = this, val = self.$element.val();
 			if (!self.showCaption) {
 				return '';
 			}
@@ -185,8 +191,11 @@
 		},
 		refresh: function () {
 			var self = this;
-			self.initialValue = self.$element.val();
+			this.initialValue = parseFloat(self.$element.val());
 			self.reset();
+			self.checkDisabled();
+			self.$container.attr({"class": self.getContainerClass()});
+			self.$clear.attr({"class": self.getClearClass()});
 		},
 		reset: function () {
 			var self = this, $container = self.$container, val = self.initialValue, $el = self.$caption;
@@ -195,8 +204,8 @@
 			if (val) {
 				var last = parseInt(val / self.step);
 				$container.find('s').addClass('rated');
-				for (var i = 1; i <= last; i++) {
-					stars += (i === 1) ? 's' : ' > s';
+				for (var i = self.min; i <= last * self.step; i += self.step) {
+					stars += (i === self.min) ? 's' : ' > s';
 				}
 				$container.find(stars + ' > s').removeClass('rated');
 				if ($el) {

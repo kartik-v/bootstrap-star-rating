@@ -13,9 +13,15 @@
 
 <form>
 	<input id="input-21" type="number" class="rating" min="10" max="29" step="2">
+	<input id="input-22" type="number" class="rating" min="10" max="29" step="2" onchange="alert('Hi');">
 	<button class="btn btn-primary">Submit</button>
 	<button class="btn btn-default" type="reset">Reset</button>
+    <script>
+        $("#input-22").on('rating.change', function(event, value, caption) {
+            $('#input-22').attr('disabled', true); 
+            $('#input-22').rating('refresh')
+        });
+    </script>
 </form>
-<input id="input-22" type="number" class="rating" disabled=true>
 </body>
 </html>

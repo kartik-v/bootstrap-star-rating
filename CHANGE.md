@@ -15,3 +15,12 @@ Initial release. The following features are included in this release:
 10. Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 11. Disabled and readonly input star rating support.
 12. Size of the entire plugin is less than 9KB (about 6KB for the minified JS and 3KB for the minified CSS).
+
+
+version 1.1.0
+=============
+
+Revamped the methods for usage across wider scenarios:
+
+1. Included `update` method to set a value of a rating via javascript. 
+2. Revamped the `refresh` method to enable refreshing all plugin options at runtime via parameters.

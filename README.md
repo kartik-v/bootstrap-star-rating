@@ -202,11 +202,18 @@ $('#input-id').on('rating.reset', function(event) {
 ### Plugin Methods
 The plugin supports these methods:
 
-#### refresh
-Refreshes the rating after changing its value via javascript.
+#### update
+Update the rating by setting a value via javascript. The method accepts a rating value as a parameter.
 ```js
-$('#input-id').val(3);
-$('#input-id').rating('refresh');
+$('#input-id').rating('update', 3);
+```
+
+#### refresh
+Use this method to dynamically refresh the rating options via javascript after the plugin has been initialized. The method accepts the plugin options entered as an array.
+```js
+// Example: Call the method below in rating.change event to disable the rating and
+// hide the clear button.
+$('#input-id').rating('refresh', {disabled: true; showClear: false; showCaption: true});
 ```
 
 #### reset

@@ -1,7 +1,7 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013
- * @version 1.0.0
- * 
+ * @version 1.1.0
+ *
  * A simple yet powerful JQuery star rating plugin for Bootstrap.
  * 
  * Built originally for Yii Framework 2.0. But is usable across frameworks & scenarios.
@@ -13,8 +13,9 @@
 	var DEFAULT_MAX = 5;
 	var DEFAULT_STEP = 1;
 
+
 	var isEmpty = function (value, trim) {
-		return value === null || value === undefined || value == []
+		return typeof value === 'undefined' || value === null || value === undefined || value == []
 			|| value === '' || trim && $.trim(value) === '';
 	};
 
@@ -29,41 +30,7 @@
 	// Rating public class definition
 	var Rating = function (element, options) {
 		this.$element = $(element);
-		this.options = options;
-		this.min = (options.min >= 0) ? options.min : this._parseAttr('min', options);
-		this.max = (options.max >= 0) ? options.max : this._parseAttr('max', options);
-		this.step = (options.step > 0) ? options.step : this._parseAttr('step', options);
-		if (isNaN(this.min)) {
-			this.min = DEFAULT_MIN;
-		}
-		if (isNaN(this.max)) {
-			this.max = DEFAULT_MAX;
-		}
-		if (isNaN(this.step)) {
-			this.step = DEFAULT_STEP;
-		}
-		this.checkDisabled();
-		this.rtl = options.rtl;
-		this.showClear = options.showClear;
-		this.showCaption = options.showCaption;
-		this.size = options.size;
-		this.defaultCaption = options.defaultCaption;
-		this.starCaptions = options.starCaptions;
-		this.starCaptionClasses = options.starCaptionClasses;
-		this.clearButton = options.clearButton;
-		this.clearButtonTitle = options.clearButtonTitle;
-		this.clearCaption = options.clearCaption;
-		this.clearCaptionClass = options.clearCaptionClass;
-		this.clearValue = options.clearValue;
-		this.$clearElement = options.clearElement;
-		this.$captionElement = options.captionElement;
-		this.$container = this.createContainer();
-		this.$star = this.$container.children("s");
-		this.$stars = this.$container.find("s");
-		this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find(".clear-rating");
-		this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
-		this._init();
-		this.initialValue = parseFloat(this.$element.val());
+		this.init(options);
 	};
 	Rating.prototype = {
 		constructor: Rating,
@@ -86,10 +53,8 @@
 			}
 			return parseFloat(options[vattr]);
 		},
-		_init: function () {
+		listen: function () {
 			var self = this;
-			self.$element.before(self.$container);
-			self.$element.hide();
 			self.$star.on("click", function (e) {
 				if (!self.inactive) {
 					self.change(e);
@@ -100,7 +65,52 @@
 					self.clear();
 				}
 			});
-			$(self.$element[0].form).on("reset", $.proxy(self.reset, self));
+		},
+		init: function (options) {
+			this.options = options;
+			this.initialValue = parseFloat(this.$element.val());
+			this.min = (typeof options.min !== 'undefined') ? options.min : this._parseAttr('min', options);
+			this.max = (typeof options.max !== 'undefined') ? options.max : this._parseAttr('max', options);
+			this.step = (typeof options.step !== 'undefined') ? options.step : this._parseAttr('step', options);
+			if (isNaN(this.min) || isEmpty(this.min)) {
+				this.min = DEFAULT_MIN;
+			}
+			if (isNaN(this.max) || isEmpty(this.max)) {
+				this.max = DEFAULT_MAX;
+			}
+			if (isNaN(this.step) || isEmpty(this.step) || this.step == 0) {
+				this.step = DEFAULT_STEP;
+			}
+			this.checkDisabled();
+			this.rtl = options.rtl;
+			this.showClear = options.showClear;
+			this.showCaption = options.showCaption;
+			this.size = options.size;
+			this.defaultCaption = options.defaultCaption;
+			this.starCaptions = options.starCaptions;
+			this.starCaptionClasses = options.starCaptionClasses;
+			this.clearButton = options.clearButton;
+			this.clearButtonTitle = options.clearButtonTitle;
+			this.clearCaption = options.clearCaption;
+			this.clearCaptionClass = options.clearCaptionClass;
+			this.clearValue = options.clearValue;
+			this.$clearElement = options.clearElement;
+			this.$captionElement = options.captionElement;
+			if (typeof this.$container === 'undefined') {
+				this.$container = this.createContainer();
+				this.$element.before(this.$container);
+				this.$element.hide();
+			}
+			this.$star = this.$container.children("s");
+			this.$stars = this.$container.find("s");
+			this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find(".clear-rating");
+			this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
+			this.listen();
+			$(this.$element[0].form).on("reset", $.proxy(this.reset, this));
+			this.$container.attr({"class": this.getContainerClass()});
+			if (this.showClear) {
+				this.$clear.attr({"class": this.getClearClass()});
+			}
 		},
 		checkDisabled: function () {
 			this.disabled = validateAttr(this.$element, 'disabled', this.options);
@@ -118,7 +128,7 @@
 		},
 		createContainer: function () {
 			var self = this, content = self.renderRating();
-			return $(document.createElement("div")).attr({"class": self.getContainerClass()}).html(content);
+			return $(document.createElement("div")).html(content);
 		},
 		renderRating: function () {
 			var self = this, stars = self.renderStars(), clear = self.renderClear(), caption = self.renderCaption();
@@ -153,7 +163,7 @@
 			}
 			var html = self.fetchCaption(val);
 			if (!isEmpty(self.$captionElement)) {
-				self.$captionElement.removeClass('caption').addClass('caption').attr({"title": self.clearButtonTitle});
+				self.$captionElement.removeClass('caption').addClass('caption').attr({"title": self.clearCaption});
 				self.$captionElement.html(html);
 				return '';
 			}
@@ -185,17 +195,38 @@
 			var self = this;
 			var title = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
 			self.$stars.removeClass('rated');
-			self.$caption.html(title);
+			if (!self.inactive) {
+				self.$caption.html(title);
+			}
 			self.$element.val(self.clearValue);
 			self.$element.trigger('rating.clear');
 		},
-		refresh: function () {
+		refresh: function (options) {
 			var self = this;
-			this.initialValue = parseFloat(self.$element.val());
-			self.reset();
-			self.checkDisabled();
-			self.$container.attr({"class": self.getContainerClass()});
-			self.$clear.attr({"class": self.getClearClass()});
+			if (arguments.length) {
+				var cap = '';
+				self.init($.extend(self.options, options));
+				if (self.showClear) {
+					self.$clear.show();
+				}
+				else {
+					self.$clear.hide();
+				}
+				if (self.showCaption) {
+					self.$caption.show();
+				}
+				else {
+					self.$caption.hide();
+				}
+			}
+		},
+		update: function (val) {
+			if (arguments.length) {
+				var v = parseFloat(val);
+				this.$element.val(v);
+				this.initialValue = v;
+				this.reset();
+			}
 		},
 		reset: function () {
 			var self = this, $container = self.$container, val = self.initialValue, $el = self.$caption;

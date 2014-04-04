@@ -91,6 +91,8 @@
 			this.starCaptionClasses = options.starCaptionClasses;
 			this.clearButton = options.clearButton;
 			this.clearButtonTitle = options.clearButtonTitle;
+			this.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
+			this.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
 			this.clearCaption = options.clearCaption;
 			this.clearCaptionClass = options.clearCaptionClass;
 			this.clearValue = options.clearValue;
@@ -103,7 +105,7 @@
 			}
 			this.$star = this.$container.children("s");
 			this.$stars = this.$container.find("s");
-			this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find(".clear-rating");
+			this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find('.' + this.clearButtonBaseClass);
 			this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
 			this.listen();
 			$(this.$element[0].form).on("reset", $.proxy(this.reset, this));
@@ -124,7 +126,7 @@
 			return css;
 		},
 		getClearClass: function () {
-			return ((this.inactive) ? 'clear-rating' : 'clear-rating clear-rating-active');
+			return this.clearButtonBaseClass + ' ' + ((this.inactive) ? '' : this.clearButtonActiveClass);
 		},
 		createContainer: function () {
 			var self = this, content = self.renderRating();
@@ -290,6 +292,8 @@
 		},
 		clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
 		clearButtonTitle: 'Clear',
+		clearButtonBaseClass: 'clear-rating',
+		clearButtonActiveClass: 'clear-rating-active',
 		clearCaption: 'Not Rated',
 		clearCaptionClass: 'label label-default',
 		clearValue: 0,

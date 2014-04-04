@@ -1,5 +1,13 @@
+version 1.2.0
+=============
+Date: 2014-04-04
+
+1. Widget is customizable for using any CSS markup to override Bootstrap styles.
+2. Clear button class customization added.
+
 version 1.1.0
 =============
+Date: 2014-03-10
 
 Revamped the methods for usage across wider scenarios:
 
@@ -8,6 +16,7 @@ Revamped the methods for usage across wider scenarios:
 
 version 1.0.0
 =============
+Date: 2014-10-01
 
 Initial release. The following features are included in this release:
 
@@ -23,3 +32,4 @@ Initial release. The following features are included in this release:
 10. Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 11. Disabled and readonly input star rating support.
 12. Size of the entire plugin is less than 9KB (about 6KB for the minified JS and 3KB for the minified CSS).
+

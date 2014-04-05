@@ -151,7 +151,7 @@ _string_ the title displayed on clear button hover. Defaults to `Clear`.
 _string_ the base CSS class for the clear button. Defaults to `clear-rating`. 
 
 #### clearButtonActiveClass
-_string_ the active CSS class for the clear button that will be appended to the base class above when button is active. Defaults to `clear-rating-active`. 
+_string_ the CSS class for the clear button that will be appended to the base class above when button is hovered/activated. Defaults to `clear-rating-active`. 
 
 #### clearValue
 _string_ the value to clear the input to, when the clear button is clicked. Defaults to `0`. 

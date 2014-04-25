@@ -1,22 +1,34 @@
 bootstrap-star-rating
 =====================
 
-A simple yet powerful JQuery star rating plugin for Bootstrap. Developed with a focus on utlizing pure CSS-3 styling to render the control.
+> NOTE: Version 2.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
+
+A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
+Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
+can be overridden with any other CSS markup.
+
 
 ## Features  
 
-1. Convert any HTML input to a star rating control. Recommended input is of `type = number`, which will help fallback to a number input for browsers not supporting JQuery or Javascript.
-2. The plugin automatically converts an input with `type = number` to a star rating control if you set its `class = rating`. All options to the input can be passed as HTML5 `data` attributes.
-3. Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector icons for consistent display across devices.
-4. Specifically uses Bootstrap 3.x styles & glyphs. Can be combined to work better for Bootstrap styled projects (or input group addons).
-5. Ability to clear values and options for the stars. Control where the clear button element can be shown.
-6. Reset star rating to the initial value when the form is reset.
-7. Ability to control and display caption of the selected stars. Each rated star can have its own caption. Control where the caption element can be shown.
-8. Ability to size the rating control including the stars, caption, and clear button. Five prebuilt size templates are available `xl`, `lg`, `md`, `sm`, and `xs`.
-9. Support for RIGHT TO LEFT (RTL) input. Automatically changes star styling for RTL.
-10. Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
-11. Disabled and readonly input star rating support.
-12. Size of the entire plugin is less than 10KB (about 7KB for the minified JS and 3KB for the minified CSS).
+- Convert any HTML input to a star rating control. Will polyfill to a range input for browsers not 
+  supporting JQuery or Javascript.
+- The plugin automatically converts an input with `type = number` to a star rating control if you set its `class = rating`. 
+  All options to the input can be passed as HTML5 `data` attributes.
+- Automatically degrades to a normal SELECT dropdown input for browsers that do not support HTML 5 range input.
+- Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector 
+  icons for consistent display across devices. Optionally one can use the Unicode character set to override symbols.
+- Render and display fractional star ratings. Configure number of stars, min, max, step, and theoretically  support any fractional rating.
+- Uses Bootstrap 3.x styles & glyphs by default. But this can be overridden with plugin parameters and your own CSS styles.
+- Support for RIGHT TO LEFT (RTL) input. Automatically changes star styling for RTL.
+- Ability to clear values and options for the stars. Control where the clear button element can be shown.
+- Reset star rating to the initial value when the form is reset.
+- Ability to control and display caption of the selected stars. Each rated star can have its own caption. Control where the 
+  caption element can be shown.
+- Ability to size the rating control including the stars, caption, and clear button. Five prebuilt size templates are 
+  available `xl`, `lg`, `md`, `sm`, and `xs`.
+- Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
+- Disabled and readonly input star rating support.
+- Size of the entire plugin is less than 11KB (about 8KB for the minified JS and 3KB for the minified CSS).
 
 ## Demo
 
@@ -26,10 +38,7 @@ View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plug
 
 1. [Bootstrap 3.x](http://getbootstrap.com/)
 2. Latest [JQuery](http://jquery.com/)
-3. Most modern browsers supporting CSS3 & JQuery. For Internet Explorer, one must use IE versions 9 and above.
-
-## Restrictions
-The plugin supports only whole filled (or empty) stars and not partially filled stars. This is probably an enhancement to be planned for future.
+3. Most modern browsers supporting CSS3, HTML5 inputs, & JQuery. For Internet Explorer, one must use IE versions 9 and above to render the rating.
 
 ## Installation
 
@@ -64,44 +73,58 @@ Step 1: Load the following assets in your header.
 <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
 ```
 
-If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js`.
+If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js` for
+the plugin to work with default settings.
 
-Step 2: Initialize the plugin on your page. For example,
+Step 2: Setup your input markup to automatically initialize the rating
+```html
+<input id="input-id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" >
+```
+
+Step 3: Initialize the plugin on your page for other input types. For example,
 
 ```js
 // initialize with defaults
 $("#input-id").rating();
 
 // with plugin options
-$("#input-id").rating({'min':1, 'max':10, 'step':2, 'size':'lg'});
+$("#input-id").rating({'size':'lg'});
 ```
 
 The `#input-id` is the identifier for the input (e.g. `type=number`) on your page, which is hidden automatically by the plugin. 
 
 Alternatively, you can directly call the plugin options by setting data attributes to your input field.
 
-```html
-<input id="input-id" type="number" class="rating" data-size="lg" >
-```
 
 ## Documentation
 
 ### Plugin Options
 The plugin supports these following options:
 
-#### min
+##### stars
+_int_ number of stars to display. Defaults to `5`.
+
+##### glyphicon
+_boolean_ whether to use the glyphicon star symbol. Defaults to `true`. If set to `false`,
+will use the unicode black star symbol.
+
+##### symbol
+_string_ any custom star symbol or unicode character to display. This will override the 
+`glyphicon` settings above. 
+
+##### min
 _float_ the minimum value for the rating input. Defaults to `1`.
 
-#### max
+##### max
 _float_ the maximum value for the rating input. Defaults to `5`.
 
-#### step
-_float_ the step to increment the rating when each star is clicked. Defaults to `1`.
+##### step
+_float_ the step to increment the star rating. Defaults to `0.5`.
 
-#### disabled
+##### disabled
 _boolean_ whether the input is disabled. Defaults to `false`.
 
-#### readonly
+##### readonly
 _boolean_ whether the input is read only. Defaults to `false`.
 
 #### rtl
@@ -123,10 +146,15 @@ _string_ the default caption text, which will be displayed when no caption is se
 _array_ the caption titles corresponding to each of the star rating selected. Defaults to
 
     {
+        0.5: 'Half Star',
         1: 'One Star',
+        1.5: 'One & Half Star',
         2: 'Two Stars',
+        2.5: 'Two & Half Stars',
         3: 'Three Stars',
+        3.5: 'Three & Half Stars',
         4: 'Four Stars',
+        4.5: 'Four & Half Stars',
         5: 'Five Stars'
     }
 
@@ -134,11 +162,16 @@ _array_ the caption titles corresponding to each of the star rating selected. De
 _array_ the caption css classes corresponding to each of the star rating selected. Defaults to
 
     {
+        0.5: 'label label-danger',
         1: 'label label-danger',
+        1.5: 'label label-warning',
         2: 'label label-warning',
+        2.5: 'label label-info',
         3: 'label label-info',
+        3.5: 'label label-primary',
         4: 'label label-primary',
-        5: 'label label-success',
+        4.5: 'label label-success',
+        5: 'label label-success'
     }
 
 #### clearButton

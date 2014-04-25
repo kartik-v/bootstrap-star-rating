@@ -4,76 +4,36 @@
     <meta charset="UTF-8"/>
     <title>Krajee JQuery Plugins - &copy; Kartik</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="../css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../js/star-rating.js" type="text/javascript"></script>
-    <style>
-        .star-rating .my-clear, .star-rating-rtl .my-clear {
-            color: #aaa;
-            cursor: not-allowed;
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 70%;
-        }
-
-        .my-clear-active {
-            cursor: pointer !important;
-        }
-
-        .my-clear-active:hover {
-            color: blue;
-        }
-
-        .star-rating .my-clear {
-            padding-right: 5px;
-        }
-
-        .star-rating-rtl .my-clear {
-            padding-left: 5px;
-        }
-
-        .rating-xl .my-clear {
-            padding-bottom: 20px;
-        }
-
-        .rating-lg .my-clear {
-            padding-bottom: 17px;
-        }
-
-        .rating-md .my-clear {
-            padding-bottom: 15px;
-        }
-
-        .rating-sm .my-clear {
-            padding-bottom: 12px;
-        }
-
-        .rating-xs .my-clear {
-            padding-bottom: 10px;
-        }
-
-
-    </style>
-</head>
 <body>
 <h1>Bootstrap Star Rating Example</h1>
-
+<div class="container">
 <form>
-    <input id="input-21" type="number" class="rating" min="10" max="29" step="2">
-    <input id="input-22" type="number" class="rating" min="10" max="29" step="2">
-    <input id="input-23" type="number" class="rating" min="10" max="29" step="2">
-    <button class="btn btn-primary">Submit</button>
-    <button class="btn btn-default" type="reset">Reset</button>
-    <script>
-        $("#input-22").on('rating.change', function (event, value, caption) {
-            $('#input-22').attr('disabled', true);
-            $('#input-22').rating('refresh')
-        });
-        $("#input-23").rating({
-            clearButtonBaseClass: 'my-clear',
-            clearButtonActiveClass: 'my-clear-active',
-        });
-    </script>
+    <input id="input-21a" value="0" type="range" class="rating form-control" min=0 max=5 step=0.1 data-size="xl" >
+    <br>
+    <input value="4" type="text" class="rating-kv" min=0 max=5 step=0.2 data-size="lg">
+    <br>
+    <input id="input-21c" value="0" type="range" class="rating" min=0 max=5 step=0.5 data-size="md">
+    <br>
+    <input id="input-21d" value="2" type="range" class="rating" min=0 max=5 step=1 data-size="sm" readonly=true>
+    <br>
+    <input id="input-21e" value="0" type="range" class="rating" min=0 max=5 step=1 data-size="xs" >
+    <br>
+    <input id="input-22"  value="0" type="range" class="rating" min=0 max=10 step=1 data-rtl=1 data-container-class='pull-right' data-glyphicon=0>
+    <div class="clearfix"></div>
+    <div class="form-group">
+    <button type="reset" class="btn btn-default">Reset</button>
+    </div>
 </form>
+<br>
+<script>
+    jQuery(document).ready(function () {
+        $(".rating-kv").rating();
+    });
+</script>
+
+</div>  
 </body>
 </html>

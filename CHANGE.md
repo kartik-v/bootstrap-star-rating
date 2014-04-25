@@ -1,3 +1,19 @@
+version 2.0.0
+=============
+** NEW RELEASE **
+Date: 2014-04-25
+
+1. Revamp of entire plugin code. Cleverly leverages CSS3 styles, animations, and HTML5 input features 
+   to render the plugin.
+2. Render and display fractional star ratings. Configure number of stars, min, max, step, and theoretically 
+   support any fractional rating.
+3. Right to left (RTL) support enhancement. Optimally uses the `dir` attribute of the range input.
+4. Bootstrap style is made optional and configurable. Can override CSS to use any style.
+5. Any star symbol (unicode or icon font) can be embedded instead of Glyphicon.
+6. Uses HTML 5 range input to change ratings. Polyfills for range input in case JQuery/Javascript is disabled.
+7. Automatically degrades to a normal SELECT dropdown input for browsers that do not support 
+   HTML 5 range input.
+
 version 1.2.0
 =============
 Date: 2014-04-04

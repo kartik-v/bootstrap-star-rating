@@ -28,7 +28,7 @@ can be overridden with any other CSS markup.
   available `xl`, `lg`, `md`, `sm`, and `xs`.
 - Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 - Disabled and readonly input star rating support.
-- Size of the entire plugin is less than 11KB (about 8KB for the minified JS and 3KB for the minified CSS).
+- Size of the entire plugin is less than 12KB (about 9KB for the minified JS and 3KB for the minified CSS).
 
 ## Demo
 

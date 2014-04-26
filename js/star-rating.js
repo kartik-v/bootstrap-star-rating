@@ -396,7 +396,7 @@
     };
 
     /**
-     * Convert automatically range inputs with class 'rating'
+     * Convert automatically number inputs with class 'rating'
      * into the star rating control.
      */
     $(function () {

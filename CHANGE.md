@@ -1,6 +1,8 @@
 version 2.0.0
 =============
+
 ** NEW RELEASE **
+
 Date: 2014-04-25
 
 1. Revamp of entire plugin code. Cleverly leverages CSS3 styles, animations, and HTML5 input features 

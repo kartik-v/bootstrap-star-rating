@@ -275,7 +275,7 @@
                 width = 100;
             }
             else if (!isEmpty(val) && val >= min) {
-                width = Math.round((val / max) * 100);
+                width = Math.floor((val - min) / max * 1000) / 10;
             }
             if (self.rtl) {
                 width = 100 - width;

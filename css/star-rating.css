@@ -15,11 +15,24 @@
 
 .rating-gly {
     font-family: 'Glyphicons Halflings';
-    padding-left: 4px
+}
+/*
+ * Fix for glyphicon stars
+ */
+.rating-gly-star {
+    font-family: 'Glyphicons Halflings';
+    padding-left: 2px;
+}
+.rating-gly-star .rating-stars:before {
+    padding-left: 2px;
 }
 
-.rating-gly .rating-stars:before {
-    padding-left: 4px
+.rating-lg .rating-gly-star, .rating-lg .rating-gly-star .rating-stars:before {
+    padding-left: 4px;
+}
+
+.rating-xl .rating-gly-star, .rating-xl .rating-gly-star .rating-stars:before {
+    padding-left: 2px;
 }
 
 .rating-uni {
@@ -159,7 +172,9 @@
     vertical-align: middle;
     font-size: 55%;
 }
-
+.star-rating .caption {
+    padding-left: 5px;
+}
 .star-rating-rtl .caption {
     padding-right: 5px;
 }

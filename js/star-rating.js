@@ -203,7 +203,7 @@
             var self = this, clear = self.renderClear(), caption = self.renderCaption(),
                 css = (self.rtl) ? 'rating-container-rtl' : 'rating-container',
                 stars = self.getStars();
-            css += (self.glyphicon) ? ' rating-gly' : ' rating-uni';
+            css += (self.glyphicon) ? ((self.symbol == '\ue006') ? ' rating-gly-star' : ' rating-gly') : ' rating-uni';
             self.$rating.attr('class', css);
             self.$rating.attr('data-content', stars);
             self.$stars.attr('data-content', stars);

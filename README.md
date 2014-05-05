@@ -252,7 +252,7 @@ Use this method to dynamically refresh the rating options via javascript after t
 ```js
 // Example: Call the method below in rating.change event to disable the rating and
 // hide the clear button.
-$('#input-id').rating('refresh', {disabled: true; showClear: false; showCaption: true});
+$('#input-id').rating('refresh', {disabled: true, showClear: false, showCaption: true});
 ```
 
 #### reset

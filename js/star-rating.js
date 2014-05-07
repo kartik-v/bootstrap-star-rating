@@ -119,6 +119,7 @@
                 self.step = DEFAULT_STEP;
             }
             self.$elementOrig.clone(true).attr({'id': id, 'name': id, 'type': 'range'}).insertBefore(self.$elementOrig);
+            self.$elementOrig.removeAttr('class');
             self.$element = $('#' + id);
             self.$element.attr({min: self.min, max: self.max, step: self.step, disabled: self.disabled, readonly: self.readonly});
             self.$element.val(self.$elementOrig.val());

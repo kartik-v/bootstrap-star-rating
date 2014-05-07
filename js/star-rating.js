@@ -138,6 +138,8 @@
             $element.hide();
             $sel.on("change", function (e) {
                 self.$element.val($sel.val());
+                self.$element.trigger("change");
+                self.$element.trigger('rating.change', [$sel.val(), items[$sel.val()]]);
             });
         },
         /**

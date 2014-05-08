@@ -41,7 +41,7 @@ Revamped the methods for usage across wider scenarios:
 
 version 1.0.0
 =============
-Date: 2014-10-01
+Date: 2013-10-01
 
 Initial release. The following features are included in this release:
 

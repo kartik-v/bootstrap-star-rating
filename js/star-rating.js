@@ -80,7 +80,9 @@
             self.$element.on("change", function (e) {
                 if (!self.inactive) {
                     self.setStars();
-                    self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                    self.$elementOrig.val(self.$element.val());
+                    self.$elementOrig.trigger('change');
+                    self.$elementOrig.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 }
             });
             self.$clear.on("click", function (e) {
@@ -88,18 +90,18 @@
                     self.clear();
                 }
             });
-            $(self.$element[0].form).on("reset", function (e) {
+            $(self.$elementOrig[0].form).on("reset", function (e) {
                 if (!self.inactive) {
                     self.reset();
                 }
             });
         },
         /**
-         * Initializes and converts the input to a range/slider input
+         * Initializes and generates a slider if the input type is not a range
          */
         initSlider: function (options) {
             var self = this,
-                id = isEmpty(self.$elementOrig.attr('id')) ? uniqId() : self.$elementOrig.attr('id');
+                id = isEmpty(self.$elementOrig.attr('id')) ? uniqId() : 'kvstar-' + self.$elementOrig.attr('id');
             if (isEmpty(self.$elementOrig.val())) {
                 self.$elementOrig.val(0);
             }
@@ -116,12 +118,12 @@
             if (isNaN(self.step) || isEmpty(self.step) || self.step == 0) {
                 self.step = DEFAULT_STEP;
             }
-            var val = self.$elementOrig.val();
-            self.$elementOrig.clone(true).attr({'id': id, 'type': 'range'}).insertBefore(self.$elementOrig);
-            self.$elementOrig.remove();
+            self.$elementOrig.clone(true).attr({'id': id, 'name': id, 'type': 'range'}).insertBefore(self.$elementOrig);
+            self.$elementOrig.removeAttr('class');
             self.$element = $('#' + id);
             self.$element.attr({min: self.min, max: self.max, step: self.step, disabled: self.disabled, readonly: self.readonly});
-            self.$element.val(val);
+            self.$element.val(self.$elementOrig.val());
+            self.$elementOrig.hide();
         },
         /**
          * Polyfills and generates a simple select input for browsers not
@@ -295,14 +297,17 @@
                 self.$caption.html(title);
             }
             self.$element.val(self.clearValue);
+            self.$elementOrig.val(self.clearValue);
+            self.$elementOrig.trigger('change');
             self.setStars();
-            self.$element.trigger('rating.clear');
+            self.$elementOrig.trigger('rating.clear');
         },
         reset: function () {
             var self = this;
             self.$element.val(self.initialValue);
+            self.$elementOrig.val(self.initialValue);
             self.setStars();
-            self.$element.trigger('rating.reset');
+            self.$elementOrig.trigger('rating.reset');
         },
         update: function (val) {
             if (arguments.length > 0) {

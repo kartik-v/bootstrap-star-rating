@@ -148,6 +148,9 @@
          */
         init: function (options) {
             this.options = options;
+            if (!this.$elementOrig.is(":visible")) {
+                return;
+            }
             if (typeof this.$element == 'undefined') {
                 this.initSlider(options);
             }

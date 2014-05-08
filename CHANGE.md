@@ -1,7 +1,14 @@
+version 2.1.0
+=============
+
+Date 2014-05-08
+
+1. Bug #8,#9,#10: Correct cloning and conversion of field to a range slider input.
+
 version 2.0.0
 =============
 
-** NEW RELEASE **
+**NEW RELEASE**
 
 Date: 2014-04-25
 

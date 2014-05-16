@@ -41,6 +41,7 @@
     // Rating public class definition
     var Rating = function (element, options) {
         this.$elementOrig = $(element);
+        this.refreshRating = false;
         if (isSliderSupported) {
             this.init(options);
         }
@@ -148,9 +149,10 @@
          */
         init: function (options) {
             this.options = options;
-            if (!this.$elementOrig.is(":visible")) {
+            if (!this.$elementOrig.is(":visible") && !this.refreshRating) {
                 return;
             }
+            this.refreshRating = false;
             if (typeof this.$element == 'undefined') {
                 this.initSlider(options);
             }
@@ -321,6 +323,7 @@
         refresh: function (options) {
             var self = this;
             if (arguments.length) {
+                this.refreshRating = true;
                 var cap = '';
                 self.init($.extend(self.options, options));
                 if (self.showClear) {

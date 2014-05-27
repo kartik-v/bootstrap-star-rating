@@ -68,6 +68,7 @@
                 if (!self.inactive) {
                     w = e.pageX - self.$rating.offset().left;
                     self.setStars(w);
+                    self.$element.trigger('change');
                     self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 }
             });

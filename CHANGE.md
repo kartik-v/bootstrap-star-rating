@@ -1,14 +1,22 @@
-version 2.1.0
+version 2.5.0
+=============
+
+Date 2014-05-27
+
+**NEW RELEASE**
+
+1. Change to entire plugin code to eliminate dependency of HTML5 input. Plugin size reduced to 8KB minified.
+2. Uses special JQuery routines to trigger star rating changes like a slider input.
+3. Plugin support is now extended to all browsers including pre IE10 
+4. Plugin support is now extended to all Touch based and mobile devices like iOS, Android. 
+5. Removed cloning of inputs to allow better refreshing of input across ajax and other scenarios.
+
+version 2.0.0
 =============
 
 Date 2014-05-08
 
 1. Bug #8,#9,#10: Correct cloning and conversion of field to a range slider input.
-
-version 2.0.0
-=============
-
-**NEW RELEASE**
 
 Date: 2014-04-25
 

@@ -1,20 +1,17 @@
 bootstrap-star-rating
 =====================
 
-> NOTE: Version 2.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
+> NOTE: Version 2.5.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
 can be overridden with any other CSS markup.
 
-
 ## Features  
 
-- Convert any HTML input to a star rating control. Will polyfill to a range input for browsers not 
-  supporting JQuery or Javascript.
+- Convert any HTML input to a star rating control. 
 - The plugin automatically converts an input with `type = number` to a star rating control if you set its `class = rating`. 
   All options to the input can be passed as HTML5 `data` attributes.
-- Automatically degrades to a normal SELECT dropdown input for browsers that do not support HTML 5 range input.
 - Involves pure CSS3 styling of the stars. Say goodbye to image sprites or playing with image backgrounds. Offers clean scalable vector 
   icons for consistent display across devices. Optionally one can use the Unicode character set to override symbols.
 - Render and display fractional star ratings. Configure number of stars, min, max, step, and theoretically  support any fractional rating.
@@ -28,7 +25,7 @@ can be overridden with any other CSS markup.
   available `xl`, `lg`, `md`, `sm`, and `xs`.
 - Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 - Disabled and readonly input star rating support.
-- Size of the entire plugin is less than 12KB (about 9KB for the minified JS and 3KB for the minified CSS).
+- Size of the entire plugin is less than 11KB (about 8KB for the minified JS and 3KB for the minified CSS).
 
 ## Demo
 
@@ -38,7 +35,7 @@ View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plug
 
 1. [Bootstrap 3.x](http://getbootstrap.com/)
 2. Latest [JQuery](http://jquery.com/)
-3. Most modern browsers supporting CSS3, HTML5 inputs, & JQuery. For Internet Explorer, one must use IE versions 9 and above to render the rating.
+3. Most browsers supporting CSS3 & JQuery. 
 
 ## Installation
 

@@ -193,10 +193,10 @@ _string_ the caption displayed when clear button is clicked. Defaults to `Not Ra
 _string_ the CSS Class to apply to the caption displayed, when clear button is clicked. Defaults to `label label-default`. 
 
 #### captionElement
-_DOM element_ the container element selector for displaying the caption. Defaults to a `div` container with `.caption` class inside the rating control. 
+_string_ the identifier for the container element selector for displaying the caption. Defaults to the `div` container with `.caption` class inside the rating control. 
 
 #### clearElement
-_DOM element_ the container element selector for displaying the clear button. Defaults to a `div` container with `.clear-rating` class inside the rating control. 
+_string_ the identifier for the container element selector for displaying the clear button. Defaults to the `div` container with `.clear-rating` class inside the rating control. 
 
 ### Plugin Events
 The plugin supports these events:

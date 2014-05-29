@@ -10,6 +10,7 @@ Date 2014-05-27
 3. Plugin support is now extended to all browsers including pre IE10 
 4. Plugin support is now extended to all Touch based and mobile devices like iOS, Android. 
 5. Removed cloning of inputs to allow better refreshing of input across ajax and other scenarios.
+6. Caption and Clear elements parameters treated as identifiers rather than JQuery object elements.
 
 version 2.0.0
 =============

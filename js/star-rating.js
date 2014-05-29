@@ -39,11 +39,11 @@
         }
         return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
     };
-    
+
     var applyPrecision = function (val, precision) {
         return parseFloat(val.toFixed(precision));
     };
-        
+
     // Rating public class definition
     var Rating = function (element, options) {
         this.$element = $(element);
@@ -147,8 +147,8 @@
             self.clearCaptionClass = options.clearCaptionClass;
             self.clearValue = options.clearValue;
             self.$element.removeClass('form-control').addClass('form-control');
-            self.$clearElement = $(options.clearElement);
-            self.$captionElement = $(options.captionElement);
+            self.$clearElement = isEmpty(options.clearElement) ? null : $(options.clearElement);
+            self.$captionElement = isEmpty(options.captionElement) ? null : $(options.captionElement);
             if (typeof self.$rating == 'undefined' && typeof self.$container == 'undefined') {
                 self.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
                 self.$container = $(document.createElement("div"));
@@ -248,7 +248,7 @@
             return '<span class="' + css + '">' + caption + '</span>';
         },
         getValueFromPosition: function (pos) {
-            var self = this, precision = getDecimalPlaces(self.step), 
+            var self = this, precision = getDecimalPlaces(self.step),
                 percentage, val, maxWidth = self.$rating.width();
             percentage = (pos / maxWidth);
             val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
@@ -392,9 +392,9 @@
      * Convert automatically number inputs with class 'rating'
      * into the star rating control.
      */
-    
+
     $(document).ready(function () {
-        var $input = isNumberInputSupported() ? $('input.rating[type=number]') : $('input.rating[type=text]'), 
+        var $input = isNumberInputSupported() ? $('input.rating[type=number]') : $('input.rating[type=text]'),
             count = Object.keys($input).length;
         if (count > 0) {
             $input.rating();

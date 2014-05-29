@@ -15,10 +15,6 @@
 .rating-gly {
     font-family: 'Glyphicons Halflings';
 }
-
-/*
- * Fix for glyphicon stars
- */
 .rating-gly-star {
     font-family: 'Glyphicons Halflings';
     padding-left: 2px;

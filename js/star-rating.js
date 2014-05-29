@@ -32,6 +32,18 @@
         return options[vattr];
     };
 
+    var getDecimalPlaces = function (num) {
+        var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+        if (!match) {
+            return 0;
+        }
+        return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
+    };
+    
+    var applyPrecision = function (val, precision) {
+        return parseFloat(val.toFixed(precision));
+    };
+        
     // Rating public class definition
     var Rating = function (element, options) {
         this.$element = $(element);
@@ -107,51 +119,52 @@
          * Initializes the plugin
          */
         init: function (options) {
-            this.options = options;
-            this.initSlider(options);
-            this.checkDisabled();
-            $element = this.$element;
-            this.containerClass = options.containerClass;
-            this.glyphicon = options.glyphicon;
-            var defaultStar = (this.glyphicon) ? '\ue006' : '\u2605';
-            this.symbol = isEmpty(options.symbol) ? defaultStar : options.symbol;
-            this.rtl = options.rtl || this.$element.attr('dir');
-            if (this.rtl) {
-                this.$element.attr('dir', 'rtl');
+            var self = this;
+            self.options = options;
+            self.initSlider(options);
+            self.checkDisabled();
+            $element = self.$element;
+            self.containerClass = options.containerClass;
+            self.glyphicon = options.glyphicon;
+            var defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
+            self.symbol = isEmpty(options.symbol) ? defaultStar : options.symbol;
+            self.rtl = options.rtl || self.$element.attr('dir');
+            if (self.rtl) {
+                self.$element.attr('dir', 'rtl');
             }
-            this.showClear = options.showClear;
-            this.showCaption = options.showCaption;
-            this.size = options.size;
-            this.stars = options.stars;
-            this.defaultCaption = options.defaultCaption;
-            this.starCaptions = options.starCaptions;
-            this.starCaptionClasses = options.starCaptionClasses;
-            this.clearButton = options.clearButton;
-            this.clearButtonTitle = options.clearButtonTitle;
-            this.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
-            this.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
-            this.clearCaption = options.clearCaption;
-            this.clearCaptionClass = options.clearCaptionClass;
-            this.clearValue = options.clearValue;
-            this.$clearElement = options.clearElement;
-            this.$captionElement = options.captionElement;
-            this.$element.removeClass('form-control').addClass('form-control');
-            if (typeof this.$rating == 'undefined' && typeof this.$container == 'undefined') {
-                this.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
-                this.$container = $(document.createElement("div"));
-                this.$container.before(this.$rating);
-                this.$container.append(this.$rating);
-                this.$element.before(this.$container).appendTo(this.$rating);
+            self.showClear = options.showClear;
+            self.showCaption = options.showCaption;
+            self.size = options.size;
+            self.stars = options.stars;
+            self.defaultCaption = options.defaultCaption;
+            self.starCaptions = options.starCaptions;
+            self.starCaptionClasses = options.starCaptionClasses;
+            self.clearButton = options.clearButton;
+            self.clearButtonTitle = options.clearButtonTitle;
+            self.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
+            self.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
+            self.clearCaption = options.clearCaption;
+            self.clearCaptionClass = options.clearCaptionClass;
+            self.clearValue = options.clearValue;
+            self.$clearElement = options.clearElement;
+            self.$captionElement = options.captionElement;
+            self.$element.removeClass('form-control').addClass('form-control');
+            if (typeof self.$rating == 'undefined' && typeof self.$container == 'undefined') {
+                self.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
+                self.$container = $(document.createElement("div"));
+                self.$container.before(self.$rating);
+                self.$container.append(self.$rating);
+                self.$element.before(self.$container).appendTo(self.$rating);
             }
-            this.$stars = this.$rating.find('.rating-stars');
-            this.generateRating();
-            this.$clear = !isEmpty(this.$clearElement) ? this.$clearElement : this.$container.find('.' + this.clearButtonBaseClass);
-            this.$caption = !isEmpty(this.$captionElement) ? this.$captionElement : this.$container.find(".caption");
-            this.setStars();
-            this.$element.hide();
-            this.listen();
-            if (this.showClear) {
-                this.$clear.attr({"class": this.getClearClass()});
+            self.$stars = self.$rating.find('.rating-stars');
+            self.generateRating();
+            self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find('.' + self.clearButtonBaseClass);
+            self.$caption = !isEmpty(self.$captionElement) ? self.$captionElement : self.$container.find(".caption");
+            self.setStars();
+            self.$element.hide();
+            self.listen();
+            if (self.showClear) {
+                self.$clear.attr({"class": self.getClearClass()});
             }
         },
         checkDisabled: function () {
@@ -234,29 +247,18 @@
             var caption = (val == self.clearValue) ? self.clearCaption : cap;
             return '<span class="' + css + '">' + caption + '</span>';
         },
-        getDecimalPlaces: function (num) {
-            var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-            if (!match) {
-                return 0;
-            }
-            return Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
-        },
-        applyPrecision: function (val) {
-            var self = this, precision = self.getDecimalPlaces(self.step),
-                truncatedNum = val.toFixed(precision);
-            return parseFloat(truncatedNum);
-        },
         getValueFromPosition: function (pos) {
-            var self = this, percentage, val, maxWidth = self.$rating.width();
+            var self = this, precision = getDecimalPlaces(self.step), 
+                percentage, val, maxWidth = self.$rating.width();
             percentage = (pos / maxWidth);
-            val = (this.min + Math.round(self.diff * percentage / this.step) * this.step);
-            if (val < this.min) {
-                val = this.min;
+            val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
+            if (val < self.min) {
+                val = self.min;
             }
-            else if (val > this.max) {
-                val = this.max;
+            else if (val > self.max) {
+                val = self.max;
             }
-            val = this.applyPrecision(parseFloat(val));
+            val = applyPrecision(parseFloat(val), precision);
             if (self.rtl) {
                 val = self.max - val;
             }
@@ -390,9 +392,11 @@
      * Convert automatically number inputs with class 'rating'
      * into the star rating control.
      */
-    $(function () {
-        var $input = isNumberInputSupported() ? $('input.rating[type=number]') : $('input.rating[type=text]');
-        if ($input.length > 0) {
+    
+    $(document).ready(function () {
+        var $input = isNumberInputSupported() ? $('input.rating[type=number]') : $('input.rating[type=text]'), 
+            count = Object.keys($input).length;
+        if (count > 0) {
             $input.rating();
         }
     });

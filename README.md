@@ -27,6 +27,11 @@ can be overridden with any other CSS markup.
 - Disabled and readonly input star rating support.
 - Size of the entire plugin is less than 11KB (about 8KB for the minified JS and 3KB for the minified CSS).
 
+> **Browser Support:** If you are using the HTML5 NUMBER input to initialize the rating, please read this. The number field 
+does not accept decimals in Google Chrome. The input is allowed, but when the user submits the form, they get an error message 
+and are instructed to enter a valid number (whole numbers only). Other browsers like Firefox allow decimals on the number fields. 
+Till this is standardized across browsers, the workaround for this is to use a normal text input, and initialize the rating via javascript. 
+
 ## Demo
 
 View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plugin demos](http://plugins.krajee.com/star-rating/demo) at Krajee JQuery plugins. 

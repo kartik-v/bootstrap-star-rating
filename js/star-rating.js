@@ -13,12 +13,6 @@
     var DEFAULT_MAX = 5;
     var DEFAULT_STEP = 0.5;
 
-    var isNumberInputSupported = function () {
-        var i = document.createElement("input");
-        i.setAttribute("type", "number");
-        return i.type !== "text";
-    }
-
     var isEmpty = function (value, trim) {
         return typeof value === 'undefined' || value === null || value === undefined || value == []
             || value === '' || trim && $.trim(value) === '';
@@ -394,8 +388,7 @@
      */
 
     $(document).ready(function () {
-        var $input = isNumberInputSupported() ? $('input.rating[type=number]') : $('input.rating[type=text]'),
-            count = Object.keys($input).length;
+        var $input = $('input.rating'), count = Object.keys($input).length;
         if (count > 0) {
             $input.rating();
         }

@@ -8,7 +8,14 @@
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-
+.rating-loading {
+    width: 25px;
+    height: 25px;
+    font-size: 0px;
+    color: #fff;
+    background: transparent url('../img/loading.gif') top left no-repeat;
+    border: none;
+}
 /*
  * Stars
  */

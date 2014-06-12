@@ -160,6 +160,7 @@
             if (self.showClear) {
                 self.$clear.attr({"class": self.getClearClass()});
             }
+            self.$element.removeClass('rating-loading');
         },
         checkDisabled: function () {
             var self = this;
@@ -386,9 +387,13 @@
      * Convert automatically number inputs with class 'rating'
      * into the star rating control.
      */
+    var $input = $('input.rating'), count = Object.keys($input).length;
+
+    if (count > 0) {
+        $input.addClass('rating-loading');
+    }
 
     $(document).ready(function () {
-        var $input = $('input.rating'), count = Object.keys($input).length;
         if (count > 0) {
             $input.rating();
         }

@@ -246,7 +246,12 @@
             var self = this, precision = getDecimalPlaces(self.step),
                 percentage, val, maxWidth = self.$rating.width();
             percentage = (pos / maxWidth);
-            val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
+            if (self.rtl) {
+                val = (self.min + Math.floor(self.diff * percentage / self.step) * self.step);
+            }
+            else {
+                val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
+            }
             if (val < self.min) {
                 val = self.min;
             }

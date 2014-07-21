@@ -5,7 +5,8 @@ bootstrap-star-rating
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
-can be overridden with any other CSS markup.
+can be overridden with any other CSS markup. View the [documentation](http://plugins.krajee.com/star-rating) or a [complete demo](http://plugins.krajee.com/star-rating/demo) 
+at Krajee JQuery plugins. 
 
 ![Star Rating Screenshot](https://lh6.googleusercontent.com/-DHlzpGa1SQU/U8ywh-ZEfVI/AAAAAAAAAJ0/ZwBxK1nH8Fw/w519-h426-no/bootstrap-star-rating.jpg)
 

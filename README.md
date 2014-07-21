@@ -7,6 +7,8 @@ A simple yet powerful JQuery star rating plugin for Bootstrap which supports adv
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
 can be overridden with any other CSS markup.
 
+![Star Rating Screenshot](https://lh6.googleusercontent.com/-DHlzpGa1SQU/U8ywh-ZEfVI/AAAAAAAAAJ0/ZwBxK1nH8Fw/w519-h426-no/bootstrap-star-rating.jpg)
+
 ## Features  
 
 - Convert any HTML input to a star rating control. 

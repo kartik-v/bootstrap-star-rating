@@ -24,7 +24,7 @@
     <br>
     <input id="input-21e" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
     <br>
-    <input id="input-21f" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="md" >
+    <input id="input-21f" value="0" type="number" min=0 max=5 step=0.1 data-size="md" >
     <br>
     <input id="input-2ba" type="number" class="rating" min="0" max="5" step="0.5" data-stars=5
     data-symbol="&#xe005;" data-default-caption="{rating} hearts" data-star-captions="{}">
@@ -39,7 +39,22 @@
 <br>
 <script>
     jQuery(document).ready(function () {
-        $(".rating-kv").rating();
+        $("#input-21f").rating({
+            starCaptions: function(val) {
+                if (val < 3) {
+                    return val;
+                } else {
+                    return 'high';
+                }
+            },
+            starCaptionClasses: function(val) {
+                if (val < 3) {
+                    return 'label label-danger';
+                } else {
+                    return 'label label-success';
+                }
+            }
+        });
     });
 </script>
 

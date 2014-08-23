@@ -149,7 +149,7 @@ _string_ size of the rating control. One of `xl`, `lg`, `md`, `sm`, or `xs`. Def
 _string_ the default caption text, which will be displayed when no caption is setup for the rating in the `starCaptions` array. This variable defaults to `{rating} Stars`, where the variable `{rating}` will be replaced with the selected star rating.</p>
 
 #### starCaptions
-_array_ the caption titles corresponding to each of the star rating selected. Defaults to
+_array | function_ the caption titles corresponding to each of the star rating selected. Defaults to
 
     {
         0.5: 'Half Star',
@@ -164,8 +164,21 @@ _array_ the caption titles corresponding to each of the star rating selected. De
         5: 'Five Stars'
     }
 
+This can also be configured as a function that returns a star caption based on a supplied parameter `val`, where `val` is the calculated rating. 
+For example:
+
+```js
+    starCaptions: function(val) {
+        if (val < 3) {
+            return 'Low: ' + val + ' stars';
+        } else {
+            return 'High: ' + val + ' stars';
+        }
+    }
+```
+
 #### starCaptionClasses
-_array_ the caption css classes corresponding to each of the star rating selected. Defaults to
+_array | function_ the caption css classes corresponding to each of the star rating selected. Defaults to
 
     {
         0.5: 'label label-danger',
@@ -180,6 +193,22 @@ _array_ the caption css classes corresponding to each of the star rating selecte
         5: 'label label-success'
     }
 
+This can also be configured as a function that returns a star caption class based on a supplied parameter `val`, where `val` is the calculated rating. 
+For example:
+
+```js
+    starCaptionClasses: function(val) {
+        if (val == 0) {
+           return 'label label-default';
+        }
+        else if (val < 3) {
+            return 'label label-danger';
+        } 
+        else {
+            return 'label label-success';
+        }
+    }
+```
 #### clearButton
 _string_ the markup for displaying the clear button. Defaults to `<i class="glyphicon glyphicon-minus-sign"></i>`. 
 

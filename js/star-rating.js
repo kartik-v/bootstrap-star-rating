@@ -236,9 +236,17 @@
         },
         fetchCaption: function (rating) {
             var self = this;
-            var val = parseFloat(rating);
-            var css = isEmpty(self.starCaptionClasses[val]) ? self.clearCaptionClass : self.starCaptionClasses[val];
-            var cap = !isEmpty(self.starCaptions[val]) ? self.starCaptions[val] : self.defaultCaption.replace(/\{rating\}/g, val);
+            var val = parseFloat(rating), css, cap;
+            if (typeof(self.starCaptionClasses) == "function") {
+                css = isEmpty(self.starCaptionClasses(val)) ? self.clearCaptionClass : self.starCaptionClasses(val);
+            } else {
+                css = isEmpty(self.starCaptionClasses[val]) ? self.clearCaptionClass : self.starCaptionClasses[val];
+            }
+            if (typeof(self.starCaptions) == "function") {
+                var cap = isEmpty(self.starCaptions(val)) ? self.defaultCaption.replace(/\{rating\}/g, val) : self.starCaptions(val);
+            } else {
+                var cap = isEmpty(self.starCaptions[val]) ? self.defaultCaption.replace(/\{rating\}/g, val) : self.starCaptions[val];
+            }
             var caption = (val == self.clearValue) ? self.clearCaption : cap;
             return '<span class="' + css + '">' + caption + '</span>';
         },

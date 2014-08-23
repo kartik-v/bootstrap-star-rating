@@ -1,9 +1,14 @@
+version 2.6.0
+=============
+
+Date 2014-08-23
+
+1. enh #17: Dynamic configuration for `starCaptions` and `starCaptionClasses` using a function.
+
 version 2.5.0
 =============
 
 Date 2014-05-27
-
-**NEW RELEASE**
 
 1. Change to entire plugin code to eliminate dependency of HTML5 input. Plugin size reduced to 8KB minified.
 2. Uses special JQuery routines to trigger star rating changes.

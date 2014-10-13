@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 2.5.0
+ * @version 3.0.0
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -71,16 +71,55 @@
         listen: function () {
             var self = this;
             self.$rating.on("click", function (e) {
-                if (!self.inactive) {
-                    w = e.pageX - self.$rating.offset().left;
-                    self.setStars(w);
-                    self.$element.trigger('change');
-                    self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                if (self.inactive) {
+                    return;
                 }
+                var w = e.pageX - self.$rating.offset().left;
+                self.setStars(w);
+                self.$element.trigger('change');
+                self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                self.starClicked = true
+            });
+            self.$rating.on("mousemove", function (e) {
+                if (!self.hoverEnabled || self.inactive) {
+                    return;
+                }
+                self.starClicked = false;
+                var pos = e.pageX - self.$rating.offset().left, out = self.calculate(pos);
+                self.toggleHover(out);
+                self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);
+            });
+            self.$rating.on("mouseleave", function (e) {
+                if (!self.hoverEnabled || self.inactive || self.starClicked) {
+                    return;
+                }
+                var out = self.cache;
+                self.toggleHover(out);
+                self.$element.trigger('rating.hoverleave', ['stars']);
+            });
+            self.$clear.on("mousemove", function (e) {
+                if (!self.hoverEnabled || self.inactive || !self.hoverOnClear) {
+                    return;
+                }
+                self.clearClicked = false;
+                var caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>',
+                    val = self.clearValue, width = self.getWidthFromValue(val), out;
+                out = {caption: caption, width: width, val: val};
+                self.toggleHover(out);
+                self.$element.trigger('rating.hover', [val, caption, 'clear']);
+            });
+            self.$clear.on("mouseleave", function (e) {
+                if (!self.hoverEnabled || self.inactive || self.clearClicked || !self.hoverOnClear) {
+                    return;
+                }
+                var out = self.cache;
+                self.toggleHover(out);
+                self.$element.trigger('rating.hoverleave', ['clear']);
             });
             self.$clear.on("click", function (e) {
                 if (!self.inactive) {
                     self.clear();
+                    self.clearClicked = true;
                 }
             });
             $(self.$element[0].form).on("reset", function (e) {
@@ -115,6 +154,12 @@
         init: function (options) {
             var self = this;
             self.options = options;
+            self.hoverEnabled = options.hoverEnabled;
+            self.hoverChangeCaption = options.hoverChangeCaption;
+            self.hoverChangeStars = options.hoverChangeStars;
+            self.hoverOnClear = options.hoverOnClear;
+            self.starClicked = false;
+            self.clearClicked = false;
             self.initSlider(options);
             self.checkDisabled();
             $element = self.$element;
@@ -160,6 +205,11 @@
             if (self.showClear) {
                 self.$clear.attr({"class": self.getClearClass()});
             }
+            self.cache = {
+                caption: self.$caption.html(),
+                width: self.$stars.width(),
+                val: self.$element.val()
+            };
             self.$element.removeClass('rating-loading');
         },
         checkDisabled: function () {
@@ -250,6 +300,16 @@
             var caption = (val == self.clearValue) ? self.clearCaption : cap;
             return '<span class="' + css + '">' + caption + '</span>';
         },
+        getWidthFromValue: function (val) {
+            var self = this, min = self.min, max = self.max, step = self.step;
+            if (val <= min || min == max) {
+                return 0;
+            }
+            if (val >= max) {
+                return 100;
+            }
+            return (val - min)  * 100 / (max - min);
+        },
         getValueFromPosition: function (pos) {
             var self = this, precision = getDecimalPlaces(self.step),
                 percentage, val, maxWidth = self.$rating.width();
@@ -272,18 +332,34 @@
             }
             return val;
         },
-        setStars: function (pos) {
-            var self = this, min = self.min, max = self.max, step = self.step,
-                val = arguments.length ? self.getValueFromPosition(pos) : (isEmpty(self.$element.val()) ? 0 : self.$element.val()),
-                width = 0, maxWidth = self.$rating.width(), caption = self.fetchCaption(val);
-            width = (val - min) / max * 100;
+        toggleHover: function(out) {
+            var self = this;
+            if (self.hoverChangeCaption) {
+                var caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption;
+                self.$caption.html(caption);
+            }
+            if (self.hoverChangeStars) {
+                var w = self.getWidthFromValue(self.clearValue),
+                    width = out.val <= self.clearValue ? (self.rtl ? (100 - w) + '%' : w + '%') : out.width;
+                self.$stars.css('width', width);
+            }
+        },
+        calculate: function (pos) {
+            var self = this, defaultVal = isEmpty(self.$element.val()) ? 0 : self.$element.val(),
+                val = arguments.length ? self.getValueFromPosition(pos) : defaultVal,
+                caption = self.fetchCaption(val), width = self.getWidthFromValue(val);
             if (self.rtl) {
                 width = 100 - width;
             }
-            self.$element.val(val);
             width += '%';
-            self.$stars.css('width', width);
-            self.$caption.html(caption);
+            return {caption: caption, width: width, val: val};
+        },
+        setStars: function (pos) {
+            var self = this, out = arguments.length ? self.calculate(pos) : self.calculate();
+            self.$element.val(out.val);
+            self.$stars.css('width', out.width);
+            self.$caption.html(out.caption);
+            self.cache = out
         },
         clear: function () {
             var self = this;
@@ -393,7 +469,11 @@
         clearValue: 0,
         captionElement: null,
         clearElement: null,
-        containerClass: null
+        containerClass: null,
+        hoverEnabled: true,
+        hoverChangeCaption: true,
+        hoverChangeStars: true,
+        hoverOnClear: true
     };
 
 
@@ -409,4 +489,4 @@
             $input.rating();
         }
     });
-}(jQuery));
+}(jQuery)); 

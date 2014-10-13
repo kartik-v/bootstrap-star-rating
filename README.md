@@ -1,7 +1,8 @@
 bootstrap-star-rating
 =====================
 
-> NOTE: Version 2.5.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
+> NOTE: Version 3.0.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
+With version 3.0.0, the plugin now supports mouse hover functionality and displays state changes to rating stars & captions on hover. 
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
@@ -30,7 +31,7 @@ at Krajee JQuery plugins.
   available `xl`, `lg`, `md`, `sm`, and `xs`.
 - Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 - Disabled and readonly input star rating support.
-- Size of the entire plugin is less than 11KB (about 8KB for the minified JS and 3KB for the minified CSS).
+- Change stars and caption on mouse hover (new feature since v3.0.0).
 
 ## Browser Support
 
@@ -236,6 +237,20 @@ _string_ the identifier for the container element selector for displaying the ca
 #### clearElement
 _string_ the identifier for the container element selector for displaying the clear button. Defaults to the `div` container with `.clear-rating` class inside the rating control. 
 
+#### hoverEnabled
+_boolean_ whether hover functionality is enabled. This will dynamically change the stars and caption on mouse hover. Defaults to `true`. 
+> NOTE: The hover functionality will only work on desktop pointing devices and if the input is not `disabled` or `readonly`. 
+For all hover functionalities in this plugin (including properties below), the rating state will be reverted back to original if the mouse is exited out without clicking. 
+
+#### hoverChangeCaption
+_boolean_ control whether the caption should dynamically change on mouse hover. Defaults to `true`. Will be applicable only if `hoverEnabled` is `true`.
+
+#### hoverChangeStars
+_boolean_ control whether the stars should dynamically change on mouse hover. Defaults to `true`. Will be applicable only if `hoverEnabled` is `true`. 
+
+#### hoverOnClear
+_boolean_ whether to dynamically clear the rating on hovering the clear button. Defaults to `true`. Will be applicable only if `hoverEnabled` is `true`. 
+
 ### Plugin Events
 The plugin supports these events:
 
@@ -270,6 +285,34 @@ This event is triggered when the rating is reset to initial value.
 ```js
 $('#input-id').on('rating.reset', function(event) {
     console.log("rating.reset");
+});
+```
+
+#### rating.hover
+This event is triggered, when the mouse (pointing input device) is hovered inside a star rating or the clear button. This event also allows you to access these parameters:
+
+- `value`: the selected rating value  
+- `caption`: the caption for the selected rating
+- `target`: the target for the hover - returns whether you hovered on the `stars` or the `clear` button.
+
+**Example:**
+```js
+$('#input-id').on('rating.hover', function(event, value, caption, target) {
+    console.log(value);
+    console.log(caption);
+    console.log(target);
+});
+```
+
+#### rating.hoverleave
+This event is triggered, when the mouse (pointing input device) is hovered out of a star rating or the clear button without clicking. This event also allows you to access these parameters:
+
+- `target`: the target for the hover - returns whether you left hovering on the `stars` or the `clear` button.
+
+**Example:**
+```js
+$('#input-id').on('rating.hoverleave', function(event, target) {
+    console.log(target);
 });
 ```
 

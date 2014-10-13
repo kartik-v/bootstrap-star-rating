@@ -1,14 +1,30 @@
+version 3.0.0
+=============
+**Date:** 2014-10-13
+
+1. enh #20, #21: Included hover validation routine and rating state change on hover. Following new configurable properties added:
+
+   - `hoverEnabled`: _boolean_ whether hover functionality is enabled. This will dynamically change the stars and caption on mouse hover. Defaults to `true`. This functionality will only work on desktop devices and if the input is not `disabled` or `readonly`.
+   - `hoverChangeCaption`: _boolean_ control whether the caption should dynamically change on mouse hover. Defaults to `true`. Will be applicable only if `hoverEnabled` is `true`.
+   - `hoverChangeStars`: _boolean_ control whether the stars should dynamically change on mouse hover. Defaults to `true`. Will be applicable only if `hoverEnabled` is `true`.
+
+2. enh #21: Following new events are added:
+
+   - `rating.hover`
+   - `rating.hoverleave`
+   
+3. enh #22: More correct minimum value and clear value validation through new `getWidthFromValue` method.
+
+
 version 2.6.0
 =============
-
-Date 2014-08-23
+**Date:** 2014-08-23
 
 1. enh #17: Dynamic configuration for `starCaptions` and `starCaptionClasses` using a function.
 
 version 2.5.0
 =============
-
-Date 2014-05-27
+**Date:** 2014-05-27
 
 1. Change to entire plugin code to eliminate dependency of HTML5 input. Plugin size reduced to 8KB minified.
 2. Uses special JQuery routines to trigger star rating changes.
@@ -17,14 +33,16 @@ Date 2014-05-27
 5. Removed cloning of inputs to allow better refreshing of input across ajax and other scenarios.
 6. Caption and Clear elements parameters treated as identifiers rather than JQuery object elements.
 
-version 2.0.0
+version 2.1.0
 =============
-
-Date 2014-05-08
+**Date:** 2014-05-08
 
 1. Bug #8,#9,#10: Correct cloning and conversion of field to a range slider input.
 
-Date: 2014-04-25
+version 2.0.0
+=============
+
+**Date:** 2014-04-25
 
 1. Revamp of entire plugin code. Cleverly leverages CSS3 styles, animations, and HTML5 input features 
    to render the plugin.
@@ -39,14 +57,14 @@ Date: 2014-04-25
 
 version 1.2.0
 =============
-Date: 2014-04-04
+**Date:** 2014-04-04
 
 1. Widget is customizable for using any CSS markup to override Bootstrap styles.
 2. Clear button class customization added.
 
 version 1.1.0
 =============
-Date: 2014-03-10
+**Date:** 2014-03-10
 
 Revamped the methods for usage across wider scenarios:
 
@@ -55,7 +73,7 @@ Revamped the methods for usage across wider scenarios:
 
 version 1.0.0
 =============
-Date: 2013-10-01
+**Date:** 2013-10-01
 
 Initial release. The following features are included in this release:
 
@@ -71,4 +89,3 @@ Initial release. The following features are included in this release:
 10. Triggers JQuery events for advanced development. Events currently available are `rating.change`, `rating.clear`, and  `rating.reset`.
 11. Disabled and readonly input star rating support.
 12. Size of the entire plugin is less than 9KB (about 6KB for the minified JS and 3KB for the minified CSS).
-

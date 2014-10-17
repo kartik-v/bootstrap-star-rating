@@ -15,6 +15,8 @@ version 3.0.0
    
 3. enh #22: More correct minimum value and clear value validation through new `getWidthFromValue` method.
 
+4. enh #24: Set `clearValue` to default to `min` if not set.
+
 
 version 2.6.0
 =============

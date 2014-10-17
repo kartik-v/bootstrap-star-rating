@@ -35,6 +35,9 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-default">Reset</button>
     </div>
+    
+    <input id="rating-input" type="number" />
+    
 </form>
 <br>
 <script>
@@ -56,6 +59,16 @@
             },
             hoverOnClear: false
         });
+        
+        $('#rating-input').rating({
+              min: 0,
+              max: 5,
+              step: 1,
+              rtl: false,
+              showCaption: true,
+              showClear: false,
+              size: 'lg'
+           });
     });
 </script>
 

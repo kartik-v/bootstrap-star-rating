@@ -184,7 +184,7 @@
             self.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
             self.clearCaption = options.clearCaption;
             self.clearCaptionClass = options.clearCaptionClass;
-            self.clearValue = options.clearValue;
+            self.clearValue = isEmpty(options.clearValue) ? self.min : options.clearValue;
             self.$element.removeClass('form-control').addClass('form-control');
             self.$clearElement = isEmpty(options.clearElement) ? null : $(options.clearElement);
             self.$captionElement = isEmpty(options.captionElement) ? null : $(options.captionElement);
@@ -466,7 +466,7 @@
         clearButtonActiveClass: 'clear-rating-active',
         clearCaption: 'Not Rated',
         clearCaptionClass: 'label label-default',
-        clearValue: 0,
+        clearValue: null,
         captionElement: null,
         clearElement: null,
         containerClass: null,

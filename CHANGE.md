@@ -1,3 +1,10 @@
+version 3.1.0
+=============
+**Date:** 2014-10-27
+
+1. enh #26: Add touch device support to enable touch and slide across stars.
+
+
 version 3.0.0
 =============
 **Date:** 2014-10-13

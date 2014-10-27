@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 3.0.0
+ * @version 3.1.0
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -13,6 +13,8 @@
     var DEFAULT_MAX = 5;
     var DEFAULT_STEP = 0.5;
 
+    var isTouchCapable = 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch);
+    
     var isEmpty = function (value, trim) {
         return typeof value === 'undefined' || value === null || value === undefined || value == []
             || value === '' || trim && $.trim(value) === '';
@@ -70,6 +72,7 @@
          */
         listen: function () {
             var self = this;
+            self.initTouch();
             self.$rating.on("click", function (e) {
                 if (self.inactive) {
                     return;
@@ -78,7 +81,7 @@
                 self.setStars(w);
                 self.$element.trigger('change');
                 self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
-                self.starClicked = true
+                self.starClicked = true;
             });
             self.$rating.on("mousemove", function (e) {
                 if (!self.hoverEnabled || self.inactive) {
@@ -126,6 +129,37 @@
                 if (!self.inactive) {
                     self.reset();
                 }
+            });
+        },
+        setTouch: function(e, update) {
+            var self = this;
+            if (!isTouchCapable || self.inactive) {
+                return;
+            }
+            var pos = e.originalEvent.touches[0].pageX - self.$rating.offset().left;
+            if (update === true) {
+                self.setStars(pos);
+                self.$element.trigger('change');
+                self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                self.starClicked = true;
+            } else {
+                var out = self.calculate(pos), caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption, 
+                    w = self.getWidthFromValue(self.clearValue),
+                    width = out.val <= self.clearValue ? (self.rtl ? (100 - w) + '%' : w + '%') : out.width;
+                self.$caption.html(caption);
+                self.$stars.css('width', width);
+            }
+        },
+        initTouch: function() {
+            var self = this;
+            self.$rating.on("touchstart", function (e) {
+                self.setTouch(e, false);
+            });
+            self.$rating.on("touchmove", function (e) {
+                self.setTouch(e, false);
+            });
+            self.$rating.on("touchend", function (e) {
+                self.setTouch(e, true);
             });
         },
         initSlider: function (options) {

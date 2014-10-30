@@ -422,7 +422,7 @@
         refresh: function (options) {
             var self = this;
             if (arguments.length) {
-                var cap = '';
+                self.$element.off();
                 self.init($.extend(self.options, options));
                 if (self.showClear) {
                     self.$clear.show();

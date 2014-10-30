@@ -422,7 +422,8 @@
         refresh: function (options) {
             var self = this;
             if (arguments.length) {
-                self.$element.off();
+                self.$rating.off();
+                self.$clear.off();
                 self.init($.extend(self.options, options));
                 if (self.showClear) {
                     self.$clear.show();
@@ -436,6 +437,7 @@
                 else {
                     self.$caption.hide();
                 }
+                self.$element.trigger('rating.refresh');
             }
         }
     };

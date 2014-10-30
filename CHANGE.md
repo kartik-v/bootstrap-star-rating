@@ -4,6 +4,7 @@ version 3.1.0
 
 1. enh #26: Add touch device support to enable touch and slide across stars.
 2. enh #27: Reset events on the rating element before every refresh.
+3. enh #28: Add rating.refresh event.
 
 
 version 3.0.0

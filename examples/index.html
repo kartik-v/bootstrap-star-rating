@@ -37,7 +37,7 @@
     </div>
     
     <input id="rating-input" type="number" />
-    
+    <button id="btn-rating-input" type="button" class="btn btn-primary">Test Disable</button>
 </form>
 <br>
 <script>
@@ -64,11 +64,18 @@
               min: 0,
               max: 5,
               step: 1,
-              rtl: false,
-              showCaption: true,
-              showClear: false,
               size: 'lg'
            });
+           
+        $('#btn-rating-input').on('click', function() {
+            var $a = self.$element.closest('.star-rating');
+            var chk = !$a.hasClass('rating-disabled');
+            $('#rating-input').rating('refresh', {showClear:!chk, disabled:chk});
+        });
+        
+        $('#rating-input').on('rating.change', function() {
+            alert($('#rating-input').val());
+        });
     });
 </script>
 

@@ -1,6 +1,13 @@
+version 3.2.0
+=============
+**Date:** 08-Nov-2014
+
+1. Set release to stable in composer.json.
+2. Updated CHANGE log to reflect user friendly date time formats.
+
 version 3.1.0
 =============
-**Date:** 2014-10-27
+**Date:** 27-Oct-2014
 
 1. enh #26: Add touch device support to enable touch and slide across stars.
 2. enh #27: Reset events on the rating element before every refresh.
@@ -9,7 +16,7 @@ version 3.1.0
 
 version 3.0.0
 =============
-**Date:** 2014-10-13
+**Date:** 13-Oct-2014
 
 1. enh #20, #21: Included hover validation routine and rating state change on hover. Following new configurable properties added:
 
@@ -29,13 +36,13 @@ version 3.0.0
 
 version 2.6.0
 =============
-**Date:** 2014-08-23
+**Date:** 23-Aug-2014
 
 1. enh #17: Dynamic configuration for `starCaptions` and `starCaptionClasses` using a function.
 
 version 2.5.0
 =============
-**Date:** 2014-05-27
+**Date:** 27-May-2014
 
 1. Change to entire plugin code to eliminate dependency of HTML5 input. Plugin size reduced to 8KB minified.
 2. Uses special JQuery routines to trigger star rating changes.
@@ -46,14 +53,14 @@ version 2.5.0
 
 version 2.1.0
 =============
-**Date:** 2014-05-08
+**Date:** 08-May-2014
 
 1. Bug #8,#9,#10: Correct cloning and conversion of field to a range slider input.
 
 version 2.0.0
 =============
 
-**Date:** 2014-04-25
+**Date:** 25-Apr-2014
 
 1. Revamp of entire plugin code. Cleverly leverages CSS3 styles, animations, and HTML5 input features 
    to render the plugin.
@@ -68,14 +75,14 @@ version 2.0.0
 
 version 1.2.0
 =============
-**Date:** 2014-04-04
+**Date:** 04-Apr-2014
 
 1. Widget is customizable for using any CSS markup to override Bootstrap styles.
 2. Clear button class customization added.
 
 version 1.1.0
 =============
-**Date:** 2014-03-10
+**Date:** 10-Mar-2014
 
 Revamped the methods for usage across wider scenarios:
 
@@ -84,7 +91,7 @@ Revamped the methods for usage across wider scenarios:
 
 version 1.0.0
 =============
-**Date:** 2013-10-01
+**Date:** 01-Oct-2013
 
 Initial release. The following features are included in this release:
 

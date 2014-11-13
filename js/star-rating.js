@@ -360,6 +360,7 @@
             else if (val > self.max) {
                 val = self.max;
             }
+            val = Math.max(Math.min(val,self.max), self.min);
             val = applyPrecision(parseFloat(val), precision);
             if (self.rtl) {
                 val = self.max - val;

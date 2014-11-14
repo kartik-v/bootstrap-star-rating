@@ -1,3 +1,9 @@
+version 3.3.0
+=============
+**Date:** 14-Nov-2014
+
+1. (bug #32): Prevent invalid star ratings if cursor is close to left/right edge of star array.
+
 version 3.2.0
 =============
 **Date:** 08-Nov-2014

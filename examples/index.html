@@ -38,6 +38,8 @@
     
     <input id="rating-input" type="number" />
     <button id="btn-rating-input" type="button" class="btn btn-primary">Toggle Disable</button>
+    
+    <input class="rb-rating">
 </form>
 <br>
 <script>
@@ -76,6 +78,9 @@
         $('#rating-input').on('rating.change', function() {
             alert($('#rating-input').val());
         });
+        
+        
+        $('.rb-rating').rating({'showCaption':true, 'stars':'3', 'min':'0', 'max':'3', 'step':'1', 'size':'xs', 'starCaptions': {0:'status:nix', 1:'status:wackelt', 2:'status:geht', 3:'status:laeuft'}});
     });
 </script>
 

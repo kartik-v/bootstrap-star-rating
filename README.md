@@ -1,9 +1,7 @@
 bootstrap-star-rating
 =====================
 
-> NOTE: Version 3.2.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
-With version 3.1.0, the plugin now has support for touch enabled devices. Thus, the plugin displays state changes to rating stars & captions on touch slide and drag. 
-With version 3.0.0, the plugin also supports mouse hover functionality and displays state changes to rating stars & captions on hover. 
+> NOTE: Version 3.3.0 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 

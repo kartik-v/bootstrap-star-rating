@@ -1,8 +1,9 @@
 version 3.3.0
 =============
-**Date:** 14-Nov-2014
+**Date:** 17-Nov-2014
 
 1. (bug #32): Prevent invalid star ratings if cursor is close to left/right edge of star array.
+2. (enh #33): Enhance touch methods for compatibility across more wider mobile device browsers.
 
 version 3.2.0
 =============

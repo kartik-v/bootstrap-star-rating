@@ -136,7 +136,9 @@
             if (!isTouchCapable || self.inactive) {
                 return;
             }
-            var pos = e.originalEvent.touches[0].pageX - self.$rating.offset().left;
+            var ev = e.originalEvent,
+                touches = ev.touches.length > 0 ? ev.touches : ev.changedTouches,
+                pos = touches[0].pageX - self.$rating.offset().left;
             if (update === true) {
                 self.setStars(pos);
                 self.$element.trigger('change');
@@ -346,20 +348,12 @@
         },
         getValueFromPosition: function (pos) {
             var self = this, precision = getDecimalPlaces(self.step),
-                percentage, val, maxWidth = self.$rating.width();
-            percentage = (pos / maxWidth);
-            if (self.rtl) {
-                val = (self.min + Math.floor(self.diff * percentage / self.step) * self.step);
-            }
-            else {
-                val = (self.min + Math.ceil(self.diff * percentage / self.step) * self.step);
-            }
-            val = applyPrecision(parseFloat(val), precision);
+                val, factor, maxWidth = self.$rating.width();
+            factor = (self.diff * pos) / (maxWidth * self.step);
+            factor = self.rtl ? Math.floor(factor) : Math.ceil(factor);
+            val = applyPrecision(parseFloat(self.min + factor * self.step), precision);
             val = Math.max(Math.min(val, self.max), self.min);
-            if (self.rtl) {
-                val = self.max - val;
-            }
-            return val;
+            return self.rtl ? (self.max - val) : val;
         },
         toggleHover: function(out) {
             var self = this;
@@ -408,32 +402,24 @@
             self.$element.trigger('rating.reset');
         },
         update: function (val) {
-            if (arguments.length > 0) {
-                var self = this;
-                self.$element.val(val);
-                self.setStars();
+            var self = this;
+            if (!arguments.length) {
+                return;
             }
+            self.$element.val(val);
+            self.setStars();
         },
         refresh: function (options) {
             var self = this;
-            if (arguments.length) {
-                self.$rating.off();
-                self.$clear.off();
-                self.init($.extend(self.options, options));
-                if (self.showClear) {
-                    self.$clear.show();
-                }
-                else {
-                    self.$clear.hide();
-                }
-                if (self.showCaption) {
-                    self.$caption.show();
-                }
-                else {
-                    self.$caption.hide();
-                }
-                self.$element.trigger('rating.refresh');
+            if (!arguments.length) {
+                return;
             }
+            self.$rating.off();
+            self.$clear.off();
+            self.init($.extend(self.options, options));
+            self.showClear ? self.$clear.show() : self.$clear.hide();
+            self.showCaption ? self.$caption.show() : self.$caption.hide();
+            self.$element.trigger('rating.refresh');
         }
     };
 

@@ -355,6 +355,18 @@ Clear the rating.
 $('#input-id').rating('clear');
 ```
 
+#### destroy
+Destroys the rating.
+```js
+$('#input-id').rating('destroy');
+```
+
+#### create
+Re-creates the rating (after a destroy).
+```js
+$('#input-id').rating('create');
+```
+
 ## License
 
 **bootstrap-star-rating** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.

@@ -33,15 +33,18 @@
     <hr>
     <input id="input-22"  value="0" type="number" class="rating" min=0 max=5 step=0.5 data-rtl=1 data-container-class='text-right' data-glyphicon=0>
     <div class="clearfix"></div>
-    <hr>   
-    <input id="rating-input" type="number" />
-    <button id="btn-rating-input" type="button" class="btn btn-primary">Toggle Disable</button>
-    <hr>    
+    <hr>     
     <input class="rb-rating">
     <hr>
-    <div class="form-group">
+    <input id="rating-input" type="number" />
+    <button id="btn-rating-input" type="button" class="btn btn-primary">Toggle Disable</button>
+    <hr>  
+    <input id="kartik" class="rating" data-stars="5" data-step="0.1"/>
+    <div class="form-group" style="margin-top:10px">
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-default">Reset</button>
+    <button type="button" class="btn btn-danger">Destroy</button>
+    <button type="button" class="btn btn-success">Create</button>
     </div>
 </form>
 <hr>
@@ -76,6 +79,15 @@
             var $a = self.$element.closest('.star-rating');
             var chk = !$a.hasClass('rating-disabled');
             $('#rating-input').rating('refresh', {showClear:!chk, disabled:chk});
+        });
+        
+        
+        $('.btn-danger').on('click', function() {
+            $("#kartik").rating('destroy');
+        });
+        
+        $('.btn-success').on('click', function() {
+            $("#kartik").rating('create');
         });
         
         $('#rating-input').on('rating.change', function() {

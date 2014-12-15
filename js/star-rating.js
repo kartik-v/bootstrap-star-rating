@@ -39,7 +39,7 @@
     var applyPrecision = function (val, precision) {
         return parseFloat(val.toFixed(precision));
     };
-
+    
     // Rating public class definition
     var Rating = function (element, options) {
         this.$element = $(element);
@@ -130,6 +130,20 @@
                     self.reset();
                 }
             });
+        },
+        destroy: function() {
+            var self = this, $el = self.$element;
+            if (!isEmpty(self.$container)) {
+                self.$container.before($el).remove();
+            }
+            $.removeData($el.get(0));
+            $el.off('rating').removeClass('hide');
+        },
+        create: function() {
+            var options = arguments.length > 0 ? arguments[0] : {}, 
+                $el = self.$element;
+            self.destroy();
+            $el.rating(options);
         },
         setTouch: function(e, update) {
             var self = this;
@@ -236,7 +250,7 @@
             self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find('.' + self.clearButtonBaseClass);
             self.$caption = !isEmpty(self.$captionElement) ? self.$captionElement : self.$container.find(".caption");
             self.setStars();
-            self.$element.hide();
+            self.$element.removeClass('hide').addClass('hide');
             self.listen();
             if (self.showClear) {
                 self.$clear.attr({"class": self.getClearClass()});
@@ -414,7 +428,7 @@
             if (!arguments.length) {
                 return;
             }
-            self.$rating.off();
+            self.$rating.off('rating');
             self.$clear.off();
             self.init($.extend(self.options, options));
             self.showClear ? self.$clear.show() : self.$clear.hide();

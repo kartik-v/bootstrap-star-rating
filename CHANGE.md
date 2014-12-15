@@ -1,3 +1,10 @@
+version 3.4.0
+=============
+**Date:** 16-Dec-2014
+
+1. (enh #35): Added `destroy` method to destroy the rating plugin.
+2. (enh #36): Added `create` method to create the rating plugin (typically after a destroy).
+
 version 3.3.0
 =============
 **Date:** 17-Nov-2014

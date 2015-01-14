@@ -257,7 +257,7 @@
             }
             self.cache = {
                 caption: self.$caption.html(),
-                width: self.$stars.width(),
+                width:  self.rtl? (100-self.getWidthFromValue(self.$element.val()))+'%':self.getWidthFromValue(self.$element.val())+'%',
                 val: self.$element.val()
             };
             self.$element.removeClass('rating-loading');

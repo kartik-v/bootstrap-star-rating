@@ -1,3 +1,10 @@
+version 3.5.0
+=============
+**Date:** 14-Jan-2015
+
+1. (bug): Prevent invalid star rating render with number of stars greater than 5, default value and hoverChange enabled.
+
+
 version 3.4.0
 =============
 **Date:** 16-Dec-2014

@@ -1,3 +1,9 @@
+version 3.5.0
+=============
+**Date:** 14-Jan-2015
+
+1. (enh #39): Prevent invalid star rating for numStars > 5 with default value & hoverChange enabled.
+
 version 3.4.0
 =============
 **Date:** 16-Dec-2014

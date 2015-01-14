@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 3.3.0
+ * @version 3.4.0
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -255,10 +255,11 @@
             if (self.showClear) {
                 self.$clear.attr({"class": self.getClearClass()});
             }
+            var starVal = self.$element.val(), starWidth = self.getWidthFromValue(starVal);
             self.cache = {
                 caption: self.$caption.html(),
-                width: self.$stars.width(),
-                val: self.$element.val()
+                width: (self.rtl ? (100 - starWidth) : starWidth) + '%',
+                val: starVal
             };
             self.$element.removeClass('rating-loading');
         },

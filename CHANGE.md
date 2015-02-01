@@ -1,8 +1,9 @@
 version 3.5.0
 =============
-**Date:** 14-Jan-2015
+**Date:** 31-Jan-2015
 
 1. (enh #39): Prevent invalid star rating for numStars > 5 with default value & hoverChange enabled.
+2. (enh #42): Code cleanup and restructure for JS lint changes (using JSHint Code cleanup library).
 
 version 3.4.0
 =============

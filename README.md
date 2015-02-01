@@ -336,7 +336,7 @@ $('#input-id').rating('update', 3);
 ```
 
 #### refresh
-Use this method to dynamically refresh the rating options via javascript after the plugin has been initialized. The method accepts the plugin options entered as an array.
+Use this method to dynamically refresh the rating options via javascript after the plugin has been initialized. The method accepts the plugin options entered as object (associative array).
 ```js
 // Example: Call the method below in rating.change event to disable the rating and
 // hide the clear button.

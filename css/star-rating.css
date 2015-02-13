@@ -1,6 +1,6 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 3.5.0
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2015
+ * @version 3.5.1
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -19,9 +19,19 @@
 /*
  * Stars
  */
+.rating-fa {
+    font-family: 'FontAwesome';
+    padding-left: 1px;
+}
+
+.rating-fa .rating-stars:before {
+    padding-left: 1px;
+}
+
 .rating-gly {
     font-family: 'Glyphicons Halflings';
 }
+
 .rating-gly-star {
     font-family: 'Glyphicons Halflings';
     padding-left: 2px;

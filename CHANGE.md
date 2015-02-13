@@ -1,3 +1,11 @@
+version 3.5.1
+=============
+**Date:** 13-Feb-2015
+
+1. (enh #44): Ability to integrate with other font icon CSS frameworks like Font Awesome.
+    - New property `ratingClass` added to allow configuring other icon framework css classes.
+2. Set copyright year to current.
+
 version 3.5.0
 =============
 **Date:** 31-Jan-2015

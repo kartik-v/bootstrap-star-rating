@@ -1,6 +1,6 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 3.5.0
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2015
+ * @version 3.5.1
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering
  * fractional star ratings and supports Right to Left (RTL) input.
@@ -16,6 +16,9 @@
     var DEFAULT_MIN = 0, DEFAULT_MAX = 5, DEFAULT_STEP = 0.5,
         isEmpty = function (value, trim) {
             return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
+        },
+        addCss = function ($el, css) {
+            $el.removeClass(css).addClass(css);
         },
         validateAttr = function ($input, vattr, options) {
             var chk = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
@@ -36,9 +39,9 @@
     Rating.prototype = {
         constructor: Rating,
         _parseAttr: function (vattr, options) {
-            var self = this, $input = self.$element;
-            if ($input.attr('type') === 'range' || $input.attr('type') === 'number') {
-                var val = validateAttr($input, vattr, options), chk, final;
+            var self = this, $el = self.$element;
+            if ($el.attr('type') === 'range' || $el.attr('type') === 'number') {
+                var val = validateAttr($el, vattr, options), chk, final;
                 switch (vattr) {
                     case 'min':
                         chk = DEFAULT_MIN;
@@ -54,17 +57,25 @@
             }
             return parseFloat(options[vattr]);
         },
-        listen: function () {
+        setDefault: function (key, val) {
             var self = this;
+            if (isEmpty(self[key])) {
+                self[key] = val;
+            }
+        },
+        getPosition: function (e) {
+            return e.pageX - this.$rating.offset().left;
+        },
+        listen: function () {
+            var self = this, pos, out;
             self.initTouch();
             self.$rating.on("click", function (e) {
                 if (self.inactive) {
                     return;
                 }
-                var w = e.pageX - self.$rating.offset().left;
-                self.setStars(w);
-                self.$element.trigger('change');
-                self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                pos = self.getPosition(e);
+                self.setStars(pos);
+                self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 self.starClicked = true;
             });
             self.$rating.on("mousemove", function (e) {
@@ -72,7 +83,8 @@
                     return;
                 }
                 self.starClicked = false;
-                var pos = e.pageX - self.$rating.offset().left, out = self.calculate(pos);
+                pos = self.getPosition(e);
+                out = self.calculate(pos);
                 self.toggleHover(out);
                 self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);
             });
@@ -80,7 +92,7 @@
                 if (!self.hoverEnabled || self.inactive || self.starClicked) {
                     return;
                 }
-                var out = self.cache;
+                out = self.cache;
                 self.toggleHover(out);
                 self.$element.trigger('rating.hoverleave', ['stars']);
             });
@@ -90,7 +102,7 @@
                 }
                 self.clearClicked = false;
                 var caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>',
-                    val = self.clearValue, width = self.getWidthFromValue(val), out;
+                    val = self.clearValue, width = self.getWidthFromValue(val);
                 out = {caption: caption, width: width, val: val};
                 self.toggleHover(out);
                 self.$element.trigger('rating.hover', [val, caption, 'clear']);
@@ -99,7 +111,7 @@
                 if (!self.hoverEnabled || self.inactive || self.clearClicked || !self.hoverOnClear) {
                     return;
                 }
-                var out = self.cache;
+                out = self.cache;
                 self.toggleHover(out);
                 self.$element.trigger('rating.hoverleave', ['clear']);
             });
@@ -135,13 +147,10 @@
             if (!isTouchCapable || self.inactive) {
                 return;
             }
-            var ev = e.originalEvent,
-                touches = ev.touches.length > 0 ? ev.touches : ev.changedTouches,
-                pos = touches[0].pageX - self.$rating.offset().left;
+            var ev = e.originalEvent, touches = ev.touches || ev.changedTouches, pos = self.getPosition(touches[0]);
             if (flag) {
                 self.setStars(pos);
-                self.$element.trigger('change');
-                self.$element.trigger('rating.change', [self.$element.val(), self.$caption.html()]);
+                self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 self.starClicked = true;
             } else {
                 var out = self.calculate(pos), caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption,
@@ -164,9 +173,9 @@
                 self.$element.val(0);
             }
             self.initialValue = self.$element.val();
-            self.min = (options.min !== undefined) ? options.min : self._parseAttr('min', options);
-            self.max = (options.max !== undefined) ? options.max : self._parseAttr('max', options);
-            self.step = (options.step !== undefined) ? options.step : self._parseAttr('step', options);
+            self.setDefault('min', self._parseAttr('min', options));
+            self.setDefault('max', self._parseAttr('max', options));
+            self.setDefault('step', self._parseAttr('step', options));
             if (isNaN(self.min) || isEmpty(self.min)) {
                 self.min = DEFAULT_MIN;
             }
@@ -181,44 +190,29 @@
         init: function (options) {
             var self = this, $el = self.$element, defaultStar, starVal, starWidth;
             self.options = options;
-            self.hoverEnabled = options.hoverEnabled;
-            self.hoverChangeCaption = options.hoverChangeCaption;
-            self.hoverChangeStars = options.hoverChangeStars;
-            self.hoverOnClear = options.hoverOnClear;
+            $.each(options, function (key, value) {
+                self[key] = value;
+            });
             self.starClicked = false;
             self.clearClicked = false;
             self.initSlider(options);
             self.checkDisabled();
-            self.containerClass = options.containerClass;
-            self.glyphicon = options.glyphicon;
-            defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
-            self.symbol = isEmpty(options.symbol) ? defaultStar : options.symbol;
-            self.rtl = options.rtl || $el.attr('dir');
+            self.setDefault('rtl', $el.attr('dir'));
             if (self.rtl) {
                 $el.attr('dir', 'rtl');
             }
-            self.showClear = options.showClear;
-            self.showCaption = options.showCaption;
-            self.size = options.size;
-            self.stars = options.stars;
-            self.defaultCaption = options.defaultCaption;
-            self.starCaptions = options.starCaptions;
-            self.starCaptionClasses = options.starCaptionClasses;
-            self.clearButton = options.clearButton;
-            self.clearButtonTitle = options.clearButtonTitle;
-            self.clearButtonBaseClass = !isEmpty(options.clearButtonBaseClass) ? options.clearButtonBaseClass : 'clear-rating';
-            self.clearButtonActiveClass = !isEmpty(options.clearButtonActiveClass) ? options.clearButtonActiveClass : 'clear-rating-active';
-            self.clearCaption = options.clearCaption;
-            self.clearCaptionClass = options.clearCaptionClass;
-            self.clearValue = isEmpty(options.clearValue) ? self.min : options.clearValue;
-            $el.removeClass('form-control').addClass('form-control');
+            defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
+            self.setDefault('symbol', defaultStar);
+            self.setDefault('clearButtonBaseClass', 'clear-rating');
+            self.setDefault('clearButtonActiveClass', 'clear-rating-active');
+            self.setDefault('clearValue', self.min);
+            addCss($el, 'form-control hide');
             self.$clearElement = isEmpty(options.clearElement) ? null : $(options.clearElement);
             self.$captionElement = isEmpty(options.captionElement) ? null : $(options.captionElement);
             if (self.$rating === undefined && self.$container === undefined) {
                 self.$rating = $(document.createElement("div")).html('<div class="rating-stars"></div>');
                 self.$container = $(document.createElement("div"));
-                self.$container.before(self.$rating);
-                self.$container.append(self.$rating);
+                self.$container.before(self.$rating).append(self.$rating);
                 $el.before(self.$container).appendTo(self.$rating);
             }
             self.$stars = self.$rating.find('.rating-stars');
@@ -226,7 +220,6 @@
             self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find('.' + self.clearButtonBaseClass);
             self.$caption = !isEmpty(self.$captionElement) ? self.$captionElement : self.$container.find(".caption");
             self.setStars();
-            $el.removeClass('hide').addClass('hide');
             self.listen();
             if (self.showClear) {
                 self.$clear.attr({"class": self.getClearClass()});
@@ -253,18 +246,22 @@
             var self = this, clear = self.renderClear(), caption = self.renderCaption(),
                 css = (self.rtl) ? 'rating-container-rtl' : 'rating-container',
                 stars = self.getStars();
-            css += (self.glyphicon) ? ((self.symbol === '\ue006') ? ' rating-gly-star' : ' rating-gly') : ' rating-uni';
+            if (self.glyphicon) {
+                css += (self.symbol === '\ue006' ? ' rating-gly-star' : ' rating-gly') + self.ratingClass;
+            } else {
+                css += isEmpty(self.ratingClass) ? ' rating-uni' : ' ' + self.ratingClass;
+            }
             self.$rating.attr('class', css);
             self.$rating.attr('data-content', stars);
             self.$stars.attr('data-content', stars);
             css = self.rtl ? 'star-rating-rtl' : 'star-rating';
             self.$container.attr('class', css + ' rating-' + self.size);
-
+            self.$container.removeClass('rating-active rating-disabled');
             if (self.inactive) {
-                self.$container.removeClass('rating-active').addClass('rating-disabled');
+                self.$container.addClass('rating-disabled');
             }
             else {
-                self.$container.removeClass('rating-disabled').addClass('rating-active');
+                self.$container.addClass('rating-active');
             }
 
             if (self.$caption === undefined && self.$clear === undefined) {
@@ -276,7 +273,7 @@
                 }
             }
             if (!isEmpty(self.containerClass)) {
-                self.$container.removeClass(self.containerClass).addClass(self.containerClass);
+                addCss(self.$container, self.containerClass);
             }
         },
         getStars: function () {
@@ -293,8 +290,8 @@
             }
             css = self.getClearClass();
             if (!isEmpty(self.$clearElement)) {
-                self.$clearElement.removeClass(css).addClass(css).attr({"title": self.clearButtonTitle});
-                self.$clearElement.html(self.clearButton);
+                addCss(self.$clearElement, css);
+                self.$clearElement.attr({"title": self.clearButtonTitle}).html(self.clearButton);
                 return '';
             }
             return '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>';
@@ -306,8 +303,8 @@
             }
             html = self.fetchCaption(val);
             if (!isEmpty(self.$captionElement)) {
-                self.$captionElement.removeClass('caption').addClass('caption').attr({"title": self.clearCaption});
-                self.$captionElement.html(html);
+                addCss(self.$captionElement, 'caption');
+                self.$captionElement.attr({"title": self.clearCaption}).html(html);
                 return '';
             }
             return '<div class="caption">' + html + '</div>';
@@ -440,6 +437,7 @@
         stars: 5,
         glyphicon: true,
         symbol: null,
+        ratingClass: '',
         disabled: false,
         readonly: false,
         rtl: false,

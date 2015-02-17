@@ -1,5 +1,5 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2015
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @version 3.5.1
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering

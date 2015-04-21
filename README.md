@@ -1,6 +1,12 @@
 bootstrap-star-rating
 =====================
 
+[![BOWER version](https://badge-me.herokuapp.com/api/bower/kartik-v/bootstrap-star-rating.png)](http://badges.enytc.com/for/bower/kartik-v/bootstrap-star-rating)
+[![Latest Stable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+[![License](https://poser.pugx.org/kartik-v/bootstrap-star-rating/license)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+[![Packagist Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/downloads)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+[![Monthly Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/d/monthly)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+
 > NOTE: Version 3.5.1 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 

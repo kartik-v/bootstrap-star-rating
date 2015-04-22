@@ -1,3 +1,9 @@
+version 3.5.2
+=============
+**Date:** 22-Apr-2015
+
+1. (enh #46): More correct init of `clear` and `caption` elements.
+
 version 3.5.1
 =============
 **Date:** 13-Feb-2015

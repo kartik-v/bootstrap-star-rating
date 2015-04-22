@@ -263,13 +263,19 @@
             else {
                 self.$container.addClass('rating-active');
             }
-
-            if (self.$caption === undefined && self.$clear === undefined) {
+            if (isEmpty(self.$caption)) {
                 if (self.rtl) {
-                    self.$container.prepend(caption).append(clear);
+                    self.$container.prepend(caption);
+                } else {
+                    self.$container.append(caption);
+                }
+            }
+            if (isEmpty(self.$clear)) {
+                if (self.rtl) {
+                    self.$container.append(clear);
                 }
                 else {
-                    self.$container.prepend(clear).append(caption);
+                    self.$container.prepend(clear);
                 }
             }
             if (!isEmpty(self.containerClass)) {
@@ -398,7 +404,9 @@
                 return;
             }
             self.$rating.off('rating');
-            self.$clear.off();
+            if (self.$clear !== undefined) {
+                self.$clear.off();
+            }
             self.init($.extend(self.options, options));
             if (self.showClear) {
                 self.$clear.show();

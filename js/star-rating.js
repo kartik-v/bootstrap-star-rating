@@ -270,7 +270,7 @@
                     self.$container.append(caption);
                 }
             }
-            if (isEmpty(self.$clear)) {
+            if (!self.readonlyis && Empty(self.$clear)) {
                 if (self.rtl) {
                     self.$container.append(clear);
                 }

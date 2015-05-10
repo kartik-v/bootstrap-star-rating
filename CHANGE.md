@@ -1,8 +1,9 @@
 version 3.5.2
 =============
-**Date:** 22-Apr-2015
+**Date:** 10-May-2015
 
-1. (enh #46): More correct init of `clear` and `caption` elements.
+1. (enh #45): Validate on `touchstart` for devices that do not support `click` event.
+2. (enh #46): More correct init of `clear` and `caption` elements.
 
 version 3.5.1
 =============

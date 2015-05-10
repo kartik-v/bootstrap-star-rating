@@ -57,6 +57,18 @@
             }
             return parseFloat(options[vattr]);
         },
+        listenClick: function($el, callback) {
+            $el.on('click touchstart', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                if (e.handled !== true) {
+                    callback(e);
+                    e.handled = true;
+                } else {
+                    return false;
+                }
+            });
+        },
         setDefault: function (key, val) {
             var self = this;
             if (isEmpty(self[key])) {
@@ -64,14 +76,15 @@
             }
         },
         getPosition: function (e) {
-            return e.pageX - this.$rating.offset().left;
+            var pageX = e.pageX || e.originalEvent.touches[0].pageX;
+            return pageX - this.$rating.offset().left;
         },
         listen: function () {
             var self = this, pos, out;
             self.initTouch();
-            self.$rating.on("click", function (e) {
+            self.listenClick(self.$rating, function(e) {
                 if (self.inactive) {
-                    return;
+                    return false;
                 }
                 pos = self.getPosition(e);
                 self.setStars(pos);
@@ -115,7 +128,7 @@
                 self.toggleHover(out);
                 self.$element.trigger('rating.hoverleave', ['clear']);
             });
-            self.$clear.on("click", function () {
+            self.listenClick(self.$clear, function () {
                 if (!self.inactive) {
                     self.clear();
                     self.clearClicked = true;

@@ -323,7 +323,7 @@
             html = self.fetchCaption(val);
             if (!isEmpty(self.$captionElement)) {
                 addCss(self.$captionElement, 'caption');
-                self.$captionElement.attr({"title": self.clearCaption}).html(html);
+                self.$captionElement.html(html);
                 return '';
             }
             return '<div class="caption">' + html + '</div>';

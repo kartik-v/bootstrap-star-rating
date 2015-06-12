@@ -1,3 +1,9 @@
+version 3.5.3
+=============
+**Date:** 13-Jun-2015
+
+1. (enh #58): Remove redundant tooltip title on hover of caption element.
+
 version 3.5.2
 =============
 **Date:** 10-May-2015

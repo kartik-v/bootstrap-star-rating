@@ -7,7 +7,7 @@ bootstrap-star-rating
 [![Packagist Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/downloads)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/d/monthly)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 
-> NOTE: Version 3.5.2 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
+> NOTE: Version 3.5.3 has been released. Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details.
 
 A simple yet powerful JQuery star rating plugin for Bootstrap which supports advanced features like fractional star fill and RTL input support. 
 Developed with a focus on utlizing pure CSS-3 styling to render the control. The plugin uses Bootstrap markup and styling by default, but it 
@@ -64,11 +64,11 @@ You can use the `bower` package manager to install. Run:
 ### Using Composer
 You can use the `composer` package manager to install. Either run:
 
-    $ php composer.phar require kartik-v/bootstrap-star-rating "dev-master"
+    $ php composer.phar require kartik-v/bootstrap-star-rating "@dev"
 
 or add:
 
-    "kartik-v/bootstrap-star-rating": "dev-master"
+    "kartik-v/bootstrap-star-rating": "@dev"
 
 to your composer.json file
 

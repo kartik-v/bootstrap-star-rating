@@ -1,0 +1,24 @@
+{
+  "name": "bootstrap-star-rating",
+  "version": "0.5.3",
+  "description": "Star Rating for Bootstrap",
+  "main": "js/star-rating.min.js",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristianmandrup/bootstrap-star-rating.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "star",
+    "rating"
+  ],
+  "author": "Kartik Visweswaran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kartik-v/bootstrap-star-rating/issues"
+  },
+  "homepage": "https://github.com/kartik-v/bootstrap-star-rating#readme"
+}

@@ -1,55 +1,65 @@
-version 3.5.3
-=============
+Change Log: `bootstrap-star-rating`
+===================================
+
+## Version 3.5.4
+
+**Date:** 05-Aug-2015
+
+1. (enh #59): Remove `String.prototype.replaceAll` and implement regex replace.
+2. (enh #63): Add `package.json` for npm install.
+
+## Version 3.5.3
+
 **Date:** 18-Jun-2015
 
 1. (enh #58): Remove redundant tooltip title on hover of caption element.
 2. Fixes for composer.json dependencies.
 
-version 3.5.2
-=============
+## Version 3.5.2
+
 **Date:** 10-May-2015
 
 1. (enh #45): Validate on `touchstart` for devices that do not support `click` event.
 2. (enh #46): More correct init of `clear` and `caption` elements.
 
-version 3.5.1
-=============
+## Version 3.5.1
+
 **Date:** 13-Feb-2015
 
 1. (enh #44): Ability to integrate with other font icon CSS frameworks like Font Awesome.
     - New property `ratingClass` added to allow configuring other icon framework css classes.
 2. Set copyright year to current.
 
-version 3.5.0
-=============
+## Version 3.5.0
+
 **Date:** 31-Jan-2015
 
 1. (enh #39): Prevent invalid star rating for numStars > 5 with default value & hoverChange enabled.
 2. (enh #42): Code cleanup and restructure for JS lint changes (using JSHint Code cleanup library).
 
-version 3.4.0
-=============
+## Version 3.4.0
+
 **Date:** 16-Dec-2014
 
 1. (enh #35): Added `destroy` method to destroy the rating plugin.
 2. (enh #36): Added `create` method to create the rating plugin (typically after a destroy).
 
-version 3.3.0
-=============
+## Version 3.3.0
+
 **Date:** 17-Nov-2014
 
 1. (bug #32): Prevent invalid star ratings if cursor is close to left/right edge of star array.
 2. (enh #33): Enhance touch methods for compatibility across more wider mobile device browsers.
 
-version 3.2.0
-=============
+## Version 3.2.0
+
 **Date:** 08-Nov-2014
 
 1. Set release to stable in composer.json.
 2. Updated CHANGE log to reflect user friendly date time formats.
 
-version 3.1.0
-=============
+## Version 3.1.0
+
 **Date:** 27-Oct-2014
 
 1. enh #26: Add touch device support to enable touch and slide across stars.
@@ -57,8 +67,8 @@ version 3.1.0
 3. enh #28: Add rating.refresh event.
 
 
-version 3.0.0
-=============
+## Version 3.0.0
+
 **Date:** 13-Oct-2014
 
 1. enh #20, #21: Included hover validation routine and rating state change on hover. Following new configurable properties added:
@@ -77,14 +87,14 @@ version 3.0.0
 4. enh #24: Set `clearValue` to default to `min` if not set.
 
 
-version 2.6.0
-=============
+## Version 2.6.0
+
 **Date:** 23-Aug-2014
 
 1. enh #17: Dynamic configuration for `starCaptions` and `starCaptionClasses` using a function.
 
-version 2.5.0
-=============
+## Version 2.5.0
+
 **Date:** 27-May-2014
 
 1. Change to entire plugin code to eliminate dependency of HTML5 input. Plugin size reduced to 8KB minified.
@@ -94,14 +104,14 @@ version 2.5.0
 5. Removed cloning of inputs to allow better refreshing of input across ajax and other scenarios.
 6. Caption and Clear elements parameters treated as identifiers rather than JQuery object elements.
 
-version 2.1.0
-=============
+## Version 2.1.0
+
 **Date:** 08-May-2014
 
-1. Bug #8,#9,#10: Correct cloning and conversion of field to a range slider input.
+1. Bug #8,#9,#10: Correct cloning and con## Version of field to a range slider input.
 
-version 2.0.0
-=============
+## Version 2.0.0
+
 
 **Date:** 25-Apr-2014
 
@@ -116,15 +126,15 @@ version 2.0.0
 7. Automatically degrades to a normal SELECT dropdown input for browsers that do not support 
    HTML 5 range input.
 
-version 1.2.0
-=============
+## Version 1.2.0
+
 **Date:** 04-Apr-2014
 
 1. Widget is customizable for using any CSS markup to override Bootstrap styles.
 2. Clear button class customization added.
 
-version 1.1.0
-=============
+## Version 1.1.0
+
 **Date:** 10-Mar-2014
 
 Revamped the methods for usage across wider scenarios:
@@ -132,8 +142,8 @@ Revamped the methods for usage across wider scenarios:
 1. Included `update` method to set a value of a rating via javascript. 
 2. Revamped the `refresh` method to enable refreshing all plugin options at runtime via parameters.
 
-version 1.0.0
-=============
+## Version 1.0.0
+
 **Date:** 01-Oct-2013
 
 Initial release. The following features are included in this release:

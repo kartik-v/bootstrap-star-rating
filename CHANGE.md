@@ -3,10 +3,11 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 3.5.4
 
-**Date:** 05-Aug-2015
+**Date:** 12-Aug-2015
 
-1. (enh #59): Remove `String.prototype.replaceAll` and implement regex replace.
-2. (enh #63): Add `package.json` for npm install.
+1. (enh #47): Styling enhancements for printed output (better star colors and hide clear button).
+2. (enh #59): Remove `String.prototype.replaceAll` and implement regex replace.
+3. (enh #63): Add `package.json` for npm install.
 
 ## Version 3.5.3
 

@@ -1,19 +1,14 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 3.5.5
-
-**Date:** 14-Sep-2015
-
-1. Update bootstrap bower version to support only 3.x variants.
-
 ## Version 3.5.4
 
-**Date:** 12-Aug-2015
+**Date:** 20-Sep-2015
 
 1. (enh #47): Styling enhancements for printed output (better star colors and hide clear button).
 2. (enh #59): Remove `String.prototype.replaceAll` and implement regex replace.
 3. (enh #63): Add `package.json` for npm install.
+4. Update bootstrap bower version to support only 3.x variants.
 
 ## Version 3.5.3
 

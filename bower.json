@@ -19,7 +19,6 @@
         "jquery": ">= 1.9.0",
         "bootstrap": "~3"
     },
-    "license": "BSD-3",
     "ignore": [
         "**/.*",
         "node_modules",
@@ -28,5 +27,6 @@
         "bower_components",
         "test",
         "tests"
-    ]
+    ],
+    "license": "BSD-3-Clause"
 }

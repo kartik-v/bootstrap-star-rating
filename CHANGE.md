@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 3.5.5
+
+**Date:** 17-Nov-2015
+
+1. (enh #71): Fix `Error: Cannot read property 'pageX' of undefined` error on touch devices.
+
 ## Version 3.5.4
 
 **Date:** 20-Sep-2015

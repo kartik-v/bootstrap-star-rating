@@ -157,7 +157,7 @@
             if (!isTouchCapable || self.inactive) {
                 return;
             }
-            var ev = e.originalEvent, touches = ev.touches || ev.changedTouches, pos = self.getPosition(touches[0]);
+            var ev = e.originalEvent, touches = ev.touches.length > 0 ? ev.touches : ev.changedTouches, pos = self.getPosition(touches[0]);
             if (flag) {
                 self.setStars(pos);
                 self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self.$caption.html()]);

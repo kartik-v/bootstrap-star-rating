@@ -2,43 +2,63 @@
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
  * @version 3.5.5
  *
- * A simple yet powerful JQuery star rating plugin that allows rendering
- * fractional star ratings and supports Right to Left (RTL) input.
+ * A simple yet powerful JQuery star rating plugin that allows rendering fractional star ratings and supports
+ * Right to Left (RTL) input.
  * 
  * For more JQuery plugins visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-(function ($) {
+(function (factory) {
     "use strict";
-    var DEFAULT_MIN = 0, DEFAULT_MAX = 5, DEFAULT_STEP = 0.5,
-        isEmpty = function (value, trim) {
-            return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
-        },
-        addCss = function ($el, css) {
-            $el.removeClass(css).addClass(css);
-        },
-        validateAttr = function ($input, vattr, options) {
-            var chk = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
-            return chk ? chk : options[vattr];
-        },
-        getDecimalPlaces = function (num) {
-            var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-            return !match ? 0 : Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
-        },
-        applyPrecision = function (val, precision) {
-            return parseFloat(val.toFixed(precision));
-        },
-        Rating = function (element, options) {
-            this.$element = $(element);
-            this.init(options);
-        };
+    if (typeof define === 'function' && define.amd) { // jshint ignore:line
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory); // jshint ignore:line
+    } else { // noinspection JSUnresolvedVariable
+        if (typeof module === 'object' && module.exports) { // jshint ignore:line
+            // Node/CommonJS
+            // noinspection JSUnresolvedVariable
+            module.exports = factory(require('jquery')); // jshint ignore:line
+        } else {
+            // Browser globals
+            factory(window.jQuery);
+        }
+    }
+}(function ($) {
+    "use strict";
 
+    $.fn.ratingLocales = {};
+
+    var DEFAULT_MIN, DEFAULT_MAX, DEFAULT_STEP, isEmpty, addCss, validateAttr, getDecimalPlaces, applyPrecision, Rating;
+    DEFAULT_MIN = 0;
+    DEFAULT_MAX = 5;
+    DEFAULT_STEP = 0.5;
+    isEmpty = function (value, trim) {
+        return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
+    };
+    addCss = function ($el, css) {
+        $el.removeClass(css).addClass(css);
+    };
+    validateAttr = function ($input, vattr, options) {
+        var chk = isEmpty($input.data(vattr)) ? $input.attr(vattr) : $input.data(vattr);
+        return chk ? chk : options[vattr];
+    };
+    getDecimalPlaces = function (num) {
+        var match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+        return !match ? 0 : Math.max(0, (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0));
+    };
+    applyPrecision = function (val, precision) {
+        return parseFloat(val.toFixed(precision));
+    };
+    Rating = function (element, options) {
+        this.$element = $(element);
+        this.init(options);
+    };
     Rating.prototype = {
         constructor: Rating,
         _parseAttr: function (vattr, options) {
-            var self = this, $el = self.$element;
-            if ($el.attr('type') === 'range' || $el.attr('type') === 'number') {
-                var val = validateAttr($el, vattr, options), chk, final;
+            var self = this, $el = self.$element, elType = $el.attr('type'), final, val, chk;
+            if (elType === 'range' || elType === 'number') {
+                val = validateAttr($el, vattr, options);
                 switch (vattr) {
                     case 'min':
                         chk = DEFAULT_MIN;
@@ -54,8 +74,8 @@
             }
             return parseFloat(options[vattr]);
         },
-        listenClick: function($el, callback) {
-            $el.on('click touchstart', function(e) {
+        listenClick: function ($el, callback) {
+            $el.on('click touchstart', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 if (e.handled !== true) {
@@ -73,13 +93,13 @@
             }
         },
         getPosition: function (e) {
-            var pageX = e.pageX || e.originalEvent.touches[0].pageX;
+            var pageX = isEmpty(e.pageX) ? e.originalEvent.touches[0].pageX : e.pageX;
             return pageX - this.$rating.offset().left;
         },
         listen: function () {
             var self = this, pos, out;
             self.initTouch();
-            self.listenClick(self.$rating, function(e) {
+            self.listenClick(self.$rating, function (e) {
                 if (self.inactive) {
                     return false;
                 }
@@ -107,12 +127,14 @@
                 self.$element.trigger('rating.hoverleave', ['stars']);
             });
             self.$clear.on("mousemove", function () {
+                var caption, val, width;
                 if (!self.hoverEnabled || self.inactive || !self.hoverOnClear) {
                     return;
                 }
                 self.clearClicked = false;
-                var caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>',
-                    val = self.clearValue, width = self.getWidthFromValue(val);
+                caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
+                val = self.clearValue;
+                width = self.getWidthFromValue(val);
                 out = {caption: caption, width: width, val: val};
                 self.toggleHover(out);
                 self.$element.trigger('rating.hover', [val, caption, 'clear']);
@@ -152,21 +174,25 @@
             $el.rating(options);
         },
         setTouch: function (e, flag) {
-            var self = this, isTouchCapable = 'ontouchstart' in window ||
+            //noinspection JSUnresolvedVariable
+            var self = this, ev, touches, pos, out, caption, w, width, isTouchCapable = 'ontouchstart' in window ||
                 (window.DocumentTouch && document instanceof window.DocumentTouch);
             if (!isTouchCapable || self.inactive) {
                 return;
             }
-            var ev = e.originalEvent, touches = ev.touches && ev.touches.length > 0 ? ev.touches : ev.changedTouches,
-                pos = self.getPosition(touches[0]);
+            ev = e.originalEvent;
+            //noinspection JSUnresolvedVariable
+            touches = isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
+            pos = self.getPosition(touches[0]);
             if (flag) {
                 self.setStars(pos);
                 self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 self.starClicked = true;
             } else {
-                var out = self.calculate(pos), caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption,
-                    w = self.getWidthFromValue(self.clearValue),
-                    width = out.val <= self.clearValue ? (self.rtl ? (100 - w) + '%' : w + '%') : out.width;
+                out = self.calculate(pos);
+                caption = out.val <= self.clearValue ? self.fetchCaption(self.clearValue) : out.caption;
+                w = self.getWidthFromValue(self.clearValue);
+                width = out.val <= self.clearValue ? (self.rtl ? (100 - w) + '%' : w + '%') : out.width;
                 self.$caption.html(caption);
                 self.$stars.css('width', width);
             }
@@ -212,7 +238,7 @@
             if (self.rtl) {
                 $el.attr('dir', 'rtl');
             }
-            defaultStar = (self.glyphicon) ? '\ue006' : '\u2605';
+            defaultStar = self.glyphicon ? '\ue006' : '\u2605';
             self.setDefault('symbol', defaultStar);
             self.setDefault('clearButtonBaseClass', 'clear-rating');
             self.setDefault('clearButtonActiveClass', 'clear-rating-active');
@@ -255,7 +281,7 @@
         },
         generateRating: function () {
             var self = this, clear = self.renderClear(), caption = self.renderCaption(),
-                css = (self.rtl) ? 'rating-container-rtl' : 'rating-container',
+                css = self.rtl ? 'rating-container-rtl' : 'rating-container',
                 stars = self.getStars();
             if (self.glyphicon) {
                 css += (self.symbol === '\ue006' ? ' rating-gly-star' : ' rating-gly') + self.ratingClass;
@@ -331,7 +357,7 @@
                 vCap = self.starCaptions, vCss = self.starCaptionClasses, caption;
             cssVal = typeof vCss === "function" ? vCss(val) : vCss[val];
             capVal = typeof vCap === "function" ? vCap(val) : vCap[val];
-            cap = isEmpty(capVal) ? self.defaultCaption.replace(/\{rating\}/g, val) : capVal;
+            cap = isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
             css = isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;
             return '<span class="' + css + '">' + caption + '</span>';
@@ -434,25 +460,37 @@
     };
 
     $.fn.rating = function (option) {
-        var args = Array.apply(null, arguments);
+        var args = Array.apply(null, arguments), retvals = [];
         args.shift();
-        return this.each(function () {
-            var $this = $(this),
-                data = $this.data('rating'),
-                options = typeof option === 'object' && option;
+        this.each(function () {
+            var $this = $(this), data = $this.data('rating'), defaults, options = typeof option === 'object' && option,
+                lang = options.language || $this.data('language') || 'en';
 
             if (!data) {
-                $this.data('rating',
-                    (data = new Rating(this, $.extend({}, $.fn.rating.defaults, options, $(this).data()))));
+                defaults = $.extend({}, $.fn.rating.defaults);
+                if (lang !== 'en' && !isEmpty($.fn.ratingLocales[lang])) {
+                    defaults = $.extend(defaults, $.fn.ratingLocales[lang]);
+                }
+                data = new Rating(this, $.extend(defaults, options, $this.data()));
+                $this.data('rating', data);
             }
 
             if (typeof option === 'string') {
-                data[option].apply(data, args);
+                retvals.push(data[option].apply(data, args));
             }
         });
+        switch (retvals.length) {
+            case 0:
+                return this;
+            case 1:
+                return retvals[0];
+            default:
+                return retvals;
+        }
     };
 
     $.fn.rating.defaults = {
+        language: 'en',
         stars: 5,
         glyphicon: true,
         symbol: null,
@@ -463,19 +501,6 @@
         size: 'md',
         showClear: true,
         showCaption: true,
-        defaultCaption: '{rating} Stars',
-        starCaptions: {
-            0.5: 'Half Star',
-            1: 'One Star',
-            1.5: 'One & Half Star',
-            2: 'Two Stars',
-            2.5: 'Two & Half Stars',
-            3: 'Three Stars',
-            3.5: 'Three & Half Stars',
-            4: 'Four Stars',
-            4.5: 'Four & Half Stars',
-            5: 'Five Stars'
-        },
         starCaptionClasses: {
             0.5: 'label label-danger',
             1: 'label label-danger',
@@ -489,10 +514,8 @@
             5: 'label label-success'
         },
         clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
-        clearButtonTitle: 'Clear',
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
-        clearCaption: 'Not Rated',
         clearCaptionClass: 'label label-default',
         clearValue: null,
         captionElement: null,
@@ -504,11 +527,30 @@
         hoverOnClear: true
     };
 
+    $.fn.ratingLocales.en = {
+        defaultCaption: '{rating} Stars',
+        starCaptions: {
+            0.5: 'Half Star',
+            1: 'One Star',
+            1.5: 'One & Half Star',
+            2: 'Two Stars',
+            2.5: 'Two & Half Stars',
+            3: 'Three Stars',
+            3.5: 'Three & Half Stars',
+            4: 'Four Stars',
+            4.5: 'Four & Half Stars',
+            5: 'Five Stars'
+        },
+        clearButtonTitle: 'Clear',
+        clearCaption: 'Not Rated'
+    };
+
+    $.extend($.fn.rating.defaults, $.fn.ratingLocales.en);
+
     $.fn.rating.Constructor = Rating;
 
     /**
-     * Convert automatically inputs with class 'rating'
-     * into the star rating control.
+     * Convert automatically inputs with class 'rating' into Krajee's star rating control.
      */
     $('input.rating').addClass('rating-loading');
 
@@ -518,4 +560,4 @@
             $input.rating();
         }
     });
-}(window.jQuery));
+}));

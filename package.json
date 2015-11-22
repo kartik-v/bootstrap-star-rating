@@ -7,10 +7,6 @@
     "bugs": {
         "url": "https://github.com/kartik-v/bootstrap-star-rating/issues"
     },
-    "main": [
-        "./css/star-rating.min.css",
-        "./js/star-rating.min.js"
-    ],
     "repository" : {
         "type": "git", 
         "url": "https://github.com/kartik-v/bootstrap-star-rating.git"

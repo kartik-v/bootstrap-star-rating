@@ -39,6 +39,7 @@ at Krajee JQuery plugins.
 - Disabled and readonly input star rating support.
 - Change stars and caption on mouse hover (new feature since v3.0.0).
 - Change stars and caption on slide and drag for mobile/touch devices (new feature since v3.1.0).
+- Support for translations and locales.
 
 ## Browser Support
 
@@ -85,6 +86,8 @@ Step 1: Load the following assets in your header.
 <link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
+<!-- optionally if you need translation for your language then include locale file as mentioned below -->
+<script src="path/to/js/star-rating_locale_<lang>.js"></script>
 ```
 
 If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js` for
@@ -114,6 +117,9 @@ Alternatively, you can directly call the plugin options by setting data attribut
 
 ### Plugin Options
 The plugin supports these following options:
+
+### language
+_string_ language configuration for the plugin to enable the plugin to display messages for your locale (you must set the ISO code for the language). You can have multiple language widgets on the same page. The locale JS file for the language code must be defined as mentioned in the translations section. The file must be loaded after `star-rating.js`.
 
 #### stars
 _int_ number of stars to display. Defaults to `5`.

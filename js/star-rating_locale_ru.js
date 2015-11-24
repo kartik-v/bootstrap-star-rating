@@ -1,5 +1,5 @@
 /*!
- * Star Rating <LANG> Translations
+ * Star Rating Russian Translations
  *
  * This file must be loaded after 'fileinput.js'. Patterns in braces '{}', or
  * any HTML markup tags in the messages must not be converted or translated.
@@ -14,7 +14,7 @@
  */
 (function ($) {
     "use strict";
-    $.fn.ratingLocales['Ru'] = {
+    $.fn.ratingLocales['ru'] = {
         defaultCaption: '{rating} Звёзды',
         starCaptions: {
             0.5: 'Половина звезды',

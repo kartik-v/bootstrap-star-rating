@@ -1,6 +1,13 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 3.5.6
+
+**Date:** 12-Dec-2015
+
+1. (enh #76): Add Russian Translations.
+2. (enh #810: Simplify README docs.
+
 ## Version 3.5.5
 
 **Date:** 22-Nov-2015

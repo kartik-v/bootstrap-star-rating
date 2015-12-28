@@ -11,6 +11,7 @@
         "type": "git", 
         "url": "https://github.com/kartik-v/bootstrap-star-rating.git"
     },
+    "main": "js/star-rating.min.js",
     "keywords": [
         "bootstrap",
         "star",

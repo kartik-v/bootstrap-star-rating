@@ -8,6 +8,7 @@ Change Log: `bootstrap-star-rating`
 1. (enh #76): Add Russian Translations.
 2. (bug #77): Correct `touches` and `changedTouches` validation.
 3. (enh #81): Simplify README docs.
+4. (enh #82): Added "main" key into NPM package.json.
 
 ## Version 3.5.5
 

@@ -3,10 +3,11 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 3.5.6
 
-**Date:** 12-Dec-2015
+**Date:** 29-Dec-2015
 
 1. (enh #76): Add Russian Translations.
-2. (enh #810: Simplify README docs.
+2. (bug #77): Correct `touches` and `changedTouches` validation.
+3. (enh #81): Simplify README docs.
 
 ## Version 3.5.5
 

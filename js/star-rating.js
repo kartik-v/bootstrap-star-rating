@@ -182,7 +182,7 @@
             }
             ev = e.originalEvent;
             //noinspection JSUnresolvedVariable
-            touches = isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
+            touches = !isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
             pos = self.getPosition(touches[0]);
             if (flag) {
                 self.setStars(pos);

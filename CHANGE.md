@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 3.5.7
+
+**Date:** 14-Jan-2016
+
+1. (enh #84): Add Ukranian Translations.
+
 ## Version 3.5.6
 
 **Date:** 29-Dec-2015

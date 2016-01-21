@@ -1,5 +1,5 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2015
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
  * @version 3.5.7
  *
  * A simple yet powerful JQuery star rating plugin that allows rendering fractional star ratings and supports
@@ -28,7 +28,9 @@
 
     $.fn.ratingLocales = {};
 
-    var DEFAULT_MIN, DEFAULT_MAX, DEFAULT_STEP, isEmpty, addCss, validateAttr, getDecimalPlaces, applyPrecision, Rating;
+    var NAMESPACE, DEFAULT_MIN, DEFAULT_MAX, DEFAULT_STEP, isEmpty, addCss, validateAttr, getDecimalPlaces, applyPrecision,
+        handler, Rating;
+    NAMESPACE = '.rating';
     DEFAULT_MIN = 0;
     DEFAULT_MAX = 5;
     DEFAULT_STEP = 0.5;
@@ -48,6 +50,10 @@
     };
     applyPrecision = function (val, precision) {
         return parseFloat(val.toFixed(precision));
+    };
+    handler = function ($el, event, callback, skipNS) {
+        var ev = skipNS ? event : event.split(' ').join(NAMESPACE + ' ') + NAMESPACE;
+        $el.off(ev).on(ev, callback);
     };
     Rating = function (element, options) {
         this.$element = $(element);
@@ -74,18 +80,6 @@
             }
             return parseFloat(options[vattr]);
         },
-        listenClick: function ($el, callback) {
-            $el.on('click touchstart', function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-                if (e.handled !== true) {
-                    callback(e);
-                    e.handled = true;
-                } else {
-                    return false;
-                }
-            });
-        },
         setDefault: function (key, val) {
             var self = this;
             if (isEmpty(self[key])) {
@@ -96,68 +90,104 @@
             var pageX = isEmpty(e.pageX) ? e.originalEvent.touches[0].pageX : e.pageX;
             return pageX - this.$rating.offset().left;
         },
-        listen: function () {
-            var self = this, pos, out;
-            self.initTouch();
-            self.listenClick(self.$rating, function (e) {
+        listenClick: function (e, callback) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (e.handled !== true) {
+                callback(e);
+                e.handled = true;
+            } else {
+                return false;
+            }
+        },
+        starClick: function (e) {
+            var self = this, pos;
+            self.listenClick(e, function (ev) {
                 if (self.inactive) {
                     return false;
                 }
-                pos = self.getPosition(e);
+                pos = self.getPosition(ev);
                 self.setStars(pos);
                 self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self.$caption.html()]);
                 self.starClicked = true;
             });
-            self.$rating.on("mousemove", function (e) {
-                if (!self.hoverEnabled || self.inactive) {
-                    return;
-                }
-                self.starClicked = false;
-                pos = self.getPosition(e);
-                out = self.calculate(pos);
-                self.toggleHover(out);
-                self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);
-            });
-            self.$rating.on("mouseleave", function () {
-                if (!self.hoverEnabled || self.inactive || self.starClicked) {
-                    return;
-                }
-                out = self.cache;
-                self.toggleHover(out);
-                self.$element.trigger('rating.hoverleave', ['stars']);
-            });
-            self.$clear.on("mousemove", function () {
-                var caption, val, width;
-                if (!self.hoverEnabled || self.inactive || !self.hoverOnClear) {
-                    return;
-                }
-                self.clearClicked = false;
-                caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
-                val = self.clearValue;
-                width = self.getWidthFromValue(val);
-                out = {caption: caption, width: width, val: val};
-                self.toggleHover(out);
-                self.$element.trigger('rating.hover', [val, caption, 'clear']);
-            });
-            self.$clear.on("mouseleave", function () {
-                if (!self.hoverEnabled || self.inactive || self.clearClicked || !self.hoverOnClear) {
-                    return;
-                }
-                out = self.cache;
-                self.toggleHover(out);
-                self.$element.trigger('rating.hoverleave', ['clear']);
-            });
-            self.listenClick(self.$clear, function () {
+        },
+        starMouseMove: function (e) {
+            var self = this, pos, out;
+            if (!self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented())) {
+                return;
+            }
+            self.starClicked = false;
+            pos = self.getPosition(e);
+            out = self.calculate(pos);
+            self.toggleHover(out);
+            self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);
+        },
+        starMouseLeave: function (e) {
+            var self = this, out;
+            if (!self.hoverEnabled || self.inactive || self.starClicked || (e && e.isDefaultPrevented())) {
+                return;
+            }
+            out = self.cache;
+            self.toggleHover(out);
+            self.$element.trigger('rating.hoverleave', ['stars']);
+        },
+        clearClick: function (e) {
+            var self = this;
+            self.listenClick(e, function () {
                 if (!self.inactive) {
                     self.clear();
                     self.clearClicked = true;
                 }
             });
-            $(self.$element[0].form).on("reset", function () {
-                if (!self.inactive) {
-                    self.reset();
-                }
-            });
+        },
+        clearMouseMove: function (e) {
+            var self = this, caption, val, width, out;
+            if (!self.hoverEnabled || self.inactive || !self.hoverOnClear || (e && e.isDefaultPrevented())) {
+                return;
+            }
+            self.clearClicked = false;
+            caption = '<span class="' + self.clearCaptionClass + '">' + self.clearCaption + '</span>';
+            val = self.clearValue;
+            width = self.getWidthFromValue(val);
+            out = {caption: caption, width: width, val: val};
+            self.toggleHover(out);
+            self.$element.trigger('rating.hover', [val, caption, 'clear']);
+        },
+        clearMouseLeave: function (e) {
+            var self = this, out;
+            if (!self.hoverEnabled || self.inactive || self.clearClicked || !self.hoverOnClear || (e && e.isDefaultPrevented())) {
+                return;
+            }
+            out = self.cache;
+            self.toggleHover(out);
+            self.$element.trigger('rating.hoverleave', ['clear']);
+        },
+        resetForm: function (e) {
+            var self = this;
+            if (e && e.isDefaultPrevented()) {
+                return;
+            }
+            if (!self.inactive) {
+                self.reset();
+            }
+        },
+        initTouch: function (e) {
+            var self = this, flag = (e.type === "touchend");
+            self.setTouch(e, flag);
+        },
+        listen: function () {
+            var self = this, $form = self.$element.closest('form'), $rating = self.$rating, $clear = self.$clear;
+            handler($rating, 'touchstart touchmove touchend', $.proxy(self.initTouch, self));
+            handler($rating, 'click touchstart', $.proxy(self.starClick, self));
+            handler($rating, 'mousemove', $.proxy(self.starMouseMove, self));
+            handler($rating, 'mouseleave', $.proxy(self.starMouseLeave, self));
+            handler($clear, 'click touchstart', $.proxy(self.clearClick, self));
+            handler($clear, 'mousemove', $.proxy(self.clearMouseMove, self));
+            handler($clear, 'mouseleave', $.proxy(self.clearMouseLeave, self));
+            if ($form.length) {
+                handler($form, 'reset', $.proxy(self.resetForm, self));
+            }
         },
         destroy: function () {
             var self = this, $el = self.$element;
@@ -196,13 +226,6 @@
                 self.$caption.html(caption);
                 self.$stars.css('width', width);
             }
-        },
-        initTouch: function () {
-            var self = this;
-            self.$rating.on("touchstart touchmove touchend", function (e) {
-                var flag = (e.type === "touchend");
-                self.setTouch(e, flag);
-            });
         },
         initSlider: function (options) {
             var self = this;
@@ -254,7 +277,8 @@
             }
             self.$stars = self.$rating.find('.rating-stars');
             self.generateRating();
-            self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find('.' + self.clearButtonBaseClass);
+            self.$clear = !isEmpty(self.$clearElement) ? self.$clearElement : self.$container.find(
+                '.' + self.clearButtonBaseClass);
             self.$caption = !isEmpty(self.$captionElement) ? self.$captionElement : self.$container.find(".caption");
             self.setStars();
             self.listen();
@@ -444,7 +468,7 @@
             if (self.$clear !== undefined) {
                 self.$clear.off();
             }
-            self.init($.extend(self.options, options));
+            self.init($.extend(true, self.options, options));
             if (self.showClear) {
                 self.$clear.show();
             } else {
@@ -463,16 +487,16 @@
         var args = Array.apply(null, arguments), retvals = [];
         args.shift();
         this.each(function () {
-            var $this = $(this), data = $this.data('rating'), defaults, options = typeof option === 'object' && option,
-                lang = options.language || $this.data('language') || 'en';
+            var self = $(this), data = self.data('rating'), options = typeof option === 'object' && option,
+                lang = options.language || self.data('language') || 'en', loc = {}, opts;
 
             if (!data) {
-                defaults = $.extend({}, $.fn.rating.defaults);
                 if (lang !== 'en' && !isEmpty($.fn.ratingLocales[lang])) {
-                    defaults = $.extend(defaults, $.fn.ratingLocales[lang]);
+                    loc = $.fn.ratingLocales[lang];
                 }
-                data = new Rating(this, $.extend(defaults, options, $this.data()));
-                $this.data('rating', data);
+                opts = $.extend(true, {}, $.fn.rating.defaults, $.fn.ratingLocales.en, loc, options, self.data());
+                data = new Rating(this, opts);
+                self.data('rating', data);
             }
 
             if (typeof option === 'string') {
@@ -545,19 +569,15 @@
         clearCaption: 'Not Rated'
     };
 
-    $.extend($.fn.rating.defaults, $.fn.ratingLocales.en);
-
     $.fn.rating.Constructor = Rating;
 
     /**
      * Convert automatically inputs with class 'rating' into Krajee's star rating control.
      */
-    $('input.rating').addClass('rating-loading');
-
     $(document).ready(function () {
-        var $input = $('input.rating'), count = Object.keys($input).length;
-        if (count > 0) {
-            $input.rating();
+        var $input = $('input.rating');
+        if ($input.length) {
+            $input.removeClass('rating-loading').addClass('rating-loading').rating();
         }
     });
 }));

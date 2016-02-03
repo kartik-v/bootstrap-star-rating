@@ -14,18 +14,18 @@
     $.fn.ratingLocales['de'] = {
         defaultCaption: '{rating} Sterne',
         starCaptions: {
-            0.5: 'Halb Stern',
-            1: 'Eins Stern',
-            1.5: 'Eins & Halb Stern',
+            0.5: 'Halber Stern',
+            1: 'Ein Stern',
+            1.5: 'Eineinhalb Sterne',
             2: 'Zwei Sterne',
-            2.5: 'Zwei & Halb Sterne',
+            2.5: 'Zweieinhalb Sterne',
             3: 'Drei Sterne',
-            3.5: 'Drei & Halb Sterne',
+            3.5: 'Dreieinhalb Sterne',
             4: 'Vier Sterne',
-            4.5: 'Vier & Halb Sterne',
+            4.5: 'Viereinhalb Sterne',
             5: 'Fünf Sterne'
         },
-        clearButtonTitle: 'Klar',
+        clearButtonTitle: 'Zuücksetzen',
         clearCaption: 'Nicht Bewertet'
     };
 })(window.jQuery);

@@ -62,7 +62,7 @@
     Rating.prototype = {
         constructor: Rating,
         _parseAttr: function (vattr, options) {
-            var self = this, $el = self.$element, elType = $el.attr('type'), final, val, chk;
+            var self = this, $el = self.$element, elType = $el.attr('type'), finalValue, val, chk;
             if (elType === 'range' || elType === 'number') {
                 val = validateAttr($el, vattr, options);
                 switch (vattr) {
@@ -75,8 +75,8 @@
                     default:
                         chk = DEFAULT_STEP;
                 }
-                final = isEmpty(val) ? chk : val;
-                return parseFloat(final);
+                finalValue = isEmpty(val) ? chk : val;
+                return parseFloat(finalValue);
             }
             return parseFloat(options[vattr]);
         },

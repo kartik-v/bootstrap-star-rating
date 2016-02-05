@@ -26,6 +26,6 @@
             5: 'Cinco Estrelas'
         },
         clearButtonTitle: 'Limpar',
-        clearCaption: 'Não avaliado'
+        clearCaption: 'Não Avaliado'
     };
 })(window.jQuery);

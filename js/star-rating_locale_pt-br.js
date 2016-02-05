@@ -1,5 +1,5 @@
 /*!
- * Star Rating <LANG> Translations
+ * Star Rating Portugese Brazilian Translations
  *
  * This file must be loaded after 'star-rating.js'. Patterns in braces '{}', or
  * any HTML markup tags in the messages must not be converted or translated.
@@ -11,7 +11,7 @@
  */
 (function ($) {
     "use strict";
-    $.fn.ratingLocales['pt-br'] = {
+    $.fn.ratingLocales['pt-BR'] = {
         defaultCaption: '{rating} Estrelas',
         starCaptions: {
             0.5: 'Meia Estrela',

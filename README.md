@@ -2,7 +2,8 @@ bootstrap-star-rating
 =====================
 
 [![Bower version](https://badge.fury.io/bo/bootstrap-star-rating.svg)](http://badge.fury.io/bo/bootstrap-star-rating)
-[![Latest Stable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+[![Stable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
+[![Unstable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/unstable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![License](https://poser.pugx.org/kartik-v/bootstrap-star-rating/license)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![Packagist Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/downloads)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/bootstrap-star-rating/d/monthly)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)

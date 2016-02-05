@@ -1,6 +1,14 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 3.5.8 (under development)
+
+**Date:** 05-Feb-2016
+
+1. (enh #88): Add German Translations.
+2. (enh #89): Add Portugese Brazilian Translations.
+3. (bug #90): Rename reserved word used as variable.
+
 ## Version 3.5.7
 
 **Date:** 22-Jan-2016

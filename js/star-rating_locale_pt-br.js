@@ -11,7 +11,7 @@
  */
 (function ($) {
     "use strict";
-    $.fn.ratingLocales['<LANG>'] = {
+    $.fn.ratingLocales['pt-br'] = {
         defaultCaption: '{rating} Estrelas',
         starCaptions: {
             0.5: 'Meia Estrela',

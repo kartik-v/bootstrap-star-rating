@@ -3,7 +3,7 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 3.5.8
 
-**Date:** 05-Feb-2016
+**Date:** 16-Feb-2016
 
 1. (enh #88): Add German Translations.
 2. (enh #89): Add Portugese Brazilian Translations.

@@ -1,7 +1,7 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 3.5.8 (under development)
+## Version 3.5.8
 
 **Date:** 05-Feb-2016
 

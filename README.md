@@ -41,7 +41,7 @@ at Krajee JQuery plugins.
 - Support for translations and locales.
 
 
-** New features/changes since release v4.0.0
+### New features/changes since release v4.0.0
 
 - **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been be removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
 - New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.

@@ -13,7 +13,7 @@ Developed with a focus on utlizing pure CSS-3 styling to render the control. The
 can be overridden with any other CSS markup. View the [documentation](http://plugins.krajee.com/star-rating) or a [complete demo](http://plugins.krajee.com/star-rating/demo) 
 at Krajee JQuery plugins. 
 
-![Star Rating Screenshot](https://lh6.googleusercontent.com/-DHlzpGa1SQU/U8ywh-ZEfVI/AAAAAAAAAJ0/ZwBxK1nH8Fw/w519-h426-no/bootstrap-star-rating.jpg)
+![Star Rating Screenshot](https://lh3.googleusercontent.com/puCbNL9LlBMty8DmaZxAq0yM8teuhM_hEvox-NuJ2x7xWedNhs8nwSk1Zo8FISFAsyt8=w1366-h768-rw-no)
 
 ## Features  
 
@@ -39,6 +39,25 @@ at Krajee JQuery plugins.
 - Change stars and caption on mouse hover (new feature since v3.0.0).
 - Change stars and caption on slide and drag for mobile/touch devices (new feature since v3.1.0).
 - Support for translations and locales.
+
+
+** New features/changes since release v4.0.0
+
+- **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been be removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
+- New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.
+    - Themes included
+        - The default (blank) theme (for displaying bootstrap glyphicons)
+        - `krajee-svg` (for displaying svg icons)
+        - `krajee-uni` (for displaying unicode symbols as stars)
+        - `krajee-fa` (for displaying font awesome icons)
+    - Add ability to override and add one's own themes
+- Stars now have a better padding and spacing that can be configured via CSS and themes
+- New property `filledStar` - will allow one to set the markup for `filledStar` - will default to 
+    - `<i class="glyphicon glyphicon-star"></i>`
+- New property `emptyStar` - will allow one to set the markup for `emptyStar` - will default to 
+    - `<i class="glyphicon glyphicon-star-empty"></i>`
+- Exclusive support for SVG (and a prebuilt `krajee-svg` theme that contains two different ready to use SVG icons).
+- Ability to easily set the widget as a "display only" rating via `displayOnly` property.
 
 > NOTE: Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details on plugin enhancements, fixes, and changes.
 
@@ -79,10 +98,15 @@ You can also manually install the plugin easily to your project. Just download t
 Step 1: Load the following assets in your header. 
 
 ```html
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<link href="path/to/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="path/to/js/star-rating.min.js" type="text/javascript"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+<link href="path/to/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+
+<!-- optionally if you need to use a theme, then include the theme file as mentioned below -->
+<link href="path/to/css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+<script src="path/to/js/star-rating.js" type="text/javascript"></script>
+
 <!-- optionally if you need translation for your language then include locale file as mentioned below -->
 <script src="path/to/js/star-rating_locale_<lang>.js"></script>
 ```

@@ -1,6 +1,32 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.0
+
+**Date:** 16-Feb-2016
+
+1. (enh #91): Add SVG Icon Support
+2. (enh #94): Add Theming Functionality.
+    - New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.
+    - Themes included
+        - The default (blank) theme (for displaying bootstrap glyphicons)
+        - `krajee-svg` (for displaying svg icons)
+        - `krajee-uni` (for displaying unicode symbols as stars)
+        - `krajee-fa` (for displaying font awesome icons)
+    - Add ability to override and add one's own themes
+
+    **Various new features and BC breaking enhancements**
+
+    - **REMOVED**: `symbol`, `glyphicon`, `ratingClass` properties will be removed. 
+    - The requirement for the above will be replaced with the `theme` property (and can also be implemented using the `containerClass` property).
+    - Stars now have a better padding and spacing that can be configured via CSS and themes
+    - New property `filledStar` - will allow one to set the markup for `filledStar` - will default to 
+        - `<i class="glyphicon glyphicon-star"></i>`
+    - New property `emptyStar` - will allow one to set the markup for `emptyStar` - will default to 
+        - `<i class="glyphicon glyphicon-star-empty"></i>`
+    - Exclusive support for SVG (and a prebuilt `krajee-svg` theme that contains two different ready to use SVG icons).
+3. (enh #95): Add display only capability.
+
 ## Version 3.5.8
 
 **Date:** 16-Feb-2016

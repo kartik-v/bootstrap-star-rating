@@ -1,9 +1,9 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
- * @version 3.5.8
+ * @version 4.0.0
  *
- * A simple yet powerful JQuery star rating plugin that allows rendering
- * fractional star ratings and supports Right to Left (RTL) input.
+ * A simple yet powerful JQuery star rating plugin that allows rendering fractional star ratings and supports
+ * Right to Left (RTL) input.
  *
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
@@ -11,119 +11,81 @@
 .rating-loading {
     width: 25px;
     height: 25px;
-    font-size: 0px;
+    font-size: 0;
     color: #fff;
     background: transparent url('../img/loading.gif') top left no-repeat;
     border: none;
 }
+
 /*
  * Stars
  */
-.rating-fa {
-    font-family: 'FontAwesome';
-    padding-left: 1px;
-}
-
-.rating-fa .rating-stars:before {
-    padding-left: 1px;
-}
-
-.rating-gly {
-    font-family: 'Glyphicons Halflings';
-}
-
-.rating-gly-star {
-    font-family: 'Glyphicons Halflings';
-    padding-left: 2px;
-}
-
-.rating-gly-star .rating-stars:before {
-    padding-left: 2px;
-}
-
-.rating-lg .rating-gly-star, .rating-lg .rating-gly-star .rating-stars:before {
-    padding-left: 4px;
-}
-
-.rating-xl .rating-gly-star, .rating-xl .rating-gly-star .rating-stars:before {
-    padding-left: 2px;
-}
-
-.rating-active {
+.rating-container .rating {
     cursor: default;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.rating-disabled {
+.rating-disabled .rating {
     cursor: not-allowed;
 }
 
-.rating-uni {
-    font-size: 1.2em;
-    margin-top: -5px;
-}
-
-.rating-container {
-    position: relative;
-    vertical-align: middle;
+.rating-container .star {
     display: inline-block;
-    color: #e3e3e3;
-    overflow: hidden;
+    margin: 0 3px;
+    text-align: center;
 }
 
-.rating-container:before {
-    content: attr(data-content);
+.rating-container .empty-stars {
+    color: #aaa;
 }
 
-.rating-container .rating-stars {
+.rating-container .filled-stars {
     position: absolute;
     left: 0;
     top: 0;
+    margin: auto;
+    color: #fde16d;
     white-space: nowrap;
     overflow: hidden;
-    color: #fde16d;
-    transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    -webkit-transition: all 0.25s ease-out;
+    transition: width 0.25s ease;
+    -o-transition: width 0.25s ease;
+    -moz-transition: width 0.25s ease;
+    -webkit-transition: width 0.25s ease;
+    -webkit-text-stroke: 1px #777;
+    text-shadow: 1px 1px #999;
 }
 
-.rating-container .rating-stars:before {
-    content: attr(data-content);
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+.rating-rtl {
+    float: right;
 }
 
-.rating-container-rtl {
-    position: relative;
-    vertical-align: middle;
-    display: inline-block;
-    overflow: hidden;
-    color: #fde16d;
+.rating-rtl .filled-stars {
+    left: auto;
+    right: 0;
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
-.rating-container-rtl:before {
-    content: attr(data-content);
-    text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+.rating-rtl .filled-stars {
+    right: 0;
 }
 
-.rating-container-rtl .rating-stars {
-    position: absolute;
-    left: 0;
-    top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    color: #e3e3e3;
-    transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    -webkit-transition: all 0.25s ease-out;
+.rating-rtl.is-star .filled-stars {
+    right: 0.06em;
 }
 
-.rating-container-rtl .rating-stars:before {
-    content: attr(data-content);
+.rating-rtl.is-heart .empty-stars {
+    margin-right: 0.07em;
 }
 
 /**
- * Rating sizes
+ * Sizes
  */
 .rating-xl {
     font-size: 4.89em;
@@ -145,10 +107,14 @@
     font-size: 2em;
 }
 
+.rating-xl {
+    font-size: 4.89em;
+}
+
 /**
- * Clear rating button
+ * Clear
  */
-.star-rating .clear-rating, .star-rating-rtl .clear-rating {
+.rating-container .clear-rating {
     color: #aaa;
     cursor: not-allowed;
     display: inline-block;
@@ -164,37 +130,37 @@
     color: #843534;
 }
 
-.star-rating .clear-rating {
+.rating-container .clear-rating {
     padding-right: 5px;
 }
 
 /**
  * Caption
  */
-.star-rating .caption, .star-rating-rtl .caption {
+.rating-container .caption {
     color: #999;
     display: inline-block;
     vertical-align: middle;
-    font-size: 55%;
+    font-size: 60%;
+    margin-top: -0.6em;
 }
 
-.star-rating .caption {
-    padding-left: 5px;
+.rating-container .caption {
+    margin-left: 5px;
+    margin-right: 0;
 }
 
-.star-rating-rtl .caption {
-    padding-right: 5px;
+.rating-rtl .caption {
+    margin-right: 5px;
+    margin-left: 0;
 }
 
 /**
  * Print
  */
 @media print {
-    .rating-container, .rating-container:before , .rating-container-rtl .rating-stars, .rating-container-rtl .rating-stars:before {
-        color: #f3f3f3!important;
-    }
-    
-    .star-rating .clear-rating, .star-rating-rtl .clear-rating {
+    .rating-container .clear-rating {
         display: none;
     }
 }
+

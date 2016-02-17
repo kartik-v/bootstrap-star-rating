@@ -353,7 +353,8 @@
                 self.$clear = $clr;
                 return '';
             }
-            self.addContent('clear', '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>');
+            self.addContent('clear',
+                '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>');
             self.$clear = self.$container.find('.' + self.clearButtonBaseClass);
         },
         renderCaption: function () {

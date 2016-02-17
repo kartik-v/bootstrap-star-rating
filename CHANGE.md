@@ -27,6 +27,7 @@ Change Log: `bootstrap-star-rating`
     - Exclusive support for SVG (and a prebuilt `krajee-svg` theme that contains two different ready to use SVG icons).
 3. (enh #95): Add display only capability.
 4. (enh #96): Add support for `bootstrap-sass` official repo via `sass` branch.
+5. (enh #97): Add `animate` property to enable / disable animation of star highlight on hover / change.
 
 ## Version 3.5.8
 

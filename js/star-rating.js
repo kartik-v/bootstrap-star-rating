@@ -285,6 +285,7 @@
                 getCss(self.theme, 'theme-' + self.theme) +
                 getCss(self.rtl, 'rating-rtl') +
                 getCss(self.size, 'rating-' + self.size) +
+                getCss(self.animate, 'rating-animate') +
                 getCss(self.disabled || self.readonly, 'rating-disabled') +
                 getCss(self.containerClass, self.containerClass);
         },
@@ -519,12 +520,13 @@
         theme: '',
         language: 'en',
         stars: 5,
-        displayOnly: false,
         filledStar: '<i class="glyphicon glyphicon-star"></i>',
         emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
         containerClass: '',
-        rtl: false,
         size: 'md',
+        animate: true,
+        displayOnly: false,
+        rtl: false,
         showClear: true,
         showCaption: true,
         starCaptionClasses: {

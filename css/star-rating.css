@@ -51,16 +51,19 @@
     color: #fde16d;
     white-space: nowrap;
     overflow: hidden;
-    transition: width 0.25s ease;
-    -o-transition: width 0.25s ease;
-    -moz-transition: width 0.25s ease;
-    -webkit-transition: width 0.25s ease;
     -webkit-text-stroke: 1px #777;
     text-shadow: 1px 1px #999;
 }
 
 .rating-rtl {
     float: right;
+}
+
+.rating-animate .filled-stars {
+    transition: width 0.25s ease;
+    -o-transition: width 0.25s ease;
+    -moz-transition: width 0.25s ease;
+    -webkit-transition: width 0.25s ease;
 }
 
 .rating-rtl .filled-stars {

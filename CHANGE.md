@@ -26,6 +26,7 @@ Change Log: `bootstrap-star-rating`
         - `<i class="glyphicon glyphicon-star-empty"></i>`
     - Exclusive support for SVG (and a prebuilt `krajee-svg` theme that contains two different ready to use SVG icons).
 3. (enh #95): Add display only capability.
+4. (enh #96): Add support for `bootstrap-sass` official repo via `sass` branch.
 
 ## Version 3.5.8
 

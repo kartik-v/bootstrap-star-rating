@@ -13,6 +13,8 @@ Developed with a focus on utlizing pure CSS-3 styling to render the control. The
 can be overridden with any other CSS markup. View the [documentation](http://plugins.krajee.com/star-rating) or a [complete demo](http://plugins.krajee.com/star-rating/demo) 
 at Krajee JQuery plugins. 
 
+> NOTE: Release v4.0.0 is a modified rewrite with various new enhancements and BC breaking features. It allows rendering richer markup for star symbols and offers theming support.
+
 ![Star Rating Screenshot](https://lh3.googleusercontent.com/puCbNL9LlBMty8DmaZxAq0yM8teuhM_hEvox-NuJ2x7xWedNhs8nwSk1Zo8FISFAsyt8=w1366-h768-rw-no)
 
 ## Features  
@@ -40,10 +42,9 @@ at Krajee JQuery plugins.
 - Change stars and caption on slide and drag for mobile/touch devices (new feature since v3.1.0).
 - Support for translations and locales.
 
-
 ### New features/changes since release v4.0.0
 
-- **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been be removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
+- **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
 - New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.
     - Themes included
         - The default (blank) theme (for displaying bootstrap glyphicons)
@@ -88,6 +89,9 @@ or add:
     "kartik-v/bootstrap-star-rating": "@dev"
 
 to your composer.json file
+
+> NOTE: You can use the [sass branch](https://github.com/kartik-v/bootstrap-star-rating/tree/sass) for installation using `bootstrap-sass` dependency.
+The [master branch](https://github.com/kartik-v/bootstrap-star-rating/tree/master) can be used for installation using plain `bootstrap` dependency.
 
 ### Manual Install
 

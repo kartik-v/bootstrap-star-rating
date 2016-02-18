@@ -63,10 +63,6 @@ at Krajee JQuery plugins.
 
 > NOTE: Refer [change log](https://github.com/kartik-v/bootstrap-star-rating/blob/master/CHANGE.md) for details on plugin enhancements, fixes, and changes.
 
-## Documentation and Demo
-
-View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plugin demos](http://plugins.krajee.com/star-rating/demo) at Krajee JQuery plugins. 
-
 ## Pre-requisites  
 
 1. [Bootstrap 3.x](http://getbootstrap.com/)
@@ -121,7 +117,7 @@ the plugin to work with default settings.
 
 Step 2: Setup your input markup to automatically initialize the rating
 ```html
-<input id="input-id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" >
+<input id="input-id" class="rating" data-size="lg" >
 ```
 
 Step 3: Initialize the plugin on your page for other input types. For example,
@@ -130,13 +126,17 @@ Step 3: Initialize the plugin on your page for other input types. For example,
 // initialize with defaults
 $("#input-id").rating();
 
-// with plugin options
+// with plugin options (do not attach the CSS class "rating" to your input if using this approach)
 $("#input-id").rating({'size':'lg'});
 ```
 
-The `#input-id` is the identifier for the input (e.g. `type=number`) on your page, which is hidden automatically by the plugin. 
+The `#input-id` is the identifier for the input on your page, which is hidden automatically by the plugin. 
 
 Alternatively, you can directly call the plugin options by setting data attributes to your input field.
+
+## Documentation and Demo
+
+View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plugin demos](http://plugins.krajee.com/star-rating/demo) at Krajee JQuery plugins. 
 
 ## License
 

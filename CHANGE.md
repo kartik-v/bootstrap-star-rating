@@ -1,7 +1,15 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 4.0.0
+## Version 4.0.1
+
+**Date:** 20-Feb-2016
+
+1. (bug #99): Correct documentation for refresh method.
+2. (bug #100): Correct caption and clear rendering methods.
+3. (bug #101): Correct caption setting when `showCaption` is `false`.
+
+## Version 4.0.1
 
 **Date:** 16-Feb-2016
 

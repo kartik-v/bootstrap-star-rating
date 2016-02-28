@@ -1,9 +1,9 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 4.0.1 (under development)
+## Version 4.0.1
 
-**Date:** 23-Feb-2016
+**Date:** 28-Feb-2016
 
 1. (bug #99): Correct documentation for refresh method.
 2. (bug #100): Correct caption and clear rendering methods.
@@ -11,6 +11,7 @@ Change Log: `bootstrap-star-rating`
 4. (bug #102): Revamp generation of rating via `refresh` method.
 5. (enh #103): Implement method chaining and revamp private methods 
     - enhance public methods like `create`, `destroy`, `refresh`, `clear`, `reset` to return the rating element jQuery object
+6. Update package.json to include `peerDependencies` instead of `dependencies`.
 
 ## Version 4.0.0
 

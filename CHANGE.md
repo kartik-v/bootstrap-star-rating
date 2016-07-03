@@ -1,6 +1,18 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.2
+
+**Date:** 03-Jul-2016
+
+1. (enh #108): Add French Translations.
+2. (enh #115): Add Romanian Translations.
+3. (enh #122): Add Spanish Translations.
+4. (enh #123): Add Italian Translations.
+5. (enh #124): Add License Headers.
+6. (enh #127): Add Chinese Translations.
+7. (enh #130): Better management of themes and locales.
+
 ## Version 4.0.1
 
 **Date:** 28-Feb-2016

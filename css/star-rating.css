@@ -1,12 +1,12 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
- * @version 4.0.1
+ * bootstrap-star-rating v4.0.2
+ * http://plugins.krajee.com/star-rating
  *
- * A simple yet powerful JQuery star rating plugin that allows rendering fractional star ratings and supports
- * Right to Left (RTL) input.
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2016, Kartik Visweswaran, Krajee.com
  *
- * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
- * For more Yii related demos visit http://demos.krajee.com
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
  */
 .rating-loading {
     width: 25px;

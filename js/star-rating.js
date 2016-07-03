@@ -1,15 +1,16 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2013 - 2016
- * @version 4.0.1
+ * bootstrap-star-rating v4.0.2
+ * http://plugins.krajee.com/star-rating
  *
- * A simple yet powerful JQuery star rating plugin that allows rendering fractional star ratings and supports
- * Right to Left (RTL) input.
- * 
- * For more JQuery plugins visit http://plugins.krajee.com
- * For more Yii related demos visit http://demos.krajee.com
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2016, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
  */
 (function (factory) {
     "use strict";
+    //noinspection JSUnresolvedVariable
     if (typeof define === 'function' && define.amd) { // jshint ignore:line
         // AMD. Register as an anonymous module.
         define(['jquery'], factory); // jshint ignore:line
@@ -27,6 +28,7 @@
     "use strict";
 
     $.fn.ratingLocales = {};
+    $.fn.ratingThemes = {};
 
     var NAMESPACE, DEFAULT_MIN, DEFAULT_MAX, DEFAULT_STEP, isEmpty, getCss, addCss, getDecimalPlaces, applyPrecision,
         handler, Rating;
@@ -475,13 +477,17 @@
         args.shift();
         this.each(function () {
             var self = $(this), data = self.data('rating'), options = typeof option === 'object' && option,
-                lang = options.language || self.data('language') || 'en', loc = {}, opts;
+                theme = options.theme || self.data('theme'), lang = options.language || self.data('language') || 'en',
+                thm = {}, loc = {}, opts;
 
             if (!data) {
+                if (theme) {
+                    thm = $.fn.ratingThemes[theme] || {};
+                }
                 if (lang !== 'en' && !isEmpty($.fn.ratingLocales[lang])) {
                     loc = $.fn.ratingLocales[lang];
                 }
-                opts = $.extend(true, {}, $.fn.rating.defaults, $.fn.ratingLocales.en, loc, options, self.data());
+                opts = $.extend(true, {}, $.fn.rating.defaults, thm, $.fn.ratingLocales.en, loc, options, self.data());
                 data = new Rating(this, opts);
                 self.data('rating', data);
             }

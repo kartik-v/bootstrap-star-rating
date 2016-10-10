@@ -7,8 +7,8 @@
     ],
     "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
     "main": [
-        "./css/star-rating.min.css",
-        "./js/star-rating.min.js"
+        "./css/star-rating.css",
+        "./js/star-rating.js"
     ],
     "keywords": [
         "bootstrap",

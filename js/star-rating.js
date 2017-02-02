@@ -3,7 +3,7 @@
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2014 - 2016, Kartik Visweswaran, Krajee.com
+ * Copyright: 2014 - 2017, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -91,6 +91,10 @@
             }
         },
         _listenClick: function (e, callback) {
+            var self = this;
+            if (self.inactive) {
+                return;
+            }
             e.stopPropagation();
             e.preventDefault();
             if (e.handled !== true) {
@@ -103,9 +107,6 @@
         _starClick: function (e) {
             var self = this, pos;
             self._listenClick(e, function (ev) {
-                if (self.inactive) {
-                    return false;
-                }
                 pos = self._getTouchPosition(ev);
                 self._setStars(pos);
                 self.$element.trigger('change').trigger('rating.change', [self.$element.val(), self._getCaption()]);
@@ -135,10 +136,8 @@
         _clearClick: function (e) {
             var self = this;
             self._listenClick(e, function () {
-                if (!self.inactive) {
-                    self.clear();
-                    self.clearClicked = true;
-                }
+                self.clear();
+                self.clearClicked = true;
             });
         },
         _clearMouseMove: function (e) {
@@ -236,7 +235,7 @@
                 getCss(self.rtl, 'rating-rtl') +
                 getCss(self.size, 'rating-' + self.size) +
                 getCss(self.animate, 'rating-animate') +
-                getCss(self.disabled || self.readonly, 'rating-disabled') +
+                getCss(self.inactive, 'rating-disabled') +
                 getCss(self.containerClass, self.containerClass);
         },
         _checkDisabled: function () {

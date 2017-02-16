@@ -208,6 +208,8 @@
             self._setDefault('min', self._parseAttr('min', options));
             self._setDefault('max', self._parseAttr('max', options));
             self._setDefault('step', self._parseAttr('step', options));
+            self._setDefault('displayOnly', self._parseAttr('display-only', options));
+            self._setDefault('showCaption', self._parseAttr('show-caption', options));
             if (isNaN(self.min) || isEmpty(self.min)) {
                 self.min = DEFAULT_MIN;
             }

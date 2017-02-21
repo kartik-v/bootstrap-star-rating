@@ -3,7 +3,7 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 4.0.2
 
-**Date:** 02-Feb-2017
+**Date:** 21-Feb-2017
 
 1. (enh #108): Add French Translations.
 2. (enh #115): Add Romanian Translations.
@@ -17,6 +17,10 @@ Change Log: `bootstrap-star-rating`
 10. (enh #139): Do not refer to minified files in bower main metadata .
 11. (enh #142): Enable scroll when rating is readonly or disabled.
 12. Add github issue and PR contribution templates.
+13. (enh #153): Add ability to configure `required` attribute for input.
+14. (enh #154): New property `zeroAsNull` to treat zero value rating as null.
+15. (enh #155): Styling enhancements and code optimizations.
+16. (enh #156): More correct form reset event listening.
 
 ## Version 4.0.1
 

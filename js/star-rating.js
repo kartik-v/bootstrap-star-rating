@@ -219,10 +219,6 @@
             var self = this;
             return self.clearButtonBaseClass + ' ' + (self.inactive ? '' : self.clearButtonActiveClass);
         },
-        _getTouchPosition: function (e) {
-            var self = this, pageX = $h.isEmpty(e.pageX) ? e.originalEvent.touches[0].pageX : e.pageX;
-            return pageX - self.$rating.offset().left;
-        },
         _toggleHover: function (out) {
             var self = this, w, width, caption;
             if (!out) {
@@ -269,6 +265,23 @@
         _initEvents: function () {
             var self = this;
             self.events = {
+                _getTouchPosition: function (e) {
+                    var pageX = $h.isEmpty(e.pageX) ? e.originalEvent.touches[0].pageX : e.pageX;
+                    return pageX - self.$rating.offset().left;
+                },
+                _listenClick: function (e, callback) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    if (e.handled !== true) {
+                        callback(e);
+                        e.handled = true;
+                    } else {
+                        return false;
+                    }
+                },
+                _noMouseAction: function (e) {
+                    return !self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented());
+                },
                 initTouch: function (e) {
                     //noinspection JSUnresolvedVariable
                     var ev, touches, pos, out, caption, w, width, params, clrVal = self.clearValue || 0,
@@ -280,7 +293,7 @@
                     ev = e.originalEvent;
                     //noinspection JSUnresolvedVariable
                     touches = !$h.isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
-                    pos = self._getTouchPosition(touches[0]);
+                    pos = self.events._getTouchPosition(touches[0]);
                     if (e.type === "touchend") {
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
@@ -295,23 +308,13 @@
                         self.$filledStars.css('width', width);
                     }
                 },
-                _listenClick: function (e, callback) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    if (e.handled !== true) {
-                        callback(e);
-                        e.handled = true;
-                    } else {
-                        return false;
-                    }
-                },
                 starClick: function (e) {
                     var pos, params;
                     self.events._listenClick(e, function (ev) {
                         if (self.inactive) {
                             return false;
                         }
-                        pos = self._getTouchPosition(ev);
+                        pos = self.events._getTouchPosition(ev);
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
                         self.$element.trigger('change').trigger('rating.change', params);
@@ -326,16 +329,13 @@
                         }
                     });
                 },
-                _noMouseAction: function (e) {
-                    return !self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented());
-                },
                 starMouseMove: function (e) {
                     var pos, out;
                     if (self.events._noMouseAction(e)) {
                         return;
                     }
                     self.starClicked = false;
-                    pos = self._getTouchPosition(e);
+                    pos = self.events._getTouchPosition(e);
                     out = self.calculate(pos);
                     self._toggleHover(out);
                     self.$element.trigger('rating.hover', [out.val, out.caption, 'stars']);

@@ -145,6 +145,7 @@
             var self = this, $el = self.$element, opts = self.options;
             self.disabled = opts.disabled === undefined ? $el.attr('disabled') || false : opts.disabled;
             self.readonly = opts.readonly === undefined ? $el.attr('readonly') || false : opts.readonly;
+            self.displayOnly = $el.data('displayonly') ? true : self.displayOnly;
             self.inactive = (self.disabled || self.readonly);
             $el.attr({disabled: self.disabled, readonly: self.readonly});
         },

@@ -23,7 +23,7 @@
             3.5: 'Tre Stelle & Mezzo',
             4: 'Quattro Stelle',
             4.5: 'Quattro Stelle & Mezzo',
-            5: 'Five Stars'
+            5: 'Cinque Stelle'
         },
         clearButtonTitle: 'Rimuovi',
         clearCaption: 'Nessuna valutazione'

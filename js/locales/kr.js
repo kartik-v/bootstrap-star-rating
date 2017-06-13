@@ -11,7 +11,7 @@
  */
 (function ($) {
     "use strict";
-    $.fn.ratingLocales['<LANG>'] = {
+    $.fn.ratingLocales['kr'] = {
         defaultCaption: '{rating} 별점',
         starCaptions: {
             0.5: '0.5 점',

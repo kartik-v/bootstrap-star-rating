@@ -17,6 +17,9 @@ at Krajee JQuery plugins.
 
 ![Star Rating Screenshot](https://lh3.googleusercontent.com/puCbNL9LlBMty8DmaZxAq0yM8teuhM_hEvox-NuJ2x7xWedNhs8nwSk1Zo8FISFAsyt8=w1366-h768-rw-no)
 
+## News
+- Added Turkish language. - Oğuz Külcü <grafikcoder@gmail.com>
+
 ## Features  
 
 - Convert any HTML input to a star rating control. 

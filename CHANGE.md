@@ -5,6 +5,7 @@ Change Log: `bootstrap-star-rating`
 
 **Date:** 06-Sep-2017
 
+- (enh #171): Rename events to start with `rating:` instead of `rating`.
 - (enh #170): Enhancements to support Bootstrap v4.x framework.
 
 ## Version 4.0.2

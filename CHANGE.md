@@ -3,8 +3,9 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 4.0.2
 
-**Date:** 27-Aug-2017
+**Date:** 06-Sep-2017
 
+- (enh #170): Enhancements to support Bootstrap v4.x framework.
 - Chronological sorting of issues and enhancements in the CHANGE log.
 - (enh #164): Add Turkish Translations.
 - (enh #163): Add Korean Translations.

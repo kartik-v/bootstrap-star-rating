@@ -150,6 +150,17 @@
 /**
  * Caption
  */
+
+/* extend support to BS4 */
+.rating-container .caption .label {
+    display: inline-block;
+    padding: .25em .4em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
 .rating-container .caption {
     color: #999;
     display: inline-block;

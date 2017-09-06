@@ -1,9 +1,15 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 4.0.2
+## Version 4.0.3
 
 **Date:** 06-Sep-2017
+
+- (enh #170): Enhancements to support Bootstrap v4.x framework.
+
+## Version 4.0.2
+
+**Date:** 27-Aug-2017
 
 - (enh #170): Enhancements to support Bootstrap v4.x framework.
 - Chronological sorting of issues and enhancements in the CHANGE log.

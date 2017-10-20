@@ -317,7 +317,7 @@
                         pos = self.events._getTouchPosition(ev);
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
-                        self.$element.trigger('change').trigger('rating.change', params);
+                        self.$element.trigger('change').trigger('rating:change', params);
                         self.starClicked = true;
                     });
                 },

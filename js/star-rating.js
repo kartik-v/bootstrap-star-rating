@@ -167,6 +167,12 @@
             self._renderCaption();
             self._renderClear();
             self._initHighlight();
+
+            if (self.addCaptionAsTitle !=undefined && self.addCaptionAsTitle) {
+                var caption = self.fetchCaption(self.$element.val());
+                self.$rating.attr('title', $(caption).text());    
+            }
+            
             $container.append($el);
             if (self.rtl) {
                 w = Math.max(self.$emptyStars.outerWidth(), self.$filledStars.outerWidth());
@@ -184,6 +190,7 @@
                 self.$caption.html(content);
             }
         },
+
         _renderCaption: function () {
             var self = this, val = self.$element.val(), html, $cap = self.captionElement ? $(self.captionElement) : '';
             if (!self.showCaption) {
@@ -253,7 +260,9 @@
             if (self.displayOnly) {
                 self.inactive = true;
                 self.showClear = false;
-                self.showCaption = false;
+                if (self.addCaptionAsTitle === undefined) {
+                    self.addCaptionAsTitle = true;    
+                }
             }
             self._generateRating();
             self._initEvents();
@@ -541,6 +550,7 @@
         rtl: false,
         showClear: true,
         showCaption: true,
+        addCaptionAsTitle: undefined,
         starCaptionClasses: {
             0.5: 'label label-danger badge-danger',
             1: 'label label-danger badge-danger',

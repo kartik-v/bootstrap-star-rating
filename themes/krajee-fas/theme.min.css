@@ -4,4 +4,4 @@
  *
  * @see http://github.com/kartik-v/bootstrap-star-rating
  * @author Kartik Visweswaran <kartikv2@gmail.com>
- */.theme-krajee-fas .clear-rating{margin:0 1px 0 0}.theme-krajee-fas.rating-rtl.is-star .empty-stars{margin-right:2px}
+ */.theme-krajee-fas.rating-rtl.is-star .filled-stars{right:0}

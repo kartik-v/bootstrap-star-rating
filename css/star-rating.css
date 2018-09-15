@@ -39,6 +39,7 @@
     font-size: 1px;
     border: none;
     background: none;
+    opacity: 0;
     padding: 0;
     margin: 0;
 }

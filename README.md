@@ -145,4 +145,4 @@ Alternatively, you can directly call the plugin options by setting data attribut
 
 ## License
 
-**bootstrap-star-rating** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**bootstrap-star-rating** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.

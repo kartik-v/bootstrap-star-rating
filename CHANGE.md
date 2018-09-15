@@ -1,6 +1,17 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.4
+
+**Date:** 15-Sep-2018
+
+- Enhancements to support Bootstrap v4.x.
+- Enhance styling of stars for all rating sizes and themes.
+- (enh #187): Add Kazakh translations.
+- (enh #182): New Krajee Font Awesome 5.x `fas` theme.
+- (bug #177, enh #179): New property `showCaptionAsTitle`
+    - Useful for caption to be displayed as title for readonly ratings. 
+
 ## Version 4.0.3
 
 **Date:** 03-Nov-2017

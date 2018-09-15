@@ -1,9 +1,9 @@
 /*!
- * bootstrap-star-rating v4.0.3
+ * bootstrap-star-rating v4.0.4
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2017, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2018, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -139,7 +139,9 @@
                 $h.getCss(self.size, 'rating-' + self.size) +
                 $h.getCss(self.animate, 'rating-animate') +
                 $h.getCss(self.disabled || self.readonly, 'rating-disabled') +
-                $h.getCss(self.containerClass, self.containerClass);
+                $h.getCss(self.containerClass, self.containerClass) +
+                (self.displayOnly ? ' is-display-only' : '');
+
         },
         _checkDisabled: function () {
             var self = this, $el = self.$element, opts = self.options;
@@ -167,6 +169,7 @@
             self._renderCaption();
             self._renderClear();
             self._initHighlight();
+            self._initCaptionTitle();
             $container.append($el);
             if (self.rtl) {
                 w = Math.max(self.$emptyStars.outerWidth(), self.$filledStars.outerWidth());
@@ -262,6 +265,18 @@
             $el.val(v);
             return $el.removeClass('rating-loading');
         },
+        _initCaptionTitle: function() {
+            var self = this, caption;
+            if (self.showCaptionAsTitle) {
+                caption = self.fetchCaption(self.$element.val());
+                self.$rating.attr('title', $(caption).text());
+            }
+        },
+        _trigChange: function(params) {
+            var self = this;
+            self._initCaptionTitle();
+            self.$element.trigger('change').trigger('rating:change', params);
+        },
         _initEvents: function () {
             var self = this;
             self.events = {
@@ -297,7 +312,7 @@
                     if (e.type === "touchend") {
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
-                        self.$element.trigger('change').trigger('rating:change', params);
+                        self._trigChange(params);
                         self.starClicked = true;
                     } else {
                         out = self.calculate(pos);
@@ -317,7 +332,7 @@
                         pos = self.events._getTouchPosition(ev);
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
-                        self.$element.trigger('change').trigger('rating:change', params);
+                        self._trigChange(params);
                         self.starClicked = true;
                     });
                 },
@@ -417,6 +432,7 @@
         showStars: function (val) {
             var self = this, v = self._parseValue(val);
             self.$element.val(v);
+            self._initCaptionTitle();
             return self._setStars();
         },
         calculate: function (pos) {
@@ -454,6 +470,7 @@
             }
             cssVal = typeof vCss === "function" ? vCss(val) : vCss[val];
             capVal = typeof vCap === "function" ? vCap(val) : vCap[val];
+            // noinspection RegExpRedundantEscape
             cap = $h.isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
             css = $h.isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;
@@ -556,10 +573,11 @@
         clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
-        clearCaptionClass: 'label label-default',
+        clearCaptionClass: 'label label-default badge-secondary',
         clearValue: null,
         captionElement: null,
         clearElement: null,
+        showCaptionAsTitle: true,
         hoverEnabled: true,
         hoverChangeCaption: true,
         hoverChangeStars: true,

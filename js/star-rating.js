@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.4
+ * bootstrap-star-rating v4.0.5
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -256,7 +256,9 @@
             if (self.displayOnly) {
                 self.inactive = true;
                 self.showClear = false;
-                self.showCaption = false;
+                self.hoverEnabled = false;
+                self.hoverChangeCaption = false;
+                self.hoverChangeStars = false;
             }
             self._generateRating();
             self._initEvents();

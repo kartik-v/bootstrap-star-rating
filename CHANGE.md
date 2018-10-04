@@ -1,6 +1,13 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.5
+
+**Date:** 04-Oct-2018
+
+- (enh #189): Add Bengali Translations.
+- (enh #188): Allow `showCaption` when `displayOnly` is `true`.
+
 ## Version 4.0.4
 
 **Date:** 15-Sep-2018

@@ -162,10 +162,10 @@
             var self = this, $el = self.$element, $rating, $container, w;
             $container = self.$container = $(document.createElement("div")).insertBefore($el);
             $h.addCss($container, self._getContainerCss());
-            self.$rating = $rating = $(document.createElement("div")).attr('class', 'rating-stars').appendTo($container)
+            self.$rating = $rating = $(document.createElement("div")).attr('class', 'rating').appendTo($container)
                 .append(self._getStars('empty')).append(self._getStars('filled'));
-            self.$emptyStars = $rating.find('.empty-stars');
-            self.$filledStars = $rating.find('.filled-stars');
+            self.$emptyStars = $rating.find('.rating__empty');
+            self.$filledStars = $rating.find('.rating__filled');
             self._renderCaption();
             self._renderClear();
             self._initHighlight();

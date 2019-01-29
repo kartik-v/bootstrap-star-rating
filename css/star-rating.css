@@ -1,9 +1,9 @@
 /*!
- * bootstrap-star-rating v4.0.3
+ * bootstrap-star-rating v4.0.5
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2017, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2018, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -39,8 +39,14 @@
     font-size: 1px;
     border: none;
     background: none;
+    opacity: 0;
     padding: 0;
     margin: 0;
+}
+
+.rating-container.is-display-only .rating-input,
+.rating-container.is-display-only .rating-stars {
+    cursor: default;
 }
 
 .rating-disabled .rating-input, .rating-disabled .rating-stars {
@@ -49,7 +55,7 @@
 
 .rating-container .star {
     display: inline-block;
-    margin: 0 3px;
+    margin: 0 2px;
     text-align: center;
 }
 
@@ -75,18 +81,14 @@
 
 .rating-animate .filled-stars {
     transition: width 0.25s ease;
-    -o-transition: width 0.25s ease;
-    -moz-transition: width 0.25s ease;
-    -webkit-transition: width 0.25s ease;
 }
 
 .rating-rtl .filled-stars {
     left: auto;
     right: 0;
-    -moz-transform: matrix(-1, 0, 0, 1, 0, 0) translate3d(0, 0, 0);
-    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0) translate3d(0, 0, 0);
-    -o-transform: matrix(-1, 0, 0, 1, 0, 0) translate3d(0, 0, 0);
-    transform: matrix(-1, 0, 0, 1, 0, 0) translate3d(0, 0, 0);
+    transition: none;
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
 .rating-rtl.is-star .filled-stars {
@@ -95,33 +97,6 @@
 
 .rating-rtl.is-heart .empty-stars {
     margin-right: 0.07em;
-}
-
-/**
- * Sizes
- */
-.rating-xl {
-    font-size: 4.89em;
-}
-
-.rating-lg {
-    font-size: 3.91em;
-}
-
-.rating-md {
-    font-size: 3.13em;
-}
-
-.rating-sm {
-    font-size: 2.5em;
-}
-
-.rating-xs {
-    font-size: 2em;
-}
-
-.rating-xl {
-    font-size: 4.89em;
 }
 
 /**
@@ -165,8 +140,7 @@
     color: #999;
     display: inline-block;
     vertical-align: middle;
-    font-size: 60%;
-    margin-top: -0.6em;
+    line-height: 1;
 }
 
 .rating-container .caption {
@@ -186,4 +160,39 @@
     .rating-container .clear-rating {
         display: none;
     }
+}
+
+/**
+ * Sizes
+ */
+.rating-xl  {
+    font-size: 48px;
+}
+.rating-lg  {
+    font-size: 40px;
+}
+.rating-md  {
+    font-size: 32px;
+}
+.rating-sm  {
+    font-size: 24px;
+}
+.rating-xs  {
+    font-size: 16px;
+}
+
+.rating-xl .caption {
+    font-size: 20px;
+}
+.rating-lg .caption {
+    font-size: 18px;
+}
+.rating-md .caption {
+    font-size: 16px;
+}
+.rating-sm .caption {
+    font-size: 14px;
+}
+.rating-xs .caption {
+    font-size: 12px;
 }

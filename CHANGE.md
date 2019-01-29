@@ -1,6 +1,25 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.5
+
+**Date:** 04-Oct-2018
+
+- (enh #189): Add Bengali Translations.
+- (enh #188): Allow `showCaption` when `displayOnly` is `true`.
+
+## Version 4.0.4
+
+**Date:** 15-Sep-2018
+
+- Enhancements to support Bootstrap v4.x.
+- Better styling of stars for the 5 rating sizes and maintain consistency across themes.
+- (enh #187): Add Kazakh translations.
+- (enh #184): Correct rating-input style to keep it hidden - yet trigger required validation.
+- (enh #182): New Krajee Font Awesome 5.x `fas` theme.
+- (bug #177, enh #179): New property `showCaptionAsTitle`
+    - Useful for caption to be displayed as title for readonly ratings. 
+
 ## Version 4.0.3
 
 **Date:** 03-Nov-2017

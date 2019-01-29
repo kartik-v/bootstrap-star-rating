@@ -1,5 +1,15 @@
-bootstrap-star-rating
-=====================
+<h1 align="center">
+    <a href="http://plugins.krajee.com" title="Krajee Plugins" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/krajee-logo-b.png" alt="Krajee Logo"/>
+    </a>
+    <br>
+    bootstrap-star-rating
+    <hr>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTP3NZQ6G2AYU"
+       title="Donate via Paypal" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
+    </a>
+</h1>
 
 [![Bower version](https://badge.fury.io/bo/bootstrap-star-rating.svg)](http://badge.fury.io/bo/bootstrap-star-rating)
 [![Stable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
@@ -145,4 +155,4 @@ Alternatively, you can directly call the plugin options by setting data attribut
 
 ## License
 
-**bootstrap-star-rating** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**bootstrap-star-rating** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.

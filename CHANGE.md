@@ -1,7 +1,16 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
-## Version 4.0.5
+## Version 4.0.6
+
+**Date:** 25-May-2019
+
+- (enh #195): Update Bootstrap dependency.
+- (enh #194, enh #180): Allow StarCaptionClasses CSS classes to also be set by Percentage width.
+- (enh #190): Update German Translations.
+- Implement stale bot.
+
+## Version 4.0.6
 
 **Date:** 04-Oct-2018
 

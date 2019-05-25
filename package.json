@@ -1,6 +1,6 @@
 {
     "name": "bootstrap-star-rating",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
     "author": "Kartik Visweswaran <kartikv2@gmail.com>",
     "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
@@ -11,7 +11,6 @@
         "type": "git",
         "url": "https://github.com/kartik-v/bootstrap-star-rating.git"
     },
-    "main": "js/star-rating.min.js",
     "keywords": [
         "bootstrap",
         "star",
@@ -21,9 +20,11 @@
         "glyphicon",
         "svg"
     ],
+    "main": "./js/star-rating.js",
+    "style": "./css/star-rating.css",
     "peerDependencies": {
         "jquery": ">= 1.9.0",
-        "bootstrap": "~3"
+        "bootstrap": ">= 3.0.0"
     },
     "license": "BSD-3-Clause"
 }

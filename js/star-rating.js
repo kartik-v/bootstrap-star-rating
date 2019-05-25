@@ -466,13 +466,13 @@
         },
         fetchCaption: function (rating) {
             var self = this, val = parseFloat(rating) || self.clearValue, css, cap, capVal, cssVal, caption,
-                vCap = self.starCaptions, vCss = self.starCaptionClasses;
+                vCap = self.starCaptions, vCss = self.starCaptionClasses, width = self.getWidthFromValue(val);
             if (val && val !== self.clearValue) {
                 val = $h.applyPrecision(val, $h.getDecimalPlaces(self.step));
             }
-            cssVal = typeof vCss === "function" ? vCss(val) : vCss[val];
-            capVal = typeof vCap === "function" ? vCap(val) : vCap[val];
-            // noinspection RegExpRedundantEscape
+            cssVal = typeof vCss === "function" ? vCss(val, width) : vCss[val];
+            capVal = typeof vCap === "function" ? vCap(val, width) : vCap[val];
+          
             cap = $h.isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
             css = $h.isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;

@@ -11,7 +11,7 @@
     </a>
 </h1>
 
-[![Bower version](https://badge.fury.io/bo/bootstrap-star-rating.svg)](http://badge.fury.io/bo/bootstrap-star-rating)
+[![Financial Contributors on Open Collective](https://opencollective.com/bootstrap-star-rating/all/badge.svg?label=financial+contributors)](https://opencollective.com/bootstrap-star-rating) [![Bower version](https://badge.fury.io/bo/bootstrap-star-rating.svg)](http://badge.fury.io/bo/bootstrap-star-rating)
 [![Stable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![Unstable Version](https://poser.pugx.org/kartik-v/bootstrap-star-rating/v/unstable)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
 [![License](https://poser.pugx.org/kartik-v/bootstrap-star-rating/license)](https://packagist.org/packages/kartik-v/bootstrap-star-rating)
@@ -152,6 +152,36 @@ $("#input-id").rating({'size':'lg'});
 The `#input-id` is the identifier for the input on your page (that you used to initialize the rating), and this input is hidden automatically by the plugin (by adding the bootstrap CSS class `hide`). 
 
 Alternatively, you can directly call the plugin options by setting data attributes to your input field.
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/kartik-v/bootstrap-star-rating/graphs/contributors"><img src="https://opencollective.com/bootstrap-star-rating/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/bootstrap-star-rating/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/bootstrap-star-rating"><img src="https://opencollective.com/bootstrap-star-rating/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/bootstrap-star-rating/contribute)]
+
+<a href="https://opencollective.com/bootstrap-star-rating/organization/0/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/1/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/2/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/3/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/4/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/5/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/6/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/7/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/8/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/bootstrap-star-rating/organization/9/website"><img src="https://opencollective.com/bootstrap-star-rating/organization/9/avatar.svg"></a>
 
 ## License
 

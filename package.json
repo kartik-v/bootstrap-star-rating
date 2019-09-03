@@ -26,5 +26,15 @@
         "jquery": ">= 1.9.0",
         "bootstrap": ">= 3.0.0"
     },
-    "license": "BSD-3-Clause"
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "opencollective-postinstall": "^2.0.2"
+    },
+    "collective": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/bootstrap-star-rating"
+    },
+    "scripts": {
+        "postinstall": "opencollective-postinstall || true"
+    }
 }

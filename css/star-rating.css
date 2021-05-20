@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.7
+ * bootstrap-star-rating v4.0.8
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -202,4 +202,47 @@
 
 .rating-xs .caption {
     font-size: 12px;
+}
+
+/**
+ * Caption
+ */
+.caption-badge {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.caption-secondary {
+    background-color: #6c757d !important;
+}
+
+.caption-danger {
+    background-color: #dc3545 !important;
+}
+
+.caption-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.caption-info {
+    background-color: #0dcaf0 !important;
+    color: #212529 !important;
+}
+
+.caption-primary {
+    background-color: #0d6efd !important;
+}
+
+.caption-success {
+    background-color: #198754 !important;
 }

@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.7
+ * bootstrap-star-rating v4.0.8
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -649,21 +649,21 @@
         showClear: true,
         showCaption: true,
         starCaptionClasses: {
-            0.5: 'label label-danger badge-danger',
-            1: 'label label-danger badge-danger',
-            1.5: 'label label-warning badge-warning',
-            2: 'label label-warning badge-warning',
-            2.5: 'label label-info badge-info',
-            3: 'label label-info badge-info',
-            3.5: 'label label-primary badge-primary',
-            4: 'label label-primary badge-primary',
-            4.5: 'label label-success badge-success',
-            5: 'label label-success badge-success'
+            0.5: 'caption-badge caption-danger',
+            1: 'caption-badge caption-danger',
+            1.5: 'caption-badge caption-warning',
+            2: 'caption-badge caption-warning',
+            2.5: 'caption-badge caption-info',
+            3: 'caption-badge caption-info',
+            3.5: 'caption-badge caption-primary',
+            4: 'caption-badge caption-primary',
+            4.5: 'caption-badge caption-success',
+            5: 'caption-badge caption-success'
         },
         clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
-        clearCaptionClass: 'label label-default badge-secondary',
+        clearCaptionClass: 'caption-badge caption-secondary',
         clearValue: null,
         captionElement: null,
         clearElement: null,

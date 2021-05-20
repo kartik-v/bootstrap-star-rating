@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.8
+
+**Date:** 21-May-2021
+
+- (enh #209): Enhancements to support BS 5.x (and 4.x/3.x).
+
 ## Version 4.0.7
 
 **Date:** 20-May-2021

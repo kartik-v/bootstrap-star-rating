@@ -1,9 +1,9 @@
 /*!
- * bootstrap-star-rating v4.0.6
+ * bootstrap-star-rating v4.0.7
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2019, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2021, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -29,8 +29,12 @@
     white-space: nowrap;
 }
 
-.rating-container .rating-input {
-    position: absolute;
+.rating-container .rating-stars:focus {
+    outline: 1px dotted;
+}
+
+.rating-input {
+    display: absolute;
     cursor: pointer;
     width: 100%;
     height: 1px;
@@ -44,12 +48,11 @@
     margin: 0;
 }
 
-.rating-container.is-display-only .rating-input,
 .rating-container.is-display-only .rating-stars {
     cursor: default;
 }
 
-.rating-disabled .rating-input, .rating-disabled .rating-stars {
+.rating-disabled .rating-stars {
     cursor: not-allowed;
 }
 
@@ -165,34 +168,38 @@
 /**
  * Sizes
  */
-.rating-xl  {
+.rating-xl {
     font-size: 48px;
 }
-.rating-lg  {
+.rating-lg {
     font-size: 40px;
 }
-.rating-md  {
+.rating-md {
     font-size: 32px;
 }
-.rating-sm  {
+.rating-sm {
     font-size: 24px;
 }
-.rating-xs  {
+.rating-xs {
     font-size: 16px;
 }
 
 .rating-xl .caption {
     font-size: 20px;
 }
+
 .rating-lg .caption {
     font-size: 18px;
 }
+
 .rating-md .caption {
     font-size: 16px;
 }
+
 .rating-sm .caption {
     font-size: 14px;
 }
+
 .rating-xs .caption {
     font-size: 12px;
 }

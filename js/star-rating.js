@@ -1,15 +1,15 @@
 /*!
- * bootstrap-star-rating v4.0.6
+ * bootstrap-star-rating v4.0.7
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2019, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2021, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
  */
 (function (factory) {
-    "use strict";
+    'use strict';
     //noinspection JSUnresolvedVariable
     if (typeof define === 'function' && define.amd) { // jshint ignore:line
         // AMD. Register as an anonymous module.
@@ -25,7 +25,7 @@
         }
     }
 }(function ($) {
-    "use strict";
+    'use strict';
 
     $.fn.ratingLocales = {};
     $.fn.ratingThemes = {};
@@ -59,7 +59,10 @@
             if (!skipOff) {
                 $el.off(ev);
             }
-            $el.on(ev, callback);
+            $el.on(ev, function (e) {
+                var cb = $.proxy(callback, self);
+                cb(e);
+            });
         }
     };
 
@@ -121,6 +124,13 @@
                 self.step = $h.DEFAULT_STEP;
             }
             self.diff = self.max - self.min;
+            self._setDefault('minThreshold', self.min);
+            if (self.minThreshold < self.min) {
+                self.minThreshold = self.min;
+            }
+            if (self.minThreshold > self.max) {
+                self.minThreshold = self.max;
+            }
         },
         _initHighlight: function (v) {
             var self = this, w, cap = self._getCaption();
@@ -160,22 +170,25 @@
         },
         _generateRating: function () {
             var self = this, $el = self.$element, $rating, $container, w;
-            $container = self.$container = $(document.createElement("div")).insertBefore($el);
+            $container = self.$container = $(document.createElement('div')).insertBefore($el);
             $h.addCss($container, self._getContainerCss());
-            self.$rating = $rating = $(document.createElement("div")).attr('class', 'rating-stars').appendTo($container)
+            self.$rating = $rating = $(document.createElement('div')).attr('class', 'rating-stars').appendTo($container)
                 .append(self._getStars('empty')).append(self._getStars('filled'));
+            if (self.keyboardEnabled) {
+                self.$rating.attr('tabindex', self.tabindex);
+            }
             self.$emptyStars = $rating.find('.empty-stars');
             self.$filledStars = $rating.find('.filled-stars');
             self._renderCaption();
             self._renderClear();
             self._initHighlight();
-            self._initCaptionTitle();
-            $container.append($el);
+            self._initStarTitles();
+            var i = 1;
             if (self.rtl) {
                 w = Math.max(self.$emptyStars.outerWidth(), self.$filledStars.outerWidth());
                 self.$emptyStars.width(w);
             }
-            $el.appendTo($rating);
+            $container.insertBefore($el);
         },
         _getCaption: function () {
             var self = this;
@@ -200,7 +213,7 @@
                 return;
             }
             self._addContent('caption', '<div class="caption">' + html + '</div>');
-            self.$caption = self.$container.find(".caption");
+            self.$caption = self.$container.find('.caption');
         },
         _renderClear: function () {
             var self = this, css, $clr = self.clearElement ? $(self.clearElement) : '';
@@ -210,7 +223,7 @@
             css = self._getClearClass();
             if ($clr.length) {
                 $h.addCss($clr, css);
-                $clr.attr({"title": self.clearButtonTitle}).html(self.clearButton);
+                $clr.attr({'title': self.clearButtonTitle}).html(self.clearButton);
                 self.$clear = $clr;
                 return;
             }
@@ -240,7 +253,8 @@
             }
         },
         _init: function (options) {
-            var self = this, $el = self.$element.addClass('rating-input'), v;
+            var self = this, $el = self.$element.attr('tabindex', -1).addClass('rating-input'), v,
+                m = self.minThreshold;
             self.options = options;
             $.each(options, function (key, value) {
                 self[key] = value;
@@ -263,20 +277,21 @@
             self._generateRating();
             self._initEvents();
             self._listen();
+            if (!$h.isEmpty(m) && ($h.isEmpty($el.val()) || $el.val() < m)) {
+                $el.val(m);
+            }
             v = self._parseValue($el.val());
             $el.val(v);
             return $el.removeClass('rating-loading');
         },
-        _initCaptionTitle: function() {
+        _initCaptionTitle: function () {
             var self = this, caption;
-            if (self.showCaptionAsTitle) {
-                caption = self.fetchCaption(self.$element.val());
-                self.$rating.attr('title', $(caption).text());
-            }
+            caption = self.fetchCaption(self.$element.val());
+            self.$rating.attr('title', $(caption).text());
         },
-        _trigChange: function(params) {
+        _trigChange: function (params) {
             var self = this;
-            self._initCaptionTitle();
+            self._initStarTitles();
             self.$element.trigger('change').trigger('rating:change', params);
         },
         _initEvents: function () {
@@ -297,7 +312,7 @@
                     }
                 },
                 _noMouseAction: function (e) {
-                    return !self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented());
+                    return !self.mouseEnabled || !self.hoverEnabled || self.inactive || (e && e.isDefaultPrevented());
                 },
                 initTouch: function (e) {
                     //noinspection JSUnresolvedVariable
@@ -311,7 +326,7 @@
                     //noinspection JSUnresolvedVariable
                     touches = !$h.isEmpty(ev.touches) ? ev.touches : ev.changedTouches;
                     pos = self.events._getTouchPosition(touches[0]);
-                    if (e.type === "touchend") {
+                    if (e.type === 'touchend') {
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
                         self._trigChange(params);
@@ -395,24 +410,66 @@
                     if (!self.inactive) {
                         self.reset();
                     }
+                },
+                focus: function (e) {
+                    self.$rating.focus();
+                    self.$element.trigger('rating:focus');
+                },
+                blur: function (e) {
+                    self.$element.trigger('rating:blur');
+                },
+                keydown: function (e) {
+                    if (self.inactive || !self.keyboardEnabled) {
+                        return;
+                    }
+                    var $el = self.$element, v = $el.val(), isUpdated = false, step = parseFloat(self.step),
+                        precision = $h.getDecimalPlaces(self.step),
+                        val = v ? parseFloat(v) : 0, key = parseInt(e.which || e.keyCode || 0, 10);
+                    if (key === 39 && val < self.max) { // key right (increase)
+                        val += step;
+                        isUpdated = true;
+                    }
+                    if (key === 37 && val > self.minThreshold) { // key left (decrease)
+                        val -= step;
+                        isUpdated = true
+                    }
+                    if (isUpdated) {
+                        val = $h.applyPrecision(val, precision);
+                        $el.val(val);
+                        self._trigChange([val, self._getCaption()])
+                        self.showStars($el.val());
+                        self.$rating.focus();
+                    }
+                    if (key === 37 || key === 39) {
+                        $el.trigger('rating:keydown', [val, self._getCaption()]);
+                    }
+
                 }
             };
         },
         _listen: function () {
             var self = this, $el = self.$element, $form = $el.closest('form'), $rating = self.$rating,
-                $clear = self.$clear, events = self.events;
-            $h.handler($rating, 'touchstart touchmove touchend', $.proxy(events.initTouch, self));
-            $h.handler($rating, 'click touchstart', $.proxy(events.starClick, self));
-            $h.handler($rating, 'mousemove', $.proxy(events.starMouseMove, self));
-            $h.handler($rating, 'mouseleave', $.proxy(events.starMouseLeave, self));
+                $clear = self.$clear, events = self.events, ns = $h.NAMESPACE,
+                mouseEvents = 'mousenter' + ns + ' mouseleave' + ns, $stars = self.$rating.find('.star');
+            $h.handler($rating, 'touchstart touchmove touchend', events.initTouch);
+            $h.handler($rating, 'click touchstart', events.starClick);
+            $h.handler($rating, 'mousemove', events.starMouseMove);
+            $h.handler($rating, 'mouseleave', events.starMouseLeave);
+            $h.handler($rating, 'keydown', events.keydown);
+            $h.handler($rating, 'blur', events.blur);
             if (self.showClear && $clear.length) {
-                $h.handler($clear, 'click touchstart', $.proxy(events.clearClick, self));
-                $h.handler($clear, 'mousemove', $.proxy(events.clearMouseMove, self));
-                $h.handler($clear, 'mouseleave', $.proxy(events.clearMouseLeave, self));
+                $h.handler($clear, 'click touchstart', events.clearClick);
+                $h.handler($clear, 'mousemove', events.clearMouseMove);
+                $h.handler($clear, 'mouseleave', events.clearMouseLeave);
             }
             if ($form.length) {
-                $h.handler($form, 'reset', $.proxy(events.resetForm, self), true);
+                $h.handler($form, 'reset', events.resetForm, true);
             }
+            $stars.off(mouseEvents).on(mouseEvents, function (e) {
+                var $star = $(this), index = $star.index(), status = $star.parent().attr('class').slice(0, -1);
+                self.$element.trigger('rating:' + e.type, [index + 1, status, $star]);
+            });
+            $h.handler(self.$container, 'click', events.focus);
             return $el;
         },
         _getStars: function (type) {
@@ -422,6 +479,32 @@
             }
             return stars + '</span>';
         },
+        _initStarTitles: function (val) {
+            var self = this;
+            if (self.showCaptionAsTitle) {
+                self._initCaptionTitle();
+                return;
+            }
+            var starTitles = self.starTitles, setTitles;
+            setTitles = function ($stars) {
+                var i = 1, title;
+                $stars.each(function () {
+                    var $star = $(this), j, title;
+                    if (typeof starTitles === 'function') {
+                        j = i === Math.floor(val) ? val : i;
+                        title = starTitles(j);
+                    } else {
+                        title = starTitles[i];
+                    }
+                    if (title) {
+                        $star.attr({title: title});
+                    }
+                    i++;
+                });
+            };
+            setTitles(self.$emptyStars.find('.star'));
+            setTitles(self.$filledStars.find('.star'));
+        },
         _setStars: function (pos) {
             var self = this, out = arguments.length ? self.calculate(pos) : self.calculate(), $el = self.$element,
                 v = self._parseValue(out.val);
@@ -429,12 +512,12 @@
             self.$filledStars.css('width', out.width);
             self._setCaption(out.caption);
             self.cache = out;
+            self._initStarTitles(v);
             return $el;
         },
         showStars: function (val) {
             var self = this, v = self._parseValue(val);
             self.$element.val(v);
-            self._initCaptionTitle();
             return self._setStars();
         },
         calculate: function (pos) {
@@ -449,14 +532,15 @@
             factor = (self.diff * pos) / (maxWidth * self.step);
             factor = self.rtl ? Math.floor(factor) : Math.ceil(factor);
             val = $h.applyPrecision(parseFloat(self.min + factor * self.step), precision);
-            val = Math.max(Math.min(val, self.max), self.min);
+            val = Math.max(Math.min(val, self.max), self.minThreshold);
             return self.rtl ? (self.max - val) : val;
         },
         getWidthFromValue: function (val) {
             var self = this, min = self.min, max = self.max, factor, $r = self.$emptyStars, w;
-            if (!val || val <= min || min === max) {
+            if (!val || val <= self.min || min === max) {
                 return 0;
             }
+            val = Math.max(val, self.minThreshold);
             w = $r.outerWidth();
             factor = w ? $r.width() / w : 1;
             if (val >= max) {
@@ -470,9 +554,9 @@
             if (val && val !== self.clearValue) {
                 val = $h.applyPrecision(val, $h.getDecimalPlaces(self.step));
             }
-            cssVal = typeof vCss === "function" ? vCss(val, width) : vCss[val];
-            capVal = typeof vCap === "function" ? vCap(val, width) : vCap[val];
-          
+            cssVal = typeof vCss === 'function' ? vCss(val, width) : vCss[val];
+            capVal = typeof vCap === 'function' ? vCap(val, width) : vCap[val];
+
             cap = $h.isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
             css = $h.isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;
@@ -551,6 +635,10 @@
         theme: '',
         language: 'en',
         stars: 5,
+        tabindex: 0,
+        minThreshold: 1,
+        keyboardEnabled: true,
+        mouseEnabled: true,
         filledStar: '<i class="glyphicon glyphicon-star"></i>',
         emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
         containerClass: '',
@@ -579,7 +667,7 @@
         clearValue: null,
         captionElement: null,
         clearElement: null,
-        showCaptionAsTitle: true,
+        showCaptionAsTitle: false,
         hoverEnabled: true,
         hoverChangeCaption: true,
         hoverChangeStars: true,
@@ -599,6 +687,13 @@
             3.5: 'Three & Half Stars',
             4: 'Four Stars',
             4.5: 'Four & Half Stars',
+            5: 'Five Stars'
+        },
+        starTitles: {
+            1: 'One Star',
+            2: 'Two Stars',
+            3: 'Three Stars',
+            4: 'Four Stars',
             5: 'Five Stars'
         },
         clearButtonTitle: 'Clear',

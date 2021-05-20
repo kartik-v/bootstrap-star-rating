@@ -1,6 +1,38 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.7
+
+**Date:** 20-May-2021
+
+- (enh #208): Corrected positioning of the base input on which the rating is triggered.
+- (enh #205): Add Dutch Translations.
+- (enh #200): Activate Open Collective.
+- (enh #199): Add Greek Translations.
+- (enh #145): Minimum value threshold validation.
+    - New property `minThreshold` which allows a star rated with minimum value always. The initial value
+      of the rating is set to `minThreshold` if it has a value undefined or a value less than `minThreshold`
+    - The `minThreshold` value must be a value between the `min` and `max` values 
+    - If `minThreshold` is set to less than `min` the plugin will default `minThreshold` to the `min` value
+    - If `minThreshold` is set to greater than `max` the plugin will default `minThreshold` to the `max` value
+- (enh #129): Enhance accessibility & make the  stars keyboard focusable.
+    - New property `keyboardEnabled` - defaults to `true`
+        - allow use of `tab` keyboard button to navigate to the rating
+        - allow use of arrow `right` and arrow `left` keyboard buttons to change the rating value
+    - New property `mouseEnabled` - defaults to `true` 
+        - when set to false - the mouse cannot be used to change the ratings
+- (enh #111): Add titles to individual star elements.
+  - New config property `starTitles` (can be set as object or function) - will set the title for each star
+- (enh #110): Hover events reworked. New events added `rating:mouseenter` and `rating:mouseleave`
+```
+$('#ratingInput').on('rating:mouseenter rating:mouseleave', function(e, index, status, $star) {
+    console.log(index); // the index number of the star where the event was triggered
+    console.log(status); // whether the mouse event was triggered on `empty-star` or `filled-star`
+    console.log($star); // the current star jquery object where event was triggered 
+    console.log($star.attr('title')); // can get properties of the star object
+}); 
+```  
+
 ## Version 4.0.6
 
 **Date:** 25-May-2019
@@ -10,7 +42,7 @@ Change Log: `bootstrap-star-rating`
 - (enh #190): Update German Translations.
 - Implement stale bot.
 
-## Version 4.0.6
+## Version 4.0.5
 
 **Date:** 04-Oct-2018
 

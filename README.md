@@ -1,13 +1,13 @@
 <h1 align="center">
     <a href="http://plugins.krajee.com" title="Krajee Plugins" target="_blank">
-        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/krajee-logo-b.png" alt="Krajee Logo"/>
+        <img src="https://kartik-v.github.io/bootstrap-fileinput-samples/samples/krajee-logo-b.png" alt="Krajee Logo"/>
     </a>
     <br>
     bootstrap-star-rating
     <hr>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTP3NZQ6G2AYU"
        title="Donate via Paypal" target="_blank">
-        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
+        <img src="https://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
     </a>
 </h1>
 
@@ -25,7 +25,7 @@ at Krajee JQuery plugins.
 
 > NOTE: Release v4.0 is a modified rewrite with various new enhancements and BC breaking features. It allows rendering richer markup for star symbols and offers theming support.
 
-![Star Rating Screenshot](https://lh3.googleusercontent.com/puCbNL9LlBMty8DmaZxAq0yM8teuhM_hEvox-NuJ2x7xWedNhs8nwSk1Zo8FISFAsyt8=w1366-h768-rw-no)
+![Star Rating Screenshot](https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput-samples@0.0.1/samples/star-rating-screenshot.png)
 
 ## Features  
 
@@ -38,7 +38,7 @@ at Krajee JQuery plugins.
   icons for consistent display across devices. Optionally one can use the Unicode character set to override symbols.
 - Use any of your favorite font icon frameworks to render your star symbols (for example you can easily use the icons from the FontAwesome library).
 - Render and display fractional star ratings. Configure number of stars, min, max, step, and theoretically  support any fractional rating.
-- Uses Bootstrap 3.x styles & glyphs by default. But this can be overridden with plugin parameters and your own CSS styles.
+- Uses Bootstrap 5.x, 4.x, 3.x styles & Bootstrap 3.x glyphicons by default. But this can be overridden with plugin parameters and your own CSS styles.
 - Support for RIGHT TO LEFT (RTL) input. Automatically changes star styling for RTL.
 - Ability to clear values and options for the stars. Control where the clear button element can be shown.
 - Reset star rating to the initial value when the form is reset.
@@ -79,7 +79,7 @@ View the [plugin documentation](http://plugins.krajee.com/star-rating) and [plug
 
 ## Pre-requisites  
 
-1. [Bootstrap 3.x](http://getbootstrap.com/)
+1. [Bootstrap 5.x, 4.x, 3.x](http://getbootstrap.com/)
 2. Latest [JQuery](http://jquery.com/)
 3. Most browsers supporting CSS3 & JQuery. 
 
@@ -114,21 +114,21 @@ Step 1: Load the following assets in your header.
 
 ```html
 <!-- default styles -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 
 <!-- optionally if you need to use a theme, then include the theme CSS file as mentioned below -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
 <!-- important mandatory libraries -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/js/star-rating.min.js" type="text/javascript"></script>
 
 <!-- optionally if you need to use a theme, then include the theme JS file as mentioned below -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/themes/krajee-svg/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/themes/krajee-svg/theme.js"></script>
 
-<!-- optionally if you need translation for your language then include locale file as mentioned below -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/locales/<lang>.js"></script>
+<!-- optionally if you need translation for your language then include locale file as mentioned below (replace LANG.js with your own locale file) -->
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.7/js/locales/LANG.js"></script>
 ```
 
 If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js` for

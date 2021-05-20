@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.8
+ * bootstrap-star-rating v4.0.9
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -636,7 +636,6 @@
         language: 'en',
         stars: 5,
         tabindex: 0,
-        minThreshold: 1,
         keyboardEnabled: true,
         mouseEnabled: true,
         filledStar: '<i class="glyphicon glyphicon-star"></i>',

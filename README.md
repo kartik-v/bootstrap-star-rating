@@ -115,20 +115,20 @@ Step 1: Load the following assets in your header.
 ```html
 <!-- default styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.8/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 
 <!-- optionally if you need to use a theme, then include the theme CSS file as mentioned below -->
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.8/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
 <!-- important mandatory libraries -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.8/js/star-rating.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/js/star-rating.min.js" type="text/javascript"></script>
 
 <!-- optionally if you need to use a theme, then include the theme JS file as mentioned below -->
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.8/themes/krajee-svg/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/themes/krajee-svg/theme.js"></script>
 
 <!-- optionally if you need translation for your language then include locale file as mentioned below (replace LANG.js with your own locale file) -->
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.8/js/locales/LANG.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/js/locales/LANG.js"></script>
 ```
 
 If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js` for

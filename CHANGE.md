@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.0.9
+
+**Date:** 21-May-2021
+
+- Correct `minThreshold` default value.
+
 ## Version 4.0.8
 
 **Date:** 21-May-2021

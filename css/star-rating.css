@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.9
+ * bootstrap-star-rating v4.1.0
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -222,27 +222,27 @@
 }
 
 .caption-secondary {
-    background-color: #6c757d !important;
+    background-color: #6c757d;
 }
 
 .caption-danger {
-    background-color: #dc3545 !important;
+    background-color: #dc3545;
 }
 
 .caption-warning {
-    background-color: #ffc107 !important;
-    color: #212529 !important;
+    background-color: #ffc107;
+    color: #212529;
 }
 
 .caption-info {
-    background-color: #0dcaf0 !important;
-    color: #212529 !important;
+    background-color: #0dcaf0;
+    color: #212529;
 }
 
 .caption-primary {
-    background-color: #0d6efd !important;
+    background-color: #0d6efd;
 }
 
 .caption-success {
-    background-color: #198754 !important;
+    background-color: #198754;
 }

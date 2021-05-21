@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.0.9
+ * bootstrap-star-rating v4.1.0
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -423,13 +423,13 @@
                         return;
                     }
                     var $el = self.$element, v = $el.val(), isUpdated = false, step = parseFloat(self.step),
-                        precision = $h.getDecimalPlaces(self.step),
+                        precision = $h.getDecimalPlaces(step), upKey = self.rtl ? 37 : 39, dnKey = self.rtl ? 39 : 37,
                         val = v ? parseFloat(v) : 0, key = parseInt(e.which || e.keyCode || 0, 10);
-                    if (key === 39 && val < self.max) { // key right (increase)
+                    if (key === upKey && val < self.max) { // key right (increase)
                         val += step;
                         isUpdated = true;
                     }
-                    if (key === 37 && val > self.minThreshold) { // key left (decrease)
+                    if (key === dnKey && val > self.minThreshold) { // key left (decrease)
                         val -= step;
                         isUpdated = true
                     }
@@ -632,14 +632,12 @@
     };
 
     $.fn.rating.defaults = {
-        theme: '',
+        theme: 'krajee-svg',
         language: 'en',
         stars: 5,
         tabindex: 0,
         keyboardEnabled: true,
         mouseEnabled: true,
-        filledStar: '<i class="glyphicon glyphicon-star"></i>',
-        emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
         containerClass: '',
         size: 'md',
         animate: true,
@@ -659,7 +657,9 @@
             4.5: 'caption-badge caption-success',
             5: 'caption-badge caption-success'
         },
-        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
+        filledStar: '<span class="krajee-icon krajee-icon-star"></span>', // krajee-svg theme
+        emptyStar: '<span class="krajee-icon krajee-icon-star"></span>',  // krajee-svg theme
+        clearButton: '<span class="krajee-icon-clear"></span>',           // krajee-svg theme
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
         clearCaptionClass: 'caption-badge caption-secondary',

@@ -57,10 +57,11 @@ at Krajee JQuery plugins.
 - **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
 - New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.
     - Themes included
-        - The default (blank) theme (for displaying bootstrap glyphicons)
-        - `krajee-svg` (for displaying svg icons)
-        - `krajee-uni` (for displaying unicode symbols as stars)
-        - `krajee-fa` (for displaying font awesome icons)
+        - `krajee-svg` (for displaying svg icons) - default theme since v4.1.0
+        - `krajee-uni` (for displaying Krajee unicode symbols as stars)
+        - `krajee-fas` (for displaying font awesome 5.x icons)
+        - `krajee-fa` (for displaying font awesome 4.x icons)
+        - `krajee-gly` (for displaying bootstrap 3.x glyphicons)
     - Add ability to override and add one's own themes
 - Stars now have a better padding and spacing that can be configured via CSS and themes
 - New property `filledStar` - will allow one to set the markup for `filledStar` - will default to 
@@ -115,20 +116,20 @@ Step 1: Load the following assets in your header.
 ```html
 <!-- default styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.0/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 
-<!-- optionally if you need to use a theme, then include the theme CSS file as mentioned below -->
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+<!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.0/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
 
 <!-- important mandatory libraries -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/js/star-rating.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.0/js/star-rating.min.js" type="text/javascript"></script>
 
-<!-- optionally if you need to use a theme, then include the theme JS file as mentioned below -->
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/themes/krajee-svg/theme.js"></script>
+<!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme JS files as mentioned below (and change the theme property of the plugin) -->
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.0/themes/krajee-svg/theme.js"></script>
 
 <!-- optionally if you need translation for your language then include locale file as mentioned below (replace LANG.js with your own locale file) -->
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.0.9/js/locales/LANG.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.0/js/locales/LANG.js"></script>
 ```
 
 If you noticed, you need to load the `jquery.min.js` and `bootstrap.min.css` in addition to the `star-rating.min.css` and `star-rating.min.js` for

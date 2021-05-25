@@ -450,7 +450,7 @@
         _listen: function () {
             var self = this, $el = self.$element, $form = $el.closest('form'), $rating = self.$rating,
                 $clear = self.$clear, events = self.events, ns = $h.NAMESPACE,
-                mouseEvents = 'mousenter' + ns + ' mouseleave' + ns, $stars = self.$rating.find('.star');
+                mouseEvents = 'mouseenter' + ns + ' mouseleave' + ns, $stars = self.$rating.find('.star');
             $h.handler($rating, 'touchstart touchmove touchend', events.initTouch);
             $h.handler($rating, 'click touchstart', events.starClick);
             $h.handler($rating, 'mousemove', events.starMouseMove);

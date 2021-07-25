@@ -3,8 +3,9 @@ Change Log: `bootstrap-star-rating`
 
 ## Version 4.1.0
 
-**Date:** _under development_
+**Date:** 25-Jul-2021
 
+- (bug #213): Correct `mousenter` event to `mouseenter`.
 - (enh #212): Enhance caption badge styles.
 - (enh #211): Correct keyboard arrow keys behavior for RTL oriented inputs.
 - (enh #210): Revamp themes - set default theme to Krajee SVG.

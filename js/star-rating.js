@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.1.0
+ * bootstrap-star-rating v4.1.1
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -10,21 +10,14 @@
  */
 (function (factory) {
     'use strict';
-    //noinspection JSUnresolvedVariable
-    if (typeof define === 'function' && define.amd) { // jshint ignore:line
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory); // jshint ignore:line
-    } else { // noinspection JSUnresolvedVariable
-        if (typeof module === 'object' && module.exports) { // jshint ignore:line
-            // Node/CommonJS
-            // noinspection JSUnresolvedVariable
-            module.exports = factory(require('jquery')); // jshint ignore:line
-        } else {
-            // Browser globals
-            factory(window.jQuery);
-        }
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'window', 'document'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'), window, document);
+    } else {
+        factory(window.jQuery, window, document);
     }
-}(function ($) {
+}(function ($, window, document, undefined) {
     'use strict';
 
     $.fn.ratingLocales = {};

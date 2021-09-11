@@ -10,7 +10,16 @@
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @author Ivan Zhuravlev.
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'window', 'document'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') { 
+        factory(require('jquery'), window, document);
+    } else { 
+        factory(window.jQuery, window, document);
+    }
+}(function ($, window, document, undefined) {
     "use strict";
     $.fn.ratingLocales['ru'] = {
         defaultCaption: '{rating} Звёзды',
@@ -29,4 +38,4 @@
         clearButtonTitle: 'Очистить',
         clearCaption: 'Без рейтинга'
     };
-})(window.jQuery);
+}));

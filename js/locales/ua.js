@@ -10,7 +10,16 @@
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @author https://github.com/wowkin2
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'window', 'document'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') { 
+        factory(require('jquery'), window, document);
+    } else { 
+        factory(window.jQuery, window, document);
+    }
+}(function ($, window, document, undefined) {
     "use strict";
     $.fn.ratingLocales['ua'] = {
         defaultCaption: '{rating} Зірки',
@@ -29,4 +38,4 @@
         clearButtonTitle: 'Очистити',
         clearCaption: 'Без рейтингу'
     };
-})(window.jQuery);
+}));

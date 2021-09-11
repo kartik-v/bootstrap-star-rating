@@ -5,11 +5,20 @@
  * @see http://github.com/kartik-v/bootstrap-star-rating
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  */
-(function ($) {
+(function (factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'window', 'document'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') { 
+        factory(require('jquery'), window, document);
+    } else { 
+        factory(window.jQuery, window, document);
+    }
+}(function ($, window, document, undefined) {
     "use strict";
     $.fn.ratingThemes['krajee-svg'] = {
         filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
         emptyStar: '<span class="krajee-icon krajee-icon-star"></span>',
         clearButton: '<span class="krajee-icon-clear"></span>'
     };
-})(window.jQuery);
+}));

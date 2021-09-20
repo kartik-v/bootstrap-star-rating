@@ -1,5 +1,5 @@
 /*!
- * bootstrap-star-rating v4.1.1
+ * bootstrap-star-rating v4.1.2
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
@@ -11,13 +11,13 @@
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
-        define(['jquery', 'window', 'document'], factory);
+        define(['jquery'], factory);
     } else if (typeof module === 'object' && typeof module.exports === 'object') {
-        factory(require('jquery'), window, document);
+        factory(require('jquery'));
     } else {
-        factory(window.jQuery, window, document);
+        factory(window.jQuery);
     }
-}(function ($, window, document, undefined) {
+}(function ($) {
     'use strict';
 
     $.fn.ratingLocales = {};
@@ -25,7 +25,7 @@
 
     var $h, Rating;
 
-    // global helper methods and constants
+    // Global helper methods and constants
     $h = {
         NAMESPACE: '.rating',
         DEFAULT_MIN: 0,
@@ -59,12 +59,14 @@
         }
     };
 
-    // rating constructor
+    // Rating constructor
     Rating = function (element, options) {
         var self = this;
         self.$element = $(element);
         self._init(options);
     };
+
+    // Rating prototype
     Rating.prototype = {
         constructor: Rating,
         _parseAttr: function (vattr, options) {

@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.1.2
+
+**Date:** 20-Sep-2021
+
+- Simplify NPM module handling.
+
 ## Version 4.1.1
 
 **Date:** 11-Sep-2021

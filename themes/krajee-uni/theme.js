@@ -2,7 +2,7 @@
  * Krajee Unicode Theme Configuration for bootstrap-star-rating.
  * This file must be loaded after 'star-rating.js'.
  *
- * bootstrap-star-rating v4.1.2
+ * bootstrap-star-rating v4.1.3
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran

@@ -1,6 +1,12 @@
 Change Log: `bootstrap-star-rating`
 ===================================
 
+## Version 4.1.3
+
+**Date:** _under development_
+
+- (bug #216): Correct `rating-input` CSS class position.
+
 ## Version 4.1.2
 
 **Date:** 20-Sep-2021

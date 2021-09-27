@@ -6,7 +6,7 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  *
- * bootstrap-star-rating v4.1.2
+ * bootstrap-star-rating v4.1.3
  * http://plugins.krajee.com/star-rating
  *
  * Copyright: 2013 - 2021, Kartik Visweswaran, Krajee.com

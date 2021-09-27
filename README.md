@@ -61,7 +61,7 @@ at Krajee JQuery plugins.
 - **BC Breaking Change**: The `symbol`, `glyphicon`, `ratingClass` properties have been removed. The functionality is replaced with the `theme` property (and can also be complemented or implemented separately using the `containerClass` property).
 - New property `theme` will assign a CSS class with the `rating-<theme-name>` to the rating container.
     - Themes included
-        - `krajee-svg` (for displaying svg icons) - default theme since v4.1.2
+        - `krajee-svg` (for displaying svg icons) - default theme since v4.1.0
         - `krajee-uni` (for displaying Krajee unicode symbols as stars)
         - `krajee-fas` (for displaying font awesome 5.x icons)
         - `krajee-fa` (for displaying font awesome 4.x icons)

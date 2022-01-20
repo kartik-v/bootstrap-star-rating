@@ -39,6 +39,13 @@
             4.5: 'Quatro Estrelas e Meia',
             5: 'Cinco Estrelas'
         },
+        starTitles: {
+            1: 'Uma Estrela',
+            2: 'Duas Estrelas',
+            3: 'Três Estrelas',
+            4: 'Quatro Estrelas',
+            5: 'Cinco Estrelas'
+        },        
         clearButtonTitle: 'Limpar',
         clearCaption: 'Não Avaliado'
     };
